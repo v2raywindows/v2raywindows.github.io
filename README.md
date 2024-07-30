@@ -1,4 +1,4 @@
-# 7月30日|Clash/Shadowrocket/SSR/V2ray每天更新20.8M/S免费节点订阅链接  更新时间 2024-07-30 16:35:09
+# 7月30日|SSR/Clash/V2ray/Shadowrocket每天更新18.6M/S免费节点订阅链接  更新时间 2024-07-30 16:37:22
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://v2raywindows.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
