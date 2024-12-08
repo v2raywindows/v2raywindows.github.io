@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-22798.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)</title>
+        <meta name="description" content="大纲  Spring Boot Web项目(含源码)ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)   业务场景   项目结构" />
+        <link rel="icon" href="__ADDON__/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>大纲</h3> <ul> <li><a href="#Spring_Boot_WebConcurrentLinkedQueueReentrantLockConditionMQ_1" rel="nofollow">Spring Boot Web项目(含源码)ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)</a></li> <li> <ul> <li><a href="#_2" rel="nofollow">业务场景</a></li> <li> <ul> <li><a href="#_5" rel="nofollow">项目结构</a></li> <li><a href="#_7" rel="nofollow">代码</a></li> <li> <ul> <li> <ul> <li> <ul> <li><a href="#_8" rel="nofollow">消费者核心代码</a></li> <li><a href="#_47" rel="nofollow">生产者代码</a></li> <li><a href="#_73" rel="nofollow">生产者和消费者共同使用的队列等资源代码</a></li> <li><a href="#_90" rel="nofollow">项目启动加载线程池代码</a></li> </ul> </li> </ul> </li> </ul> </li> <li><a href="#_140" rel="nofollow">项目启动后如图</a></li> <li><a href="#ControllerService_143" rel="nofollow">Controller和Service代码</a></li> <li><a href="#_184" rel="nofollow">前台页面推送数据</a></li> <li><a href="#_186" rel="nofollow">控制台效果如图</a></li> <li><a href="#_188" rel="nofollow">队列正常消费接收到邮箱号就处理发送邮件.</a></li> </ul> </li> <li><a href="#_191" rel="nofollow">总结</a></li> <li><a href="#_194" rel="nofollow">项目地址</a></li> </ul> </li> </ul> </div> </h1> <h2> <a id="_2" rel="nofollow"></a>业务场景</h2> <p>前台注册时,给用户的邮箱异步发送邮件用于激活账户.服务器资源紧张不能引入MQ队列来实现,所以用JUC写了个消费者功能废话不多说直接上代码</p> <h3> <a id="_5" rel="nofollow"></a>项目结构</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/ae3b752d34438af841a042c5c2959523.jpg" alt="Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)"></p> <h3> <a id="_7" rel="nofollow"></a>代码</h3> <h6> <a id="_8" rel="nofollow"></a>消费者核心代码</h6> <pre><code class="prism language-java"><span class="token comment">/**  * 描述: 消费者线程  * date: 2020/6/22 0022  **/</span> <span class="token annotation punctuation">@Slf4j</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConsumerTask</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{<!-- --></span>      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token function">doConsumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">doConsumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         ConsumerTaskHolder<span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">try</span><span class="token punctuation">{<!-- --></span>             <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>                  <span class="token keyword">while</span> <span class="token punctuation">(</span>ConsumerTaskHolder<span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>                     log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"队列中无数据等待数据中......"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     ConsumerTaskHolder<span class="token punctuation">.</span>notEmpty<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token punctuation">}</span>                  <span class="token comment">//消费邮箱</span>                 String email <span class="token operator">=</span> ConsumerTaskHolder<span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"收到邮箱:{},发送邮件......"</span><span class="token punctuation">,</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 处理逻辑 发送邮件..... some action</span>             <span class="token punctuation">}</span>          <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{<!-- --></span>             ConsumerTaskHolder<span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <h6> <a id="_47" rel="nofollow"></a>生产者代码</h6> <pre><code class="prism language-java"><span class="token comment">/**  * 描述: 提供者主要用于给队列推送数据  * date: 2020/6/22 0022  **/</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProviderTask</span> <span class="token punctuation">{<!-- --></span>      <span class="token comment">/**      * 给队列推送数据      * @param email      */</span>     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">pushQueue</span><span class="token punctuation">(</span>String email<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         ConsumerTaskHolder<span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">try</span> <span class="token punctuation">{<!-- --></span>             ConsumerTaskHolder<span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">//唤醒消费者线程处理任务啦</span>             ConsumerTaskHolder<span class="token punctuation">.</span>notEmpty<span class="token punctuation">.</span><span class="token function">signalAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span><span class="token keyword">finally</span> <span class="token punctuation">{<!-- --></span>             ConsumerTaskHolder<span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <h6> <a id="_73" rel="nofollow"></a>生产者和消费者共同使用的队列等资源代码</h6> <pre><code class="prism language-java"><span class="token comment">/**  * 描述: 消费者相关资源  * date: 2020/6/22 0022  **/</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConsumerTaskHolder</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">public</span> <span class="token keyword">static</span> Lock lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token keyword">public</span> <span class="token keyword">static</span> Condition notEmpty <span class="token operator">=</span> lock<span class="token punctuation">.</span><span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">/**      * 存放数据的队列      */</span>     <span class="token keyword">public</span> <span class="token keyword">static</span> ConcurrentLinkedQueue<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">&gt;</span></span> queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentLinkedQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> </code></pre> <h6> <a id="_90" rel="nofollow"></a>项目启动加载线程池代码</h6> <pre><code class="prism language-java"><span class="token comment">/**  * 描述: 线程池启动加载  * date: 2020/6/22 0022  **/</span> <span class="token annotation punctuation">@Slf4j</span> <span class="token annotation punctuation">@Component</span> <span class="token annotation punctuation">@Order</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConsumerThreadPool</span> <span class="token keyword">implements</span> <span class="token class-name">ApplicationRunner</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">/**      * 线程池      */</span>     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> ExecutorService executorService <span class="token operator">=</span> Executors<span class="token punctuation">.</span><span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>ApplicationArguments args<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"加载线程池中........."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">try</span> <span class="token punctuation">{<!-- --></span>             ConsumerTask consumerTask <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConsumerTask</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             executorService<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span>consumerTask<span class="token punctuation">)</span><span class="token punctuation">;</span>             log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"线程池启动完成......"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"线程池启动报错了......."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span>       <span class="token comment">/**      * 项目销毁前执行      */</span>     <span class="token annotation punctuation">@PreDestroy</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">try</span> <span class="token punctuation">{<!-- --></span>             executorService<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//优雅的关闭</span>             log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"关闭线程池...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//          List&lt;Runnable&gt; runnables = executorService.shutdownNow();//直接关闭</span> <span class="token comment">//          log.debug("未执行完的任务,"+runnables);</span>         <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"线程池关闭失败..."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>      <span class="token punctuation">}</span>   <span class="token punctuation">}</span> </code></pre> <h3> <a id="_140" rel="nofollow"></a>项目启动后如图</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/fd63da9d88baac71787e941aad32a58b.jpg" alt="Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)"></p> <h3> <a id="ControllerService_143" rel="nofollow"></a>Controller和Service代码</h3> <pre><code class="prism language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/system"</span><span class="token punctuation">)</span> <span class="token annotation punctuation">@Controller</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SystemController</span> <span class="token punctuation">{<!-- --></span>      <span class="token annotation punctuation">@Autowired</span>     UserService userService<span class="token punctuation">;</span>      <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/{path}"</span><span class="token punctuation">)</span>     <span class="token keyword">public</span> String <span class="token function">index</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span>  String path<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         <span class="token keyword">return</span> path<span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token annotation punctuation">@ResponseBody</span>     <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/register"</span><span class="token punctuation">)</span>     <span class="token keyword">public</span> Map <span class="token function">register</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         Map resultMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         userService<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">return</span> resultMap<span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <pre><code class="prism language-java"><span class="token annotation punctuation">@Slf4j</span> <span class="token annotation punctuation">@Service</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span> <span class="token punctuation">{<!-- --></span>      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">register</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         String email <span class="token operator">=</span> user<span class="token punctuation">.</span><span class="token function">getEmail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">//给队列推送邮箱账号过去,队列处理发送邮件</span>         ProviderTask<span class="token punctuation">.</span><span class="token function">pushQueue</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">//some action</span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"保存用户信息到数据库"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <h3> <a id="_184" rel="nofollow"></a>前台页面推送数据</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/009e4c088570403c3c15186176005a05.jpg" alt="Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)"></p> <h3> <a id="_186" rel="nofollow"></a>控制台效果如图</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/f4325a2cdf3a7251d51ce7704433de85.jpg" alt="Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)"></p> <h3> <a id="_188" rel="nofollow"></a>队列正常消费接收到邮箱号就处理发送邮件.</h3> <h2> <a id="_191" rel="nofollow"></a>总结</h2> <p>项目启动后消费者就会等待数据,生产者推送一个数据过去后唤醒消费者,消费者线程接收到唤醒信号去消费数据.反复如此,由于是Demo所以代码比较简单,实际业务中的问题自行完善即可.</p> <h2> <a id="_194" rel="nofollow"></a>项目地址</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/leijianglong/JUC-consumer-queue"  rel="nofollow">项目地址</a></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-22340.htm">国内十大宠物粮食品牌排名榜 国内十大宠物粮食品牌排名榜图片</a></p>
+                                        <p>下一个：<a href="/news/article-22799.htm">搭建gateway删除spring-boot-starter-web依旧无效</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-14-free-high-speed-nodes.htm" title="9月14日|SSR/Clash/V2ray/Shadowrocket每天更新20.8M/S免费节点订阅链接">9月14日|SSR/Clash/V2ray/Shadowrocket每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-29-free-subscribe-node.htm" title="9月29日|V2ray/SSR/Shadowrocket/Clash每天更新20.5M/S免费节点订阅链接">9月29日|V2ray/SSR/Shadowrocket/Clash每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20509.htm" title="成都领养犬（成都领养狗狗贴吧）">成都领养犬（成都领养狗狗贴吧）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-31-free-high-speed-nodes.htm" title="7月31日|V2ray/Clash/Shadowrocket/SSR每天更新20.9M/S免费节点订阅链接">7月31日|V2ray/Clash/Shadowrocket/SSR每天更新20.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-24-free-v2ray-subscribe.htm" title="9月24日|Clash/Shadowrocket/SSR/V2ray每天更新18.7M/S免费节点订阅链接">9月24日|Clash/Shadowrocket/SSR/V2ray每天更新18.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share-links.htm" title="11月26日|V2ray/SSR/Clash/Shadowrocket每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐">11月26日|V2ray/SSR/Clash/Shadowrocket每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-11-node-share.htm" title="8月11日|V2ray/Clash/Shadowrocket/SSR每天更新18.9M/S免费节点订阅链接">8月11日|V2ray/Clash/Shadowrocket/SSR每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20049.htm" title="领养宠物网站的优势分析与对策（宠物领养平台如何盈利）">领养宠物网站的优势分析与对策（宠物领养平台如何盈利）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-20-free-v2ray.htm" title="9月20日|Clash/V2ray/SSR/Shadowrocket每天更新19.2M/S免费节点订阅链接">9月20日|Clash/V2ray/SSR/Shadowrocket每天更新19.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21418.htm" title="塞尔达海拉鲁神庙位置（塞尔达海拉鲁图鉴定位神庙）">塞尔达海拉鲁神庙位置（塞尔达海拉鲁图鉴定位神庙）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
