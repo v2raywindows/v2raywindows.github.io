@@ -75,6 +75,7 @@
                                           				  				  				<p>最近的工作中，需要批量处理harbor中的一些镜像，其中关键的一步就是获取harbor中全部镜像的带tag的清单。我在网上找了许久，没有找到可用的。</p> <p>最后我自己写了一个java方法，成功实现了这一需求。</p> <p>本文测试的harbor的版本是V2.3.3。</p> <p>下列代码中，使用了一个叫HttpUtils.sendGet的方法。这是我自己实现的一个HTTP请求工具。其代码参见：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jb51.net/article/243787.htm"  target="_blank" rel="nofollow">Java原生HttpClient使用示例</a>。</p> <div class="ay1code"> <pre class="brush:java;">public void getImages(String harborHost, String cookieStr) throws Exception {      HttpResponse&lt;String&gt; catalogResp = HttpUtils.sendGet(harborHost + "/v2/_catalog", cookieStr);      List&lt;String&gt; strings = JSONObject.parseObject(catalogResp.body()).getJSONArray("repositories").toJavaList(String.class);      HashMap&lt;String, List&lt;String&gt;&gt; result = new HashMap&lt;&gt;();      for (String image : strings) {          ArrayList&lt;String&gt; tagList = new ArrayList&lt;&gt;();          String[] split = image.split("/");          String repositoryName = split[0];          String imageName = split[1];          String urlForImageInfo = harborHost + "/api/v2.0/projects/" + repositoryName + "/repositories/" + imageName;          HttpResponse&lt;String&gt; infoResp = HttpUtils.sendGet(urlForImageInfo, cookieStr);          Integer artifactCount = JSONObject.parseObject(infoResp.body()).getInteger("artifact_count");          int pageNum = artifactCount / 15;          pageNum = pageNum * 15 &gt;= artifactCount ? pageNum : pageNum + 1;          for (int i = 1; i &lt;= pageNum; i++) {              String urlForTags = urlForImageInfo + "/artifacts?with_tag=true&amp;with_scan_overview=true&amp;with_label=true&amp;page_size=15&amp;page=" + i;              HttpResponse&lt;String&gt; tagsResp = HttpUtils.sendGet(urlForTags, cookieStr);              JSONArray tagArray = JSONObject.parseArray(tagsResp.body());              for (int j = 0; j &lt; tagArray.size(); j++) {                  String tagsStr = tagArray.getJSONObject(j).getString("tags");                  if (!StrUtils.isEmpty(tagsStr)) {                      JSONArray tags = tagArray.getJSONObject(j).getJSONArray("tags");                      for (int k = 0; k &lt; tags.size(); k++) {                          tagList.add(tags.getJSONObject(k).getString("name"));                      }                  }              }          }          result.put(image, tagList);      }      for (String key : result.keySet()) {          for (String t : result.get(key)) {              System.out.println(key + ":" + t);          }      }  }  </pre> </div> <p>此方法需要传入两个参数。第一个是：harborHost为harbor的URL的字符串，比如：https://harbor.wja.cn<br />第二个也是一个字符串，需要手动登录harbor页面，在首页中，按F12，弹出开发工具，然后刷新页面，第一个请求的cookie的值就所需的字符串，如下图所示：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/d2fe330eec0fb308a2c60c14009bf60c.jpg"></p> <p>测试结果如下：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/069f3e456ede035883784981f2a0b0cb.jpg"></p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-24188.htm">springcloudalibaba架构(12):Feign整合Sentinel实现服务容错</a></p>
+                                        <p>下一个：<a href="/news/article-24649.htm">有没有宠物批发的网站推荐（有没有宠物批发的网站推荐知乎）</a></p>
                                     </div>
                                     </div>
                     <div class="col-md-3">
@@ -84,16 +85,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-node-share.htm" title="11月8日|V2ray/Clash/SSR/Shadowrocket每天更新21.3M/S免费节点订阅链接，付费节点订阅推荐">11月8日|V2ray/Clash/SSR/Shadowrocket每天更新21.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share-links.htm" title="11月22日|V2ray/Clash/SSR/Shadowrocket每天更新22.5M/S免费节点订阅链接，付费节点订阅推荐">11月22日|V2ray/Clash/SSR/Shadowrocket每天更新22.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-20509.htm" title="成都领养犬（成都领养狗狗贴吧）">成都领养犬（成都领养狗狗贴吧）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐">11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-24190.htm" title="教你如何获取Harbor的带tag的镜像清单_docker">教你如何获取Harbor的带tag的镜像清单_docker</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-10-9-free-high-speed-nodes.htm" title="10月9日|V2ray/Shadowrocket/SSR/Clash每天更新21.3M/S免费节点订阅链接">10月9日|V2ray/Shadowrocket/SSR/Clash每天更新21.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-1-node-share-links.htm" title="9月1日|V2ray/Shadowrocket/SSR/Clash每天更新21.6M/S免费节点订阅链接">9月1日|V2ray/Shadowrocket/SSR/Clash每天更新21.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-16-clash-v2ray-ss-ssr.htm" title="10月16日|Clash/Shadowrocket/SSR/V2ray每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐">10月16日|Clash/Shadowrocket/SSR/V2ray每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-2-clash-v2ray-ss-ssr.htm" title="10月2日|V2ray/SSR/Clash/Shadowrocket每天更新20.5M/S免费节点订阅链接">10月2日|V2ray/SSR/Clash/Shadowrocket每天更新20.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-v2ray.htm" title="12月4日|Clash/SSR/V2ray/Shadowrocket每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐">12月4日|Clash/SSR/V2ray/Shadowrocket每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/news/article-20508.htm" title="动物防疫打针收费吗多少钱一次（动物防疫站打疫苗多少钱）">动物防疫打针收费吗多少钱一次（动物防疫站打疫苗多少钱）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-6-node-share-links.htm" title="9月6日|V2ray/Clash/SSR/Shadowrocket每天更新22.6M/S免费节点订阅链接">9月6日|V2ray/Clash/SSR/Shadowrocket每天更新22.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-19-free-high-speed-nodes.htm" title="10月19日|Clash/SSR/V2ray/Shadowrocket每天更新19.5M/S免费节点订阅链接，付费节点订阅推荐">10月19日|Clash/SSR/V2ray/Shadowrocket每天更新19.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-23-free-high-speed-nodes.htm" title="9月23日|SSR/Shadowrocket/Clash/V2ray每天更新18.5M/S免费节点订阅链接">9月23日|SSR/Shadowrocket/Clash/V2ray每天更新18.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-10-node-share-links.htm" title="8月10日|Clash/V2ray/SSR/Shadowrocket每天更新19M/S免费节点订阅链接">8月10日|Clash/V2ray/SSR/Shadowrocket每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-v2ray-ss-ssr.htm" title="10月13日|SSR/V2ray/Clash/Shadowrocket每天更新21M/S免费节点订阅链接">10月13日|SSR/V2ray/Clash/Shadowrocket每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-free-v2ray.htm" title="10月4日|SSR/Clash/Shadowrocket/V2ray每天更新19.2M/S免费节点订阅链接">10月4日|SSR/Clash/Shadowrocket/V2ray每天更新19.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-30-clash-v2ray-ss-ssr.htm" title="8月30日|Shadowrocket/Clash/SSR/V2ray每天更新19.5M/S免费节点订阅链接">8月30日|Shadowrocket/Clash/SSR/V2ray每天更新19.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-26-free-v2ray.htm" title="9月26日|V2ray/Shadowrocket/Clash/SSR每天更新18.6M/S免费节点订阅链接">9月26日|V2ray/Shadowrocket/Clash/SSR每天更新18.6M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -105,7 +106,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
