@@ -2,11 +2,10 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://v2raywindows.github.io/news/article-24190.htm" />
+        <link rel="canonical" href="https://v2raywindows.github.io/news/page-4.htm" />
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>教你如何获取Harbor的带tag的镜像清单_docker</title>
-        <meta name="description" content="最近的工作中，需要批量处理harbor中的一些镜像，其中关键的一步就是获取harbor中全部镜像的带tag的清单。我在网上找了许久，没有找到可用的。 最后我自己写了一个java方法，成功实现了这一需求" />
+    <title>新闻资讯 - V2ray Windows免费节点订阅站 - 第3页</title>
         <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -33,7 +32,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="detail">
+<body data-page="category">
     <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
@@ -58,11 +57,10 @@
         <section class="breadcrumbs">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1>教你如何获取Harbor的带tag的镜像清单_docker</h1>
+                    <h1>新闻资讯</h1>
                     <ol>
                         <li><a href="/">首页</a></li>
-                        <li><a href="/news/">新闻资讯</a></li>
-                        <li>正文</li>
+                        <li>新闻资讯</li>
                     </ol>
                 </div>
             </div>
@@ -72,12 +70,38 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                                          				  				  				<p>最近的工作中，需要批量处理harbor中的一些镜像，其中关键的一步就是获取harbor中全部镜像的带tag的清单。我在网上找了许久，没有找到可用的。</p> <p>最后我自己写了一个java方法，成功实现了这一需求。</p> <p>本文测试的harbor的版本是V2.3.3。</p> <p>下列代码中，使用了一个叫HttpUtils.sendGet的方法。这是我自己实现的一个HTTP请求工具。其代码参见：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jb51.net/article/243787.htm"  target="_blank" rel="nofollow">Java原生HttpClient使用示例</a>。</p> <div class="ay1code"> <pre class="brush:java;">public void getImages(String harborHost, String cookieStr) throws Exception {      HttpResponse&lt;String&gt; catalogResp = HttpUtils.sendGet(harborHost + "/v2/_catalog", cookieStr);      List&lt;String&gt; strings = JSONObject.parseObject(catalogResp.body()).getJSONArray("repositories").toJavaList(String.class);      HashMap&lt;String, List&lt;String&gt;&gt; result = new HashMap&lt;&gt;();      for (String image : strings) {          ArrayList&lt;String&gt; tagList = new ArrayList&lt;&gt;();          String[] split = image.split("/");          String repositoryName = split[0];          String imageName = split[1];          String urlForImageInfo = harborHost + "/api/v2.0/projects/" + repositoryName + "/repositories/" + imageName;          HttpResponse&lt;String&gt; infoResp = HttpUtils.sendGet(urlForImageInfo, cookieStr);          Integer artifactCount = JSONObject.parseObject(infoResp.body()).getInteger("artifact_count");          int pageNum = artifactCount / 15;          pageNum = pageNum * 15 &gt;= artifactCount ? pageNum : pageNum + 1;          for (int i = 1; i &lt;= pageNum; i++) {              String urlForTags = urlForImageInfo + "/artifacts?with_tag=true&amp;with_scan_overview=true&amp;with_label=true&amp;page_size=15&amp;page=" + i;              HttpResponse&lt;String&gt; tagsResp = HttpUtils.sendGet(urlForTags, cookieStr);              JSONArray tagArray = JSONObject.parseArray(tagsResp.body());              for (int j = 0; j &lt; tagArray.size(); j++) {                  String tagsStr = tagArray.getJSONObject(j).getString("tags");                  if (!StrUtils.isEmpty(tagsStr)) {                      JSONArray tags = tagArray.getJSONObject(j).getJSONArray("tags");                      for (int k = 0; k &lt; tags.size(); k++) {                          tagList.add(tags.getJSONObject(k).getString("name"));                      }                  }              }          }          result.put(image, tagList);      }      for (String key : result.keySet()) {          for (String t : result.get(key)) {              System.out.println(key + ":" + t);          }      }  }  </pre> </div> <p>此方法需要传入两个参数。第一个是：harborHost为harbor的URL的字符串，比如：https://harbor.wja.cn<br />第二个也是一个字符串，需要手动登录harbor页面，在首页中，按F12，弹出开发工具，然后刷新页面，第一个请求的cookie的值就所需的字符串，如下图所示：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/d2fe330eec0fb308a2c60c14009bf60c.jpg"></p> <p>测试结果如下：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/069f3e456ede035883784981f2a0b0cb.jpg"></p> 			                <div class="clearfix"></div>
-                <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-24188.htm">springcloudalibaba架构(12):Feign整合Sentinel实现服务容错</a></p>
-                                        <p>下一个：<a href="/news/article-24649.htm">有没有宠物批发的网站推荐（有没有宠物批发的网站推荐知乎）</a></p>
-                                    </div>
-                                    </div>
+                        <div class="xcblog-blog-list">
+                                                        <div class="row content item xcblog-blog-item" data-date="2024-11-29">
+                                <div class="col-md-3">
+                                    <a href="/news/article-18722.htm" class="xcblog-blog-url">
+                                        <img src="/uploads/20240730-1/91f8309f0bf512da99d996791e8c9a34.webp" class="img-fluid" alt="济南宠物领养活动有哪些（济南宠物领养活动有哪些地方）">
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="/news/article-18722.htm" class="xcblog-blog-url">
+                                        <h3 class="xcblog-blog-title">济南宠物领养活动有哪些（济南宠物领养活动有哪些地方）</h3>
+                                    </a>
+                                    <p class="fst-italic">
+                                        摘要：       本篇文章给大家谈谈济南宠物领养活动有哪些，以及济南宠物领养活动有哪些地方对应的知识点，希望对各位有所帮助，不要忘了收藏本站喔。本文目录一览：1、哪里有可以收养狗狗的地方?...                                      </p>
+                                </div>
+                            </div>
+                                                        <div class="row content item xcblog-blog-item" data-date="2024-11-29">
+                                <div class="col-md-3">
+                                    <a href="/news/article-18721.htm" class="xcblog-blog-url">
+                                        <img src="/uploads/20240730-1/7a668fa7fce1a22d1ead584e5d90b9d7.webp" class="img-fluid" alt="Java核心知识1：泛型机制详解">
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="/news/article-18721.htm" class="xcblog-blog-url">
+                                        <h3 class="xcblog-blog-title">Java核心知识1：泛型机制详解</h3>
+                                    </a>
+                                    <p class="fst-italic">
+                                        JDK 1.5开始引入Java泛型（generics）这个特性，该特性提供了编译时类型安全检测机制，允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，即给类型指定一个参数，然后在使用时再指定                                    </p>
+                                </div>
+                            </div>
+                            
+                            <ul class="pagination"><li><a href="/news/page-3.htm">&laquo;</a></li> <li><a href="/news/">1</a></li><li><a href="/news/page-2.htm">2</a></li><li><a href="/news/page-3.htm">3</a></li><li class="active"><span>4</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                        </div>
+                    </div>
                     <div class="col-md-3">
                         <div class="panel panel-default">
     <div class="panel-heading">
@@ -85,16 +109,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-13-free-v2ray-subscribe.htm" title="9月13日|Shadowrocket/V2ray/Clash/SSR每天更新19.2M/S免费节点订阅链接">9月13日|Shadowrocket/V2ray/Clash/SSR每天更新19.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-2-node-share-links.htm" title="11月2日|Shadowrocket/V2ray/Clash/SSR每天更新19.1M/S免费节点订阅链接，付费节点订阅推荐">11月2日|Shadowrocket/V2ray/Clash/SSR每天更新19.1M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-20-clash-v2ray-ss-ssr.htm" title="8月20日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接">8月20日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-5-free-subscribe-node.htm" title="10月5日|Clash/Shadowrocket/V2ray/SSR每天更新20.7M/S免费节点订阅链接">10月5日|Clash/Shadowrocket/V2ray/SSR每天更新20.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-2-clash-v2ray-ss-ssr.htm" title="10月2日|V2ray/SSR/Clash/Shadowrocket每天更新20.5M/S免费节点订阅链接">10月2日|V2ray/SSR/Clash/Shadowrocket每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-v2ray.htm" title="11月6日|Clash/Shadowrocket/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐">11月6日|Clash/Shadowrocket/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-10-20-free-high-speed-nodes.htm" title="10月20日|SSR/Clash/V2ray/Shadowrocket每天更新18.8M/S免费节点订阅链接，付费节点订阅推荐">10月20日|SSR/Clash/V2ray/Shadowrocket每天更新18.8M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-node-subscribe-links.htm" title="12月6日|SSR/V2ray/Shadowrocket/Clash每天更新22.6M/S免费节点订阅链接，付费节点订阅推荐">12月6日|SSR/V2ray/Shadowrocket/Clash每天更新22.6M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-18722.htm" title="济南宠物领养活动有哪些（济南宠物领养活动有哪些地方）">济南宠物领养活动有哪些（济南宠物领养活动有哪些地方）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-4-free-node-subscribe-links.htm" title="8月4日|Shadowrocket/SSR/Clash/V2ray每天更新19.5M/S免费节点订阅链接">8月4日|Shadowrocket/SSR/Clash/V2ray每天更新19.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-free-high-speed-nodes.htm" title="10月31日|Shadowrocket/V2ray/SSR/Clash每天更新19.3M/S免费节点订阅链接，付费节点订阅推荐">10月31日|Shadowrocket/V2ray/SSR/Clash每天更新19.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe-links.htm" title="11月30日|Shadowrocket/Clash/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐">11月30日|Shadowrocket/Clash/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐">11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-13-free-v2ray-subscribe.htm" title="9月13日|Shadowrocket/V2ray/Clash/SSR每天更新19.2M/S免费节点订阅链接">9月13日|Shadowrocket/V2ray/Clash/SSR每天更新19.2M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/news/article-20049.htm" title="领养宠物网站的优势分析与对策（宠物领养平台如何盈利）">领养宠物网站的优势分析与对策（宠物领养平台如何盈利）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-10-free-node-subscribe.htm" title="9月10日|V2ray/Clash/SSR/Shadowrocket每天更新18.6M/S免费节点订阅链接">9月10日|V2ray/Clash/SSR/Shadowrocket每天更新18.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-19135.htm" title="SpringBoot：Controller层调用Service层，出现bug">SpringBoot：Controller层调用Service层，出现bug</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-17-free-v2ray-subscribe.htm" title="8月17日|Shadowrocket/Clash/SSR/V2ray每天更新21.3M/S免费节点订阅链接">8月17日|Shadowrocket/Clash/SSR/V2ray每天更新21.3M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
