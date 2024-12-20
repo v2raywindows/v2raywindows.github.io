@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>SpringBoot：Controller层调用Service层，出现bug</title>
         <meta name="description" content="bug描述：无法直接调用service层中的方法，service层上的断点打上直接变成灰色禁用标识，且controller层中的方法无法执行到service中。 之前没遇到过，百思不得其解，maven" />
-        <link rel="icon" href="__ADDON__/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
@@ -72,7 +72,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="bugserviceservicecontrollerservice_0" rel="nofollow"></a>bug描述：无法直接调用service层中的方法，service层上的断点打上直接变成灰色禁用标识，且controller层中的方法无法执行到service中。</h2> <p>之前没遇到过，百思不得其解，maven-clean了一下，发现因为刚用了mbg重新生成了用户类，在两个地方需要重新导入，而涉及到的这个方法刚好也是需要这个user类中的ID，因此出现这个奇怪的bug。</p> <p>@Controller层<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/012452eb32e0b2abe90e475eb67b57a2.jpg" alt="SpringBoot：Controller层调用Service层，出现bug"><br /> @Service层<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/848a1f30a9d0b607d442efa2895daecc.jpg" alt="SpringBoot：Controller层调用Service层，出现bug"><br /> 执行过程无法跳转，反而跳转到ModelMap类中的如下方法中，看提示是说属性不能为空，其实是没有为空的属性的，但是之前用过mbg重新生成了User类，所以在几个地方需要重新导一下包，没有正确识别，因此出现问题。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/b627292d6b776b08537d0645d74fc628.jpg" alt="SpringBoot：Controller层调用Service层，出现bug"><br /> 解决方法：在ProfileController中将user重新导包，即可解决。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/4856185ab4958dbf099368dba0b84999.jpg" alt="SpringBoot：Controller层调用Service层，出现bug"></p> </p></div> 			                <div class="clearfix"></div>
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="bugserviceservicecontrollerservice_0" rel="nofollow"></a>bug描述：无法直接调用service层中的方法，service层上的断点打上直接变成灰色禁用标识，且controller层中的方法无法执行到service中。</h2> <p>之前没遇到过，百思不得其解，maven-clean了一下，发现因为刚用了mbg重新生成了用户类，在两个地方需要重新导入，而涉及到的这个方法刚好也是需要这个user类中的ID，因此出现这个奇怪的bug。</p> <p>@Controller层<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/012452eb32e0b2abe90e475eb67b57a2.jpg" alt="SpringBoot：Controller层调用Service层，出现bug"><br /> @Service层<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/848a1f30a9d0b607d442efa2895daecc.jpg" alt="SpringBoot：Controller层调用Service层，出现bug"><br /> 执行过程无法跳转，反而跳转到ModelMap类中的如下方法中，看提示是说属性不能为空，其实是没有为空的属性的，但是之前用过mbg重新生成了User类，所以在几个地方需要重新导一下包，没有正确识别，因此出现问题。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/b627292d6b776b08537d0645d74fc628.jpg" alt="SpringBoot：Controller层调用Service层，出现bug"><br /> 解决方法：在ProfileController中将user重新导包，即可解决。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/4856185ab4958dbf099368dba0b84999.jpg" alt="SpringBoot：Controller层调用Service层，出现bug"></p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-18722.htm">济南宠物领养活动有哪些（济南宠物领养活动有哪些地方）</a></p>
                                         <p>下一个：<a href="/news/article-19136.htm">流浪猫不想被收养的表现（收养的流浪猫不想养了怎么办）</a></p>
@@ -85,16 +86,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-21-free-high-speed-nodes.htm" title="9月21日|V2ray/Clash/Shadowrocket/SSR每天更新18.2M/S免费节点订阅链接">9月21日|V2ray/Clash/Shadowrocket/SSR每天更新18.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-20964.htm" title="猫三联最晚什么时候打第一针（猫三联最晚什么时候打第一针疫苗）">猫三联最晚什么时候打第一针（猫三联最晚什么时候打第一针疫苗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-v2ray.htm" title="11月29日|V2ray/SSR/Clash/Shadowrocket每天更新21.5M/S免费节点订阅链接，付费节点订阅推荐">11月29日|V2ray/SSR/Clash/Shadowrocket每天更新21.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-28-node-share.htm" title="10月28日|V2ray/Shadowrocket/SSR/Clash每天更新18.4M/S免费节点订阅链接，付费节点订阅推荐">10月28日|V2ray/Shadowrocket/SSR/Clash每天更新18.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-20-free-v2ray.htm" title="9月20日|Clash/V2ray/SSR/Shadowrocket每天更新19.2M/S免费节点订阅链接">9月20日|Clash/V2ray/SSR/Shadowrocket每天更新19.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-node-share.htm" title="12月11日|SSR/Clash/Shadowrocket/V2ray每天更新18.9M/S免费节点订阅链接，付费节点订阅推荐">12月11日|SSR/Clash/Shadowrocket/V2ray每天更新18.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-12-2-free-high-speed-nodes.htm" title="12月2日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐">12月2日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-22-free-high-speed-nodes.htm" title="10月22日|Shadowrocket/SSR/V2ray/Clash每天更新19.4M/S免费节点订阅链接，付费节点订阅推荐">10月22日|Shadowrocket/SSR/V2ray/Clash每天更新19.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-20-clash-v2ray-ss-ssr.htm" title="8月20日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接">8月20日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-30-clash-v2ray-ss-ssr.htm" title="8月30日|Shadowrocket/Clash/SSR/V2ray每天更新19.5M/S免费节点订阅链接">8月30日|Shadowrocket/Clash/SSR/V2ray每天更新19.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-20509.htm" title="成都领养犬（成都领养狗狗贴吧）">成都领养犬（成都领养狗狗贴吧）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-4-node-share.htm" title="11月4日|SSR/Shadowrocket/Clash/V2ray每天更新20.6M/S免费节点订阅链接，付费节点订阅推荐">11月4日|SSR/Shadowrocket/Clash/V2ray每天更新20.6M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-v2ray.htm" title="11月6日|Clash/Shadowrocket/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐">11月6日|Clash/Shadowrocket/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-23-free-high-speed-nodes.htm" title="9月23日|SSR/Shadowrocket/Clash/V2ray每天更新18.5M/S免费节点订阅链接">9月23日|SSR/Shadowrocket/Clash/V2ray每天更新18.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-24-free-v2ray-subscribe.htm" title="9月24日|Clash/Shadowrocket/SSR/V2ray每天更新18.7M/S免费节点订阅链接">9月24日|Clash/Shadowrocket/SSR/V2ray每天更新18.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-2-free-v2ray-subscribe.htm" title="9月2日|V2ray/SSR/Clash/Shadowrocket每天更新19.4M/S免费节点订阅链接">9月2日|V2ray/SSR/Clash/Shadowrocket每天更新19.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-16-clash-v2ray-ss-ssr.htm" title="10月16日|Clash/Shadowrocket/SSR/V2ray每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐">10月16日|Clash/Shadowrocket/SSR/V2ray每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-17-free-v2ray-subscribe.htm" title="8月17日|Shadowrocket/Clash/SSR/V2ray每天更新21.3M/S免费节点订阅链接">8月17日|Shadowrocket/Clash/SSR/V2ray每天更新21.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-15-free-v2ray-subscribe.htm" title="8月15日|V2ray/Clash/SSR/Shadowrocket每天更新18M/S免费节点订阅链接">8月15日|V2ray/Clash/SSR/Shadowrocket每天更新18M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -106,7 +107,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -136,6 +137,15 @@
     <footer id="footer">
         <div class="container">
             <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                 <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
             </div>
         </div>
