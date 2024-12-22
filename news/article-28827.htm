@@ -76,6 +76,7 @@
                   				  				  				<h2>解决方法：</h2> <div class="ay1code"> <pre class="brush:cpp;">QTextDocument* doc = ui-&gt;edtCountryIntroduce-&gt;document();    for(QTextBlock it = doc-&gt;begin(); it != doc-&gt;end(); it = it.next())  {      QTextCursor textCursor(it);      QTextBlockFormat textBlockFormat = it.blockFormat();      //set line height      textBlockFormat.setLineHeight(24,QTextBlockFormat::FixedHeight);        textCursor.setBlockFormat(textBlockFormat);      ui-&gt;edtCountryIntroduce-&gt;setTextCursor(textCursor);  }</pre> </div> <blockquote> <p>需要在QTextEdit设置了文字之后，才会生效，放在构造函数里不会生效</p> </blockquote> <p>像这样是不行的</p> <div class="ay1code"> <pre>    QTextCursor textCursor = ui-&gt;textEdit-&gt;textCursor();      QTextBlockFormat textBlockFormat;      //set line height      textBlockFormat.setLineHeight(24,QTextBlockFormat::FixedHeight);        textCursor.setBlockFormat(textBlockFormat);      ui-&gt;textEdit-&gt;setTextCursor(textCursor);</pre> </div> <p>因为这里虽然是给整个textEdit设置，但是实际上，只是给第一段设置了。所以如果如果要对所有的段落进行设置就需要遍历当前textEdit的document中所有的段落，对一个一个的段落进行设置。</p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-28826.htm">bellman-ford 单源最短路问题 图解</a></p>
+                                        <p>下一个：<a href="/news/article-29292.htm">宠物打疫苗要空腹吗（宠物打预防针注意事项）</a></p>
                                     </div>
                                     </div>
                     <div class="col-md-3">
@@ -85,16 +86,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-25-clash-v2ray-ss-ssr.htm" title="10月25日|V2ray/Clash/Shadowrocket/SSR每天更新19.6M/S免费节点订阅链接，付费节点订阅推荐">10月25日|V2ray/Clash/Shadowrocket/SSR每天更新19.6M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-8-node-share-links.htm" title="8月8日|Shadowrocket/V2ray/Clash/SSR每天更新21.8M/S免费节点订阅链接">8月8日|Shadowrocket/V2ray/Clash/SSR每天更新21.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-v2ray.htm" title="11月27日|SSR/Shadowrocket/V2ray/Clash每天更新20.5M/S免费节点订阅链接，付费节点订阅推荐">11月27日|SSR/Shadowrocket/V2ray/Clash每天更新20.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/news/article-26020.htm" title="动物防疫站给狗狗打的疫苗有没有效果 动物防疫站给狗狗打的疫苗有没有效果啊">动物防疫站给狗狗打的疫苗有没有效果 动物防疫站给狗狗打的疫苗有没有效果啊</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-v2ray-subscribe.htm" title="10月23日|Shadowrocket/Clash/V2ray/SSR每天更新22.1M/S免费节点订阅链接，付费节点订阅推荐">10月23日|Shadowrocket/Clash/V2ray/SSR每天更新22.1M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-7-node-share.htm" title="11月7日|SSR/Shadowrocket/Clash/V2ray每天更新18.9M/S免费节点订阅链接，付费节点订阅推荐">11月7日|SSR/Shadowrocket/Clash/V2ray每天更新18.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-21-node-share-links.htm" title="10月21日|Clash/V2ray/Shadowrocket/SSR每天更新19.4M/S免费节点订阅链接，付费节点订阅推荐">10月21日|Clash/V2ray/Shadowrocket/SSR每天更新19.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/news/article-24649.htm" title="有没有宠物批发的网站推荐（有没有宠物批发的网站推荐知乎）">有没有宠物批发的网站推荐（有没有宠物批发的网站推荐知乎）</a></li>
-                        <li class="py-2"><a href="/news/article-19135.htm" title="SpringBoot：Controller层调用Service层，出现bug">SpringBoot：Controller层调用Service层，出现bug</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-19-free-node-subscribe-links.htm" title="9月19日|Shadowrocket/Clash/V2ray/SSR每天更新18.9M/S免费节点订阅链接">9月19日|Shadowrocket/Clash/V2ray/SSR每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-node-share-links.htm" title="12月13日|SSR/Clash/Shadowrocket/V2ray每天更新19.5M/S免费节点订阅链接，付费节点订阅推荐">12月13日|SSR/Clash/Shadowrocket/V2ray每天更新19.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-24190.htm" title="教你如何获取Harbor的带tag的镜像清单_docker">教你如何获取Harbor的带tag的镜像清单_docker</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-3-free-v2ray-subscribe.htm" title="9月3日|Clash/Shadowrocket/V2ray/SSR每天更新21.7M/S免费节点订阅链接">9月3日|Clash/Shadowrocket/V2ray/SSR每天更新21.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20509.htm" title="成都领养犬（成都领养狗狗贴吧）">成都领养犬（成都领养狗狗贴吧）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐">11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share-links.htm" title="11月26日|V2ray/SSR/Clash/Shadowrocket每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐">11月26日|V2ray/SSR/Clash/Shadowrocket每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-11-node-share.htm" title="8月11日|V2ray/Clash/Shadowrocket/SSR每天更新18.9M/S免费节点订阅链接">8月11日|V2ray/Clash/Shadowrocket/SSR每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-5-free-high-speed-nodes.htm" title="9月5日|V2ray/Clash/Shadowrocket/SSR每天更新21.6M/S免费节点订阅链接">9月5日|V2ray/Clash/Shadowrocket/SSR每天更新21.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-2-clash-v2ray-ss-ssr.htm" title="8月2日|Clash/SSR/Shadowrocket/V2ray每天更新20.1M/S免费节点订阅链接">8月2日|Clash/SSR/Shadowrocket/V2ray每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-free-high-speed-nodes.htm" title="10月26日|Clash/V2ray/SSR/Shadowrocket每天更新20.6M/S免费节点订阅链接，付费节点订阅推荐">10月26日|Clash/V2ray/SSR/Shadowrocket每天更新20.6M/S免费节点订阅链接，付费节点订阅推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -106,7 +107,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
