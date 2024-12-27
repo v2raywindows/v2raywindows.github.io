@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-31701.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Vue 实现骨架屏（skeleton）</title>
+        <meta name="description" content="Vue实现骨架屏的步骤： 1.安装骨架屏插件： npm install vue-skeleton-webpack-plugin 2.由于骨架屏插件依赖服务端渲染，再安装vue-server-rende" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Vue 实现骨架屏（skeleton）</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>Vue实现骨架屏的步骤：<br /> 1.安装骨架屏插件：</p> <pre><code>npm install vue-skeleton-webpack-plugin</code></pre> <p>2.由于骨架屏插件依赖服务端渲染，再安装vue-server-renderer</p> <pre><code>npm install vue-server-renderer</code></pre> <p>3.在src&gt;components新建skeleton目录，里面创建index.vue跟entry.skeleton.js，如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220604/0027516da83b95f9889a5c8e69838f86.jpg" alt="Vue 实现骨架屏（skeleton）"><br /> 4.在index,vue中写入骨架屏的样式，通常与首页的布局一致，例如：</p> <pre><code> &lt;template&gt;     &lt;div class="skeleton"&gt;         &lt;section&gt;&lt;/section&gt;         &lt;div class="center"&gt;           &lt;ul class="dec"&gt;               &lt;li v-for="n in 2" :key="n"&gt;                   &lt;span&gt;&lt;/span&gt;                   &lt;span&gt;&lt;/span&gt;               &lt;/li&gt;               &lt;li&gt;                   &lt;span&gt;&lt;/span&gt;               &lt;/li&gt;           &lt;/ul&gt;             &lt;ul class="features"&gt;                 &lt;li v-for="n in 3" :key="n"&gt;                     &lt;i&gt;&lt;/i&gt;                     &lt;span&gt;&lt;/span&gt;                 &lt;/li&gt;             &lt;/ul&gt;         &lt;/div&gt;         &lt;div class="detail"&gt;             &lt;ul&gt;                 &lt;li v-for="n in 3" :key="n"&gt;                     &lt;span&gt;&lt;/span&gt;                     &lt;span&gt;&lt;/span&gt;                 &lt;/li&gt;             &lt;/ul&gt;             &lt;p&gt;&lt;/p&gt;         &lt;/div&gt;     &lt;/div&gt; &lt;/template&gt; &lt;style lang="less"&gt;     @import "../less/public";     @skeleton:#eee;     .skeleton{         width: 100%;         height: 100vh;         overflow: hidden;         background: #fff;         section{             width: 100%;             height: 205px;             background:@skeleton;             animation: sport .2s;         }         .center{             .dec{                 li{                     width: 100%;                     height: 34px;                     margin: 30px 0;                     padding: 0 @padding20px;                     box-sizing: border-box;                     display: flex;                     justify-content: space-between;                     span{                         width: 100px;                         background: @skeleton;                     }                 }                 li:first-of-type{                     height: 44px;                 }             }             .features{                 display: flex;                 align-content: center;                 li{                     flex: 1;                     text-align: center;                     i{                         display: inline-block;                         width: 60px;                         height: 60px;                         background: @skeleton;                         border-radius: 50%;                         vertical-align: middle;                     }                     span{                         position: relative;                         left:-20px;                         top:-6px;                         display: inline-block;                         width: 120px;                         height: 40px;                         background: @skeleton;                     }                 }             }         }         .detail{             margin-top: @padding20px;             ul{                 li{                     width: 100%;                     display: flex;                     height: 44px;                     padding: 0 @padding20px;                     box-sizing: border-box;                     justify-content: space-between;                     margin-bottom: 10px;                     span{                         width: 300px;                         background: @skeleton;                     }                     span:first-of-type{                         width: 150px;                     }                 }                 li:first-of-type{                     height: 54px;                 }             }             p{                 width: 60%;                 height: 54px ;                 background: @skeleton;                 margin-left: @padding20px;                 margin-top: @padding20px;             }         }     }     @keyframes sport {         0%{background: #fff}         100%{background: @skeleton}     } &lt;/style&gt;</code></pre> <p>5.配置entry.skeleton.js的入口文件：</p> <pre><code>import Vue from 'vue' import Skeleton from './index' export default new Vue({   components: {     Skeleton   },   template: '&lt;Skeleton/&gt;' })</code></pre> <p>6.在build文件夹中创建一个webpack.skeleton.conf.js：</p> <pre><code>'use strict'; const path = require('path') const merge = require('webpack-merge') const baseWebpackConfig = require('./webpack.base.conf') const nodeExternals = require('webpack-node-externals')  const config = require('../config') const utils = require('./utils') const isProduction = process.env.NODE_ENV === 'production' const sourceMapEnabled = isProduction   ? config.build.productionSourceMap   : config.dev.cssSourceMap  function resolve(dir) {   return path.join(__dirname, dir) }  let skeletonWebpackConfig = merge(baseWebpackConfig, {   target: 'node',   devtool: false,   entry: {     app: resolve('../src/components/skeleton/entry-skeleton.js')   },   output: Object.assign({}, baseWebpackConfig.output, {     libraryTarget: 'commonjs2'   }),   externals: nodeExternals({     whitelist: /\.css$/   }),   plugins: [] })  //important: enable extract-text-webpack-plugin,让颜色生效 // 重点配置 skeletonWebpackConfig.module.rules[0].options.loaders = utils.cssLoaders({   sourceMap: sourceMapEnabled,   extract: true }) module.exports = skeletonWebpackConfig</code></pre> <p>7.在webpack.dev.conf.js跟webpack.pro.conf.js或者统一在webpack.base.conf.js中分别引入：</p> <pre><code>const SkeletonWebpackPlugin=require('vue-skeleton-webpack-plugin');</code></pre> <p>然后在plugins中分别导入：</p> <pre><code>    new SkeletonWebpackPlugin({       webpackConfig: require('./webpack.skeleton.conf'),       quiet: true,     }),</code></pre> <p>以上为Vue项目骨架屏的全部配置过程！！！</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-31167.htm">动物医院科室分布 动物医院科室分布图</a></p>
+                                        <p>下一个：<a href="/news/article-31702.htm">济南宠物领养机构电话多少（济南宠物领养济南宠物赠送）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-free-v2ray.htm" title="10月4日|SSR/Clash/Shadowrocket/V2ray每天更新19.2M/S免费节点订阅链接">10月4日|SSR/Clash/Shadowrocket/V2ray每天更新19.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24650.htm" title="动物疫苗类型分类标准（动物疫苗包括哪些）">动物疫苗类型分类标准（动物疫苗包括哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-21419.htm" title="广东领养宠物群微信公众号（广东领养宠物群微信公众号）">广东领养宠物群微信公众号（广东领养宠物群微信公众号）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-29-free-subscribe-node.htm" title="9月29日|V2ray/SSR/Shadowrocket/Clash每天更新20.5M/S免费节点订阅链接">9月29日|V2ray/SSR/Shadowrocket/Clash每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe-links.htm" title="11月11日|SSR/Clash/V2ray/Shadowrocket每天更新20.2M/S免费节点订阅链接，付费节点订阅推荐">11月11日|SSR/Clash/V2ray/Shadowrocket每天更新20.2M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share.htm" title="11月24日|Shadowrocket/Clash/V2ray/SSR每天更新19.9M/S免费节点订阅链接，付费节点订阅推荐">11月24日|Shadowrocket/Clash/V2ray/SSR每天更新19.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-22798.htm" title="Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)">Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-high-speed-nodes.htm" title="10月9日|V2ray/Shadowrocket/SSR/Clash每天更新21.3M/S免费节点订阅链接">10月9日|V2ray/Shadowrocket/SSR/Clash每天更新21.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-node-share-links.htm" title="10月10日|Shadowrocket/SSR/Clash/V2ray每天更新22M/S免费节点订阅链接">10月10日|Shadowrocket/SSR/Clash/V2ray每天更新22M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-v2ray-subscribe.htm" title="11月28日|Clash/SSR/Shadowrocket/V2ray每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐">11月28日|Clash/SSR/Shadowrocket/V2ray每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">80</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
