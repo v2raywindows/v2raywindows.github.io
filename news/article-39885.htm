@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-39885.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>springboot 定义统一返回结果</title>
+        <meta name="description" content="前后端分离项目中后端开发需要写相应的接口，定义统一的返回格式有利于提高开发效率和沟通的成本。通常返回的格式主要如下两种： 1.&nbsp;&nbsp; &nbsp;只返回相应的状态，格式如下： { &" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>springboot 定义统一返回结果</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>前后端分离项目中后端开发需要写相应的接口，定义统一的返回格式有利于提高开发效率和沟通的成本。通常返回的格式主要如下两种：<br /> 1.&nbsp;&nbsp; &nbsp;只返回相应的状态，格式如下：</p> <pre><code>{ &nbsp; &nbsp; "code": "200", &nbsp; &nbsp; "msg": "SUCCESS" }</code></pre> <p>&nbsp;2.&nbsp;&nbsp; &nbsp;返回相应的状态及数据，格式如下：</p> <pre><code class="language-javascript">{ &nbsp; &nbsp; "code": "200", &nbsp; &nbsp; "msg": "查询成功", &nbsp; &nbsp; "result": { &nbsp; &nbsp; &nbsp; &nbsp; "id": 10, &nbsp; &nbsp; &nbsp; &nbsp; "name": "张三", &nbsp; &nbsp; &nbsp; &nbsp; "emil": "1234456@qq.com", &nbsp; &nbsp; &nbsp; &nbsp; "phone": null, &nbsp; &nbsp; &nbsp; &nbsp; "address": "测试地址" &nbsp; &nbsp; } }</code></pre> <p>&nbsp;状态代码定义如下：<br /> &nbsp; &nbsp;code : 请求处理状态</p> <ul> <li>&nbsp; &nbsp;&nbsp; &nbsp;200: 请求处理成功</li> <li>&nbsp; &nbsp;&nbsp; &nbsp;400: 请求处理失败</li> <li>&nbsp; &nbsp;&nbsp; &nbsp;500: 服务器内部错误</li> <li>&nbsp; &nbsp;&nbsp; &nbsp;401未认证（签名错误）</li> <li>&nbsp; &nbsp;&nbsp; &nbsp;404接口不存在</li> </ul> <p>Springboot中我们可以使用泛型来定义统一的返回结果：<br /> 1. 先定义只返回状态的Result</p> <pre><code class="language-java">package com.example.demo.base;  import com.alibaba.fastjson.JSON;  public class Result {     private String code;     private String msg;      public String getCode() {         return code;     }      public void setCode(String code) {         this.code = code;     }      public String getMsg() {         return msg;     }      public void setMsg(String msg) {         this.msg = msg;     }      @Override     public String toString() {         return JSON.toJSONString(this);     } }</code></pre> <p>定义即有数据又有返回状态的DateResult</p> <pre><code class="language-java">package com.example.demo.base;  import java.io.Serializable;  public class DateResult&lt;T&gt; extends Result implements Serializable {     private T result;      public T getResult() {         return (T) result;     }      public void setResult(T result) {         this.result = result;     }  }</code></pre> <p>定义响应码枚举</p> <pre><code class="language-java">package com.example.demo.base;  /**  * 响应码枚举  */ public enum ResultCode {     SUCCESS("200"), //成功     FAIL("400"), //失败     UNAUTHORIZED("401"), //未认证（签名错误）     NOT_FOUND("404"), //接口不存在     INTERNAL_SERVER_ERROR("500");//服务器内部错误      private final String code;      ResultCode(String code) {         this.code = code;     }      public String code() {         return code;     } }</code></pre> <p>&nbsp;在Controller类中使用方法如下：</p> <pre><code class="language-java">package com.example.demo.controller;  import org.springframework.web.bind.annotation.PostMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RequestParam; import org.springframework.web.bind.annotation.RestController;  import com.example.demo.base.DateResult; import com.example.demo.base.Result; import com.example.demo.base.ResultCode; import com.example.demo.entity.User;  @RestController @RequestMapping("/user") public class UserController {     @PostMapping("/update")     public Result updateUser(@RequestParam Integer id) {         Result result = new Result();         //相应的逻辑更新逻辑......... 假如更新成功         result.setCode(ResultCode.SUCCESS.code());         result.setMsg("更新成功");         return result;     }      @RequestMapping("/detail")     public DateResult&lt;User&gt; queryUser(@RequestParam Integer id) {         User user = new User();         user.setId(10);         user.setName("张三");         user.setEmil("1234456@qq.com");         user.setAddress("测试地址");         DateResult&lt;User&gt; dateResult = new DateResult&lt;User&gt;();         dateResult.setCode(ResultCode.SUCCESS.code());         dateResult.setMsg("查询成功");         dateResult.setResult(user);         return dateResult;     } }</code></pre> <p>实体类User代码如下：</p> <pre><code class="language-java">package com.example.demo.entity;  import java.io.Serializable;  import com.alibaba.fastjson.JSON;  public class User implements Serializable {     private Integer id;     private String  name;     private String  emil;     private String  phone;     private String  address;      public Integer getId() {         return id;     }      public void setId(Integer id) {         this.id = id;     }      public String getName() {         return name;     }      public void setName(String name) {         this.name = name;     }      public String getEmil() {         return emil;     }      public void setEmil(String emil) {         this.emil = emil;     }      public String getPhone() {         return phone;     }      public void setPhone(String phone) {         this.phone = phone;     }      public String getAddress() {         return address;     }      public void setAddress(String address) {         this.address = address;     }      @Override     public String toString() {         return JSON.toJSONString(this);     } }</code></pre> <p>先测试没有数据的返回格式，测试结果如下：</p> <p style="text-align:center;"><img decoding="async" alt="无数据的返回格式" src="http://img.555519.xyz/uploads3/20220820/b2ad81d65c25d1a6854994482fb4ba83.jpg"></p> <p>测试有返回数据的格式，测试结果如下：</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220820/14ae42d1b0347a2344fca128d10ad03a.jpg"></p> <p>如上的返回结果，我们需要在controller类中每次都需要new一个返回对象比较麻烦，我们可以新建一个ResultUtil</p> <pre><code class="language-java">package com.example.demo.base;  /**  * 响应结果生成工具  */ public class ResultUtil {     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";      public static Result genSuccessResult() {          Result result = new Result();         result.setCode(ResultCode.SUCCESS.code());         result.setMsg(DEFAULT_SUCCESS_MESSAGE);         return result;     }      public static &lt;T&gt; DateResult&lt;T&gt; genSuccessResult(T data) {         DateResult&lt;T&gt; dateResult = new DateResult&lt;T&gt;();         dateResult.setCode(ResultCode.SUCCESS.code());         dateResult.setMsg(DEFAULT_SUCCESS_MESSAGE);         dateResult.setResult(data);         return dateResult;     }  }</code></pre> <p>&nbsp;controller 类的代码修改如下：</p> <pre><code class="language-java">package com.example.demo.controller;  import org.springframework.web.bind.annotation.PostMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RequestParam; import org.springframework.web.bind.annotation.RestController;  import com.example.demo.base.DateResult; import com.example.demo.base.Result; import com.example.demo.base.ResultUtil; import com.example.demo.entity.User;  @RestController @RequestMapping("/user") public class UserController {     @PostMapping("/update")     public Result updateUser(@RequestParam Integer id) {          return ResultUtil.genSuccessResult();     }      @RequestMapping("/detail")     public DateResult&lt;User&gt; queryUser(@RequestParam Integer id) {         User user = new User();         user.setId(10);         user.setName("张三");         user.setEmil("1234456@qq.com");         user.setAddress("测试地址");         return ResultUtil.genSuccessResult(user);     } }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39376.htm">打了动物疫苗为什么发热呢（动物疫苗反应有哪些）</a></p>
+                                        <p>下一个：<a href="/news/article-39886.htm">开个小型宠物食品加工厂需要多少钱费用呢 开个小型宠物食品加工厂需要多少钱费用呢</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-high-speed-nodes.htm" title="12月2日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐">12月2日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-19593.htm" title="属蛇的做什么行业最赚钱（属蛇的做什么生意发财）">属蛇的做什么行业最赚钱（属蛇的做什么生意发财）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-clash-v2ray-ss-ssr.htm" title="12月19日|V2ray/Clash/SSR/Shadowrocket每天更新21.4M/S免费节点订阅链接，付费节点订阅推荐">12月19日|V2ray/Clash/SSR/Shadowrocket每天更新21.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-clash-v2ray-ss-ssr.htm" title="1月10日|SSR/Shadowrocket/Clash/V2ray每天更新20.7M/S免费节点订阅链接地址分享">1月10日|SSR/Shadowrocket/Clash/V2ray每天更新20.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-free-node-subscribe-links.htm" title="10月14日|Clash/V2ray/SSR/Shadowrocket每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐">10月14日|Clash/V2ray/SSR/Shadowrocket每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-node-subscribe.htm" title="1月4日|SSR/Shadowrocket/V2ray/Clash每天更新22.4M/S免费节点订阅链接地址分享">1月4日|SSR/Shadowrocket/V2ray/Clash每天更新22.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-31166.htm" title="SpringBoot(39) —— Shiro实现登陆拦截">SpringBoot(39) —— Shiro实现登陆拦截</a></li>
+                        <li class="py-2"><a href="/news/article-30251.htm" title="全国宠物粮食基地排名榜（国内宠物粮食十大厂家）">全国宠物粮食基地排名榜（国内宠物粮食十大厂家）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-node-share.htm" title="11月8日|V2ray/Clash/SSR/Shadowrocket每天更新21.3M/S免费节点订阅链接，付费节点订阅推荐">11月8日|V2ray/Clash/SSR/Shadowrocket每天更新21.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-21882.htm" title="动物防疫疫苗种类有哪些名称图片（动物疫苗接种途径有哪些）">动物防疫疫苗种类有哪些名称图片（动物疫苗接种途径有哪些）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">38</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
