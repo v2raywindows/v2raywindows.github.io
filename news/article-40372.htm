@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-40372.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Jmeter监控平台搭建：JMeter+InfluxDB+Grafana</title>
+        <meta name="description" content="背景 平时一般用Jmeter的Gui模式，添加对应的插件，查看每秒线程数、TPS、响应时间等曲线，其实高并发是不建议这么看的。 解决方案 可以搭配InfluxDB+Grafana工具，使Jmeter异" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Jmeter监控平台搭建：JMeter+InfluxDB+Grafana</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>背景</h2> <p>平时一般用Jmeter的Gui模式，添加对应的插件，查看每秒线程数、TPS、响应时间等曲线，其实高并发是不建议这么看的。</p> <h2>解决方案</h2> <p>可以搭配InfluxDB+Grafana工具，使Jmeter异步发送数据到InfluxDB，然后由Grafana查询并展示出来，方便查看与比对。</p> <p>之前使用Docker方式搭建过这个监控平台，这里记录下。</p> <h2>&nbsp;安装Docker</h2> <p>网上安装Docker的方式很多，我之前也写过一篇<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/qgc1995/p/9553572.html"  rel="nofollow">Centos7下安装Docker</a>可以参考，本次是CentOS8.2安装（华为云 root账户）。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a1564dd57584d14ccd3565368d854e13.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>安装所需软件包：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">yum</span><span style="color: rgba(0, 0, 255, 1)">install</span> -y<span style="color: rgba(0, 0, 255, 1)">yum</span>-utils device-mapper-persistent-data lvm2</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/dac5d193fc066a89d932f64931e5e4fd.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;发现报错了，原来是镜像链接不对，官方描述该版本停止更新相应依赖了</p> <p>&nbsp;于是换源：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.ocxd.cn/post/95.html"  target="_blank" rel="nofollow">参考链接</a>，重新执行命令</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/74526d8fe99011b24139f2e0bf8041ad.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;添加阿里云镜像：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">yum</span>-config-manager --add-repo https:<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">download.docker.com/linux/centos/docker-ce.repo</span></pre> </div> <p>直接安装最新版本：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">yum</span><span style="color: rgba(0, 0, 255, 1)">install</span> docker-ce</pre> </div> <p>安装完成后，输入systemctl start docker命令启动docker。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d2e7ec228763607f3eea2c775ab5ef7c.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <h2>安装InfluxDB</h2> <p>&nbsp;InfluxDB是一个时间序列数据库，旨在处理高写入和查询负载。用作涉及大量带时间戳数据的任何用例的后备存储，包括DevOps监控，应用程序指标，物联网传感器数据和实时分析。</p> <p>使用docker命令拉取容器镜像（由于2.x版本与1.x版本语法不一样，这里安装1.8版本的）：</p> <div class="cnblogs_code"> <pre>docker pull influxdb:1.8</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/cf392ff37bb9934f17c75c3217e37ce9.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>运行容器（这里如果不用镜像id会默认拉取influxdb的最新版本）：</p> <div class="cnblogs_code"> <pre>docker run --name my_influxdb -p<span style="color: rgba(128, 0, 128, 1)">8086</span>:<span style="color: rgba(128, 0, 128, 1)">8086</span> 镜像id</pre> </div> <p>&nbsp;为了保存jmeter的发送的数据，需要先建一个数据库，进入容器（docker ps查看容器id）</p> <div class="cnblogs_code"> <pre>docker exec -it 容器id /bin/bash</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f3a942cab879cf513a13113220d7ae65.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;输入influx进入数据库交互命令行，创建一个jmeter的数据库。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">influx show databases; create database jmeter; show databases; use jmeter;</span><span style="color: rgba(0, 0, 255, 1)">select</span> *<span style="color: rgba(0, 0, 0, 1)"> from jmeter; exit;</span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/7b5470abfa4b6d3cf11f016387e7f73d.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <h2>安装Grafana</h2> <p>Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知，有着精美的可视化图表模板。</p> <p>使用docker命令拉取容器镜像：</p> <div class="cnblogs_code"> <pre>docker pull grafana/grafana</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/1909d9244d31219aea50b4c7818debf3.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;运行容器：</p> <div class="cnblogs_code"> <pre>docker run --name my_grafana -p<span style="color: rgba(128, 0, 128, 1)">3000</span>:<span style="color: rgba(128, 0, 128, 1)">3000</span> grafana/grafana</pre> </div> <p>输入IP:3000就可以访问grafana了，&nbsp;默认用户名：admin，密码admin。（本地访问华为云，需要在云服务器控制台—安全组，找到对应的安全组开放出入端口）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/bf878b5a78ef0e8917e6ea1f6ea12667.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <h2>Grafana配置数据源</h2> <p>登录grafana，在界面中找到配置中心</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/483b57bc0d54a189750dc802360cb9ea.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>接着添加数据源</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6b32aca806b00e988a0744d2aadc9829.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;选择influxDB</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3ce6717d12ade639c9e8c09509ac5fdb.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;配置数据源的名称，远程URL为上面influxdb的ip:8086，database为jmeter</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f4bca26ca3ffcf02f2d2bd4d7a83f966.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/bff594ee1437f379c1f9eb0a12ce133f.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;点击save&amp;test按钮，会自动连接保存，出现下面弹窗就ok了</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e447863771ea381960d8e40e0e8b8405.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;数据源添加好后，接着导入图表展示模板，可以<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://grafana.com/grafana/dashboards/?search=jmeter"  target="_blank" rel="nofollow">官方下载</a>导入json文件方式，也可以直接输入模板id导入，这里选择后面一种。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/ddb51d053832b270538a67208fceca28.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;直接填写模板id5496，点击load</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/eb66516b4d6aa37d71ab69a39742f01e.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;修改模板名称，匹配数据源，点击import就ok了</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5c9aa55748c7fab69da97bf9f7399da9.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;如下所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/aa285b4a62be151bfe318c25bf08b198.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <h2>Jmeter配置</h2> <p>Jmeter的安装就省略了，这里说下插件配置，添加后端监听器：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b8019a3f9932515d4d53bc6683d3987d.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;后端监听器配置如下，其他配置不用动：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/59ff84e749d5c3c9a78e4aa7a7c271b8.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <h2>调试对比数据</h2> <p>添加一个简单jmeter脚本，运行5分钟</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5dbce59f06217d1ed686a014a968101e.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;查看聚合报告</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3905dd068854e9c63e224bc0d4f9950a.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> <p>&nbsp;查看grafana图表，选择最近15分钟的数据，和上面的报告数据也能对得上。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/c8b440311fba0c3dd6242a499b3472b0.jpg" alt="Jmeter监控平台搭建：JMeter+InfluxDB+Grafana"></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39886.htm">开个小型宠物食品加工厂需要多少钱费用呢 开个小型宠物食品加工厂需要多少钱费用呢</a></p>
+                                        <p>下一个：<a href="/news/article-40373.htm">动物医院好评语怎么写啊 动物医院好评语怎么写啊英语</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-free-node-subscribe-links.htm" title="1月8日|Shadowrocket/V2ray/Clash/SSR每天更新19M/S免费节点订阅链接地址分享">1月8日|Shadowrocket/V2ray/Clash/SSR每天更新19M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-node-subscribe.htm" title="1月4日|SSR/Shadowrocket/V2ray/Clash每天更新22.4M/S免费节点订阅链接地址分享">1月4日|SSR/Shadowrocket/V2ray/Clash每天更新22.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-31-node-share-links.htm" title="12月31日|V2ray/SSR/Clash/Shadowrocket每天更新19.5M/S免费节点订阅链接地址分享">12月31日|V2ray/SSR/Clash/Shadowrocket每天更新19.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-39375.htm" title="被猫抓出血了一定要***吗多少钱（被猫抓出血了一定要***吗多少钱一针）">被猫抓出血了一定要***吗多少钱（被猫抓出血了一定要***吗多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-36452.htm" title="狗狗打疫苗需要多少钱（狗狗打疫苗多少钱一针 有手续吗）">狗狗打疫苗需要多少钱（狗狗打疫苗多少钱一针 有手续吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-v2ray.htm" title="12月24日|Clash/SSR/Shadowrocket/V2ray每天更新20.5M/S免费节点订阅链接地址分享">12月24日|Clash/SSR/Shadowrocket/V2ray每天更新20.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-v2ray-subscribe.htm" title="1月13日|SSR/Shadowrocket/Clash/V2ray每天更新21.7M/S免费节点订阅链接地址分享">1月13日|SSR/Shadowrocket/Clash/V2ray每天更新21.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-37910.htm" title="Pygame从0实战10(泡泡小游戏添加音效)">Pygame从0实战10(泡泡小游戏添加音效)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-29-node-share.htm" title="12月29日|Shadowrocket/Clash/V2ray/SSR每天更新22.5M/S免费节点订阅链接地址分享">12月29日|Shadowrocket/Clash/V2ray/SSR每天更新22.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-clash-v2ray-ss-ssr.htm" title="12月5日|V2ray/Shadowrocket/SSR/Clash每天更新19.2M/S免费节点订阅链接，付费节点订阅推荐">12月5日|V2ray/Shadowrocket/SSR/Clash每天更新19.2M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">41</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
