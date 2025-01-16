@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-41365.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>旋转矩阵与欧拉角的相互转换</title>
+        <meta name="description" content="目录  1. 概述 2. 详论  2.1. 欧拉角的理解 2.2. 欧拉角转旋转矩阵 2.3. 旋转矩阵转欧拉角      欧拉角与旋转矩阵的相互转换，是图形计算中的常见问题。  2.1. 欧拉角的理" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>旋转矩阵与欧拉角的相互转换</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#1-%E6%A6%82%E8%BF%B0" rel="nofollow">1. 概述</a></li> <li><a href="#2-%E8%AF%A6%E8%AE%BA" rel="nofollow">2. 详论</a> <ul> <li><a href="#21-%E6%AC%A7%E6%8B%89%E8%A7%92%E7%9A%84%E7%90%86%E8%A7%A3" rel="nofollow">2.1. 欧拉角的理解</a></li> <li><a href="#22-%E6%AC%A7%E6%8B%89%E8%A7%92%E8%BD%AC%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5" rel="nofollow">2.2. 欧拉角转旋转矩阵</a></li> <li><a href="#23-%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E8%BD%AC%E6%AC%A7%E6%8B%89%E8%A7%92" rel="nofollow">2.3. 旋转矩阵转欧拉角</a></li> </ul> </li> </ul> </div> </h1> <p>欧拉角与旋转矩阵的相互转换，是图形计算中的常见问题。</p> </h1> <h2 id="21-欧拉角的理解">2.1. 欧拉角的理解</h2> <p>表达旋转变换最简单的理解是三种旋转矩阵（绕X轴旋转矩阵，绕Y轴旋转矩阵以及绕Z轴旋转矩阵）级联。而欧拉角同样也有三种：航向角heading，俯仰角pitch和滚转角roll；其中，航向角heading有时也被称为偏航角yaw。三个欧拉角定义的矩阵级联也可以定义成旋转矩阵，这种旋转变换也叫做欧拉变换。</p> <p>两者并没有绝对的对应的关系，但是绝大部分情况下，我们可以确定一个默认的视图方向：朝向负z轴，头部沿y轴定向，如下图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/860cd65197a35b4cf0c2f693b345850d.jpg" alt="旋转矩阵与欧拉角的相互转换"></p> <p>想象一个飞机也位于上图的坐标系的默认视图，那么很显然可以看出一个对应关系：</p> <ul> <li>航向角heading为绕Y轴旋转</li> <li>俯仰角pitch为绕X轴旋转</li> <li>滚转角roll为绕Z轴旋转</li> </ul> <h2 id="22-欧拉角转旋转矩阵">2.2. 欧拉角转旋转矩阵</h2> <p>如上节所述，确定欧拉角到底是绕哪一个轴旋转的关键是确定默认的视图方向。另一个需要确定的因素就是旋转的顺序。由于矩阵的乘法不满足交换律，那么矩阵级联的顺序不同，得到的旋转矩阵也不同。一种比较常用的旋转顺序是：</p> <div class="math display">\[{\textbf{E}}(h,p,r) = {\textbf{R}}_z(r){\textbf{R}}_x (p){\textbf{R}}_y(h)<br /> \]</div> <p>我们使用GLM（OpenGL Mathematics）库进行验证一下：</p> <pre><code class="language-cpp">#include &lt;iostream&gt; #include &lt;glm/gtx/euler_angles.hpp&gt;  using namespace std;  static void PrintMat(const glm::mat4&amp; m) { 	for (int i = 0; i &lt; 4; i++) 	{ 		for (int j = 0; j &lt; 4; j++) 		{ 			printf("%.9lf\t", m[i][j]); 		} 		printf("\n"); 	} }  int main() { 	glm::mat4 rotY = glm::eulerAngleY(glm::radians(24.0f)); 	glm::mat4 rotX = glm::eulerAngleX(glm::radians(65.0f)); 	glm::mat4 rotZ = glm::eulerAngleZ(glm::radians(42.0f));  	glm::mat4 rotYXZ = rotY * rotX * rotZ; 	PrintMat(rotYXZ); 	cout &lt;&lt; endl;  	glm::mat4 rotYXZ1 = glm::eulerAngleYXZ(glm::radians(24.0f), glm::radians(65.0f), glm::radians(42.0f)); 	PrintMat(rotYXZ1); 	cout &lt;&lt; endl;  	glm::mat4 rotYXZ2 = glm::yawPitchRoll(glm::radians(24.0f), glm::radians(65.0f), glm::radians(42.0f)); 	PrintMat(rotYXZ2); }</code></pre> <p>运行结果如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e7e7cdb8e19581eac963be340d6e88fb.jpg" alt="旋转矩阵与欧拉角的相互转换"></p> <p>直接使用欧拉角旋转矩阵相乘，与eulerAngleYXZ()函数，以及yawPitchRoll()函数三者的矩阵结果是一致的。说明在GLM中欧拉角的定义以及旋转顺序，与本文论述的一致。</p> <h2 id="23-旋转矩阵转欧拉角">2.3. 旋转矩阵转欧拉角</h2> <p>已知绕X轴、Y轴以及Z轴旋转矩阵的公式以及它们的旋转顺序，可以很容易倒推旋转矩阵表达的欧拉角。当然也没有那么容易，因为有一些特殊情况必须处理。那么还是通过GLM进行实现：</p> <pre><code class="language-cpp">#include &lt;iostream&gt; #include &lt;glm/gtx/euler_angles.hpp&gt;  using namespace std;  static void PrintMat(const glm::mat4&amp; m) { 	for (int i = 0; i &lt; 4; i++) 	{ 		for (int j = 0; j &lt; 4; j++) 		{ 			printf("%.9lf\t", m[i][j]); 		} 		printf("\n"); 	} }  int main() { 	glm::mat4 rotY = glm::eulerAngleY(glm::radians(24.0f)); 	glm::mat4 rotX = glm::eulerAngleX(glm::radians(65.0f)); 	glm::mat4 rotZ = glm::eulerAngleZ(glm::radians(42.0f)); 		 	glm::mat4 rotYXZ1 = glm::eulerAngleYXZ(glm::radians(24.0f), glm::radians(65.0f), glm::radians(42.0f)); 	PrintMat(rotYXZ1); 	cout &lt;&lt; endl;  	float y = 0, x = 0, z = 0; 	glm::extractEulerAngleYXZ(rotYXZ1, y, x, z); 	cout &lt;&lt; glm::degrees(y) &lt;&lt; '\t' &lt;&lt; glm::degrees(x) &lt;&lt; '\t' &lt;&lt; glm::degrees(z); }</code></pre> <p>运行结果如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bcea781dfe18534a8fc127fe6682b6de.jpg" alt="旋转矩阵与欧拉角的相互转换"></p> <p>由欧拉角参数生成的eulerAngleYXZ()与extractEulerAngleYXZ()提取的欧拉角一致。说明GLM的实现是正确的，一般的图形矩阵计算库应该都有类似的接口。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-40888.htm">广州宠物领养网免费地址 广州宠物领养网免费地址在哪里</a></p>
+                                        <p>下一个：<a href="/news/article-41366.htm">重庆宠物猫领养中心有哪些地址（重庆猫咪领养中心地址）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-30250.htm" title="栈、队列、链表">栈、队列、链表</a></li>
+                        <li class="py-2"><a href="/news/article-28826.htm" title="bellman-ford 单源最短路问题 图解">bellman-ford 单源最短路问题 图解</a></li>
+                        <li class="py-2"><a href="/news/article-20508.htm" title="动物防疫打针收费吗多少钱一次（动物防疫站打疫苗多少钱）">动物防疫打针收费吗多少钱一次（动物防疫站打疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-26500.htm" title="国内兽药厂家前50名有 国内兽药厂家前50名有哪些">国内兽药厂家前50名有 国内兽药厂家前50名有哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-v2ray-subscribe.htm" title="1月13日|SSR/Shadowrocket/Clash/V2ray每天更新21.7M/S免费节点订阅链接地址分享">1月13日|SSR/Shadowrocket/Clash/V2ray每天更新21.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-33586.htm" title="javaScript深拷贝和浅拷贝简单梳理_在线工具">javaScript深拷贝和浅拷贝简单梳理_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-25114.htm" title="SpringBoot 使用 Feign进行远程调用、文件上传等操作">SpringBoot 使用 Feign进行远程调用、文件上传等操作</a></li>
+                        <li class="py-2"><a href="/news/article-36016.htm" title="兽用疫苗放在冰箱对食物有伤害吗（兽用疫苗可以放家用冰箱里吗）">兽用疫苗放在冰箱对食物有伤害吗（兽用疫苗可以放家用冰箱里吗）</a></li>
+                        <li class="py-2"><a href="/news/article-33587.htm" title="办宠物食品加工厂需要投资多少钱呢 办宠物食品加工厂需要投资多少钱呢视频">办宠物食品加工厂需要投资多少钱呢 办宠物食品加工厂需要投资多少钱呢视频</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-31-node-share-links.htm" title="12月31日|V2ray/SSR/Clash/Shadowrocket每天更新19.5M/S免费节点订阅链接地址分享">12月31日|V2ray/SSR/Clash/Shadowrocket每天更新19.5M/S免费节点订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">47</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
