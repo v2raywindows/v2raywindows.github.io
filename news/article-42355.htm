@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-42355.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>设计模式学习笔记装饰器模式及其应用详解</title>
+        <meta name="description" content="装饰器（Decorator）模式：指不改变现有对象结构的情况下，动态地给该对象增加额外功能。 一、装饰器模式介绍 装饰器模式允许向一个现有的对象添加新的功能，同时不改变其结果。比如Java 中的IO框" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-42355.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="设计模式学习笔记装饰器模式及其应用详解" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/4b9b82d43ba6c3e4dbe3a222c68d1ee5.webp" />
+        <meta property="og:release_date" content="2025-01-18T07:14:12" />
+    <meta property="og:updated_time" content="2025-01-18T07:14:12" />
+        <meta property="og:description" content="装饰器（Decorator）模式：指不改变现有对象结构的情况下，动态地给该对象增加额外功能。 一、装饰器模式介绍 装饰器模式允许向一个现有的对象添加新的功能，同时不改变其结果。比如Java 中的IO框" />
+        
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>设计模式学习笔记装饰器模式及其应用详解</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>装饰器（Decorator）模式：指不改变现有对象结构的情况下，动态地给该对象增加额外功能。</p> <h2 id="一装饰器模式介绍">一、装饰器模式介绍</h2> <p>装饰器模式允许向一个现有的对象添加新的功能，同时不改变其结果。比如Java 中的IO框架中，<code>FileInputStream</code>（处理文件）、<code>ByteArrayInputStream</code>（处理字节数组）、<code>BufferedInputStream</code>（带缓存的处理类）等就是对<code>InputStream</code>进行的功能扩展，这就是装饰器模式的典型应用。比如下面就是以缓存方式读取输入流：</p> <pre><code class="language-java">InputStream inputStream = new BufferedInputStream(new FileInputStream("test.txt")); byte[] data = new byte[128]; while(inputStream.read(data) != -1){     //... }</code></pre> <h3 id="11-装饰器模式结构">1.1 装饰器模式结构</h3> <p>装饰器主要使用组合关系来创建一个装饰对象，用于包裹真实对象，并在保持真实对象的类结构不变的前提下为其提供额外的功能。具体的基本结构如下所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/16f634c1d272c2f78720f8b02dc865d4.jpg" alt="设计模式学习笔记装饰器模式及其应用详解"></p> <ul> <li><code>Component</code>：抽象构件，定义一个抽象接口以规范准备接收附加责任的对象</li> <li><code>ComponentA</code>：具体构件，实现抽象构件，通过装饰角色为其添加一些职责</li> <li><code>Decorator</code>：抽象装饰构件，并包含具体构件的实例</li> <li><code>DecoratorA、DecoratorB</code>：实现抽象装饰构件的具体装饰构件，包含实现抽象装饰的相关方法</li> <li><code>Client</code>：客户端</li> </ul> <h3 id="12-装饰器模式实现">1.2 装饰器模式实现</h3> <p>根据上面的类图可以实现如下代码：</p> <pre><code class="language-java">/**  * @description: 抽象构件角色  * @author: wjw  * @date: 2022/3/31  */ public interface Component {      public void operation(); }  /**  * @description:具体构件角色  * @author: wjw  * @date: 2022/3/31  */ public class ComponentA implements Component{      public ComponentA() {         System.out.println("创建具体构件componentA");     }      @Override     public void operation() {         System.out.println("我是具体构件A的operation方法");     } }  /**  * @description: 抽象装饰  * @author: wjw  * @date: 2022/3/31  */ public class Decorator implements Component{      private Component component;      public Decorator(Component component) {         this.component = component;     }      @Override     public void operation() {         component.operation();     } }  /**  * @description: 具体装饰角色A  * @author: wjw  * @date: 2022/3/31  */ public class DecoratorA extends Decorator{      public DecoratorA(Component component) {         super(component);     }      @Override     public void operation() {         super.operation();         addedFunction();     }      /**      * 增加的额外功能      */     public void addedFunction() {         System.out.println("我是为具体装饰角色A增加额外功能方法addedFunction");     } }  /**  * @description: 具体装饰角色B  * @author: wjw  * @date: 2022/3/31  */ public class DecoratorB extends Decorator{      public DecoratorB(Component component) {         super(component);     }      @Override     public void operation() {         super.operation();         addedFunction();     }      private void addedFunction() {         System.out.println("为具体装饰角色增加额外的功能B");     } }  /**  * @description: 客户端  * @author: wjw  * @date: 2022/3/31  */ public class DecoratiorClient {      public static void main(String[] args) {         Component componentA = new ComponentA();         componentA.operation();         Decorator decoratorA = new DecoratorA(componentA);         decoratorA.operation();     } }</code></pre> <h2 id="二装饰器模式应用场景">二、装饰器模式应用场景</h2> <h3 id="21-java-io-类中的应用">2.1 Java IO 类中的应用</h3> <p>在开始介绍中提到，IO中有很多装饰器的应用：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/040f51929fdfdad40acbd738e44de053.jpg" alt="设计模式学习笔记装饰器模式及其应用详解"></p> <p>如上图所示，比如<code>InputStream</code>后面的若干装饰器类都是对其的功能扩展。</p> <h3 id="22-mybatis-中-cache的应用">2.2 MyBatis 中 Cache的应用</h3> <p>Cache 中除了有数据存储和缓存的基本功能外还有其他附加的 Cache 类，比如有 FifoCache（先进先出）、LruCache（最近最少使用LRU）、SychronizedCache（防止多线程并发访问）的众多附加功能的缓存类。都是装饰器的应用：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cc20d96d7aea856e638014c7e88036dd.jpg" alt="设计模式学习笔记装饰器模式及其应用详解"></p> <h2 id="参考资料">参考资料</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/hDJs6iG_YPww7yeiPxmZLw"  target="_blank" rel="nofollow">https://mp.weixin.qq.com/s/hDJs6iG_YPww7yeiPxmZLw</a>?</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://c.biancheng.net/view/1366.html"  target="_blank" rel="nofollow">http://c.biancheng.net/view/1366.html</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-41864.htm">不宜养狗的属相有哪些（哪些属相不能养狗狗）</a></p>
+                                        <p>下一个：<a href="/news/article-42356.htm">开宠物用品店货源（想开个宠物用品店 在哪上货）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-2-node-share-links.htm" title="1月2日|Shadowrocket/V2ray/Clash/SSR每天更新19.3M/S免费节点订阅链接地址分享">1月2日|Shadowrocket/V2ray/Clash/SSR每天更新19.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-41366.htm" title="重庆宠物猫领养中心有哪些地址（重庆猫咪领养中心地址）">重庆宠物猫领养中心有哪些地址（重庆猫咪领养中心地址）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-v2ray.htm" title="11月14日|SSR/Shadowrocket/V2ray/Clash每天更新19.4M/S免费节点订阅链接，付费节点订阅推荐">11月14日|SSR/Shadowrocket/V2ray/Clash每天更新19.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-node-share-links.htm" title="11月2日|Shadowrocket/V2ray/Clash/SSR每天更新19.1M/S免费节点订阅链接，付费节点订阅推荐">11月2日|Shadowrocket/V2ray/Clash/SSR每天更新19.1M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-29293.htm" title="宠物领养收费吗多少钱一次（宠物领养要钱吗?）">宠物领养收费吗多少钱一次（宠物领养要钱吗?）</a></li>
+                        <li class="py-2"><a href="/news/article-38897.htm" title="小白开宠物店需要准备什么东西（开宠物店需要做什么）">小白开宠物店需要准备什么东西（开宠物店需要做什么）</a></li>
+                        <li class="py-2"><a href="/news/article-41365.htm" title="旋转矩阵与欧拉角的相互转换">旋转矩阵与欧拉角的相互转换</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share-links.htm" title="11月22日|V2ray/Clash/SSR/Shadowrocket每天更新22.5M/S免费节点订阅链接，付费节点订阅推荐">11月22日|V2ray/Clash/SSR/Shadowrocket每天更新22.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-22340.htm" title="国内十大宠物粮食品牌排名榜 国内十大宠物粮食品牌排名榜图片">国内十大宠物粮食品牌排名榜 国内十大宠物粮食品牌排名榜图片</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-v2ray-ss-ssr.htm" title="10月13日|SSR/V2ray/Clash/Shadowrocket每天更新21M/S免费节点订阅链接">10月13日|SSR/V2ray/Clash/Shadowrocket每天更新21M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">53</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
