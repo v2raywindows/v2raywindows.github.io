@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-44345.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>C++引用以及结构体</title>
+        <meta name="description" content="计算机考研机试笔记之C/C++基础6  C++引用 结构体     引用在C++编程中极为实用。 函数的参数是属于局部变量，如果想要修改传入的参数，那就要用到指针。 在C++中，还可以使用“引用”。引" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-44345.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="C++引用以及结构体" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/4b9b82d43ba6c3e4dbe3a222c68d1ee5.webp" />
+        <meta property="og:release_date" content="2025-01-22T10:11:47" />
+    <meta property="og:updated_time" content="2025-01-22T10:11:47" />
+        <meta property="og:description" content="计算机考研机试笔记之C/C++基础6  C++引用 结构体     引用在C++编程中极为实用。 函数的参数是属于局部变量，如果想要修改传入的参数，那就要用到指针。 在C++中，还可以使用“引用”。引" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C++引用以及结构体">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>C++引用以及结构体</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <div class="toc"> <h3>计算机考研机试笔记之C/C++基础6</h3> <ul> <li><a href="#C_1" rel="nofollow">C++引用</a></li> <li><a href="#_57" rel="nofollow">结构体</a></li> </ul> </div> </h1> <ol> <li>引用在C++编程中极为实用。<br /> 函数的参数是属于局部变量，如果想要修改传入的参数，那就要用到指针。<br /> 在C++中，还可以使用“引用”。引用不会产生副本，相当于给原来的变量又取了个别名，二者其实都是指同一个东西，且对引用变量的操作就是对原变量的操作。<br /> 引用的使用方法很简单，只需要在函数的参数类型后面加个&amp;就可以了（或者&amp;加在变量前面即可）。 <pre><code class="prism language-javascript">#include <span class="token operator">&lt;</span>iostream<span class="token operator">&gt;</span> using namespace std<span class="token punctuation">;</span> int <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     int a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>     	cout <span class="token operator">&lt;&lt;</span> a <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  	int <span class="token operator">&amp;</span>b <span class="token operator">=</span> a<span class="token punctuation">;</span> 	b <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span> 	cout <span class="token operator">&lt;&lt;</span> a <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p> 输出：</p> <pre><code class="prism language-javascript"><span class="token number">10</span> <span class="token number">23</span> </code></pre> <p> 可见，程序中对<strong>a的引用</strong>b的操作，也是对变量a的操作。<br /><strong>注意：</strong><br /> 要把引用的&amp;跟取地址运算符&amp;区分开来，引用并不是取地址的意思。</li> <li>指针的引用<br /> 在指针相关一文中提到的swap()，还可以通过将传入的地址交换来达到交换两个变量的效果。使用引用可以达到这种操作，如下： <pre><code class="prism language-javascript">#include <span class="token operator">&lt;</span>iostream<span class="token operator">&gt;</span> using namespace std<span class="token punctuation">;</span> <span class="token comment">//将 int* 型变量的引用作为参数，</span> <span class="token comment">//相当于对原int*变量的操作 </span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span>int<span class="token operator">*</span> <span class="token operator">&amp;</span>p1<span class="token punctuation">,</span>int<span class="token operator">*</span> <span class="token operator">&amp;</span>p2<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	int <span class="token operator">*</span>temp <span class="token operator">=</span> p1<span class="token punctuation">;</span> 	p1 <span class="token operator">=</span> p2<span class="token punctuation">;</span> 	p2 <span class="token operator">=</span> temp<span class="token punctuation">;</span> <span class="token punctuation">}</span> int <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     int a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>b <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span>     	int <span class="token operator">*</span>p1 <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">*</span>p2 <span class="token operator">=</span> <span class="token operator">&amp;</span>b<span class="token punctuation">;</span>  	<span class="token comment">//p1 p2为指针变量，存放a b的地址 </span> 	cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>p1 <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>p2 <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  	<span class="token function">swap</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span>p2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//函数参数为a b的地址，类型为int* </span> 	cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>p1 <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>p2 <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <pre><code class="prism language-javascript"><span class="token number">10</span> <span class="token number">23</span> <span class="token number">23</span> <span class="token number">10</span> </code></pre> <p> 为了理解上的方便，可以“简单”地把int*型理解成unsigned int型，而直接交换这样的两个整型变量是需要加引用的。<br /> 注意：<br /> 引用是产生变量的别名，因此常量不可使用引用。于是上面的代码中不可以写成swap(&amp;a,&amp;b)，而必须用指针变量pl和p2存放&amp;a和&amp;b，然后把指针变量作为参数传入。</li> </ol> <p>另外，如果想要深入了解引用，我推荐一篇文章：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/JayRoxis/article/details/73060770"  rel="nofollow">https://blog.csdn.net/JayRoxis/article/details/73060770</a> 作者总结的比较用心。</p> </h1> <ol> <li> <p>结构体定义<br /> 可以将若干不同数据类型的数据封装在一起，可以用来储存复合数据。可以将若干不同数据类型的数据封装在一起，可以用来储存复合数据。</p> <pre><code class="prism language-javascript">struct Name<span class="token punctuation">{<!-- --></span> <span class="token comment">//自定义的数据结构</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> </code></pre> <pre><code class="prism language-javascript">struct person<span class="token punctuation">{<!-- --></span> 	char name<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 	char gender<span class="token punctuation">;</span> 	int age<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> person Jhon<span class="token punctuation">,</span>Harry<span class="token punctuation">,</span>students<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> </code></pre> <pre><code class="prism language-javascript">struct person<span class="token punctuation">{<!-- --></span> 	char name<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 	char gender<span class="token punctuation">;</span> 	int age<span class="token punctuation">;</span> <span class="token punctuation">}</span>Jhon<span class="token punctuation">,</span>Harry<span class="token punctuation">,</span>students<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//Jhon,Harry为结构体变量，students[10]为结构体数组变量</span> </code></pre> <pre><code class="prism language-javascript">struct person<span class="token punctuation">{<!-- --></span> 	char name<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 	char gender<span class="token punctuation">;</span> 	int age<span class="token punctuation">;</span> 	person<span class="token operator">*</span> father<span class="token punctuation">;</span><span class="token comment">//结构体内可以定义结构体本身的指针类型的指针变量</span> <span class="token punctuation">}</span>Jhon<span class="token punctuation">,</span>Harry<span class="token punctuation">,</span>students<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//Jhon,Harry为结构体变量，students[10]为结构体数组变量</span> </code></pre> </li> <li> <p>访问结构体中的元素</p> <p>方式一：</p> <pre><code class="prism language-javascript">Jhon<span class="token punctuation">.</span>name Jhon<span class="token punctuation">.</span>gender Jhon<span class="token punctuation">.</span>age </code></pre> <p>方式二：</p> <pre><code class="prism language-javascript">Jhon<span class="token operator">-</span><span class="token operator">&gt;</span>name Jhon<span class="token operator">-</span><span class="token operator">&gt;</span>gender Jhon<span class="token operator">-</span><span class="token operator">&gt;</span>age </code></pre> </li> <li> <p>结构体初始化<br /> 使用构造函数初始化</p> <pre><code class="prism language-javascript">#include <span class="token operator">&lt;</span>iostream<span class="token operator">&gt;</span> #include <span class="token operator">&lt;</span>string<span class="token punctuation">.</span>h<span class="token operator">&gt;</span> using namespace std<span class="token punctuation">;</span> struct person<span class="token punctuation">{<!-- --></span> 	char name<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 	char gender<span class="token punctuation">;</span> 	int age<span class="token punctuation">;</span> 	<span class="token function">person</span><span class="token punctuation">(</span>char<span class="token operator">*</span> name_<span class="token punctuation">,</span>char gender_<span class="token punctuation">,</span>int age_<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>	<span class="token function">strcpy</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span>name_<span class="token punctuation">)</span><span class="token punctuation">;</span> gender <span class="token operator">=</span> gender_<span class="token punctuation">;</span> age <span class="token operator">=</span> age_<span class="token punctuation">;</span><span class="token punctuation">}</span> 	 <span class="token punctuation">}</span><span class="token punctuation">;</span> int <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     person <span class="token function">a</span><span class="token punctuation">(</span><span class="token string">"green"</span><span class="token punctuation">,</span><span class="token string">'F'</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	cout <span class="token operator">&lt;&lt;</span> a<span class="token punctuation">.</span>name <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> a<span class="token punctuation">.</span>gender <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> a<span class="token punctuation">.</span>age <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>在创建时，自行初始化</p> <pre><code class="prism language-javascript">#include <span class="token operator">&lt;</span>iostream<span class="token operator">&gt;</span> #include <span class="token operator">&lt;</span>string<span class="token punctuation">.</span>h<span class="token operator">&gt;</span> using namespace std<span class="token punctuation">;</span> struct person<span class="token punctuation">{<!-- --></span> 	char name<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 	char gender<span class="token punctuation">;</span> 	int age<span class="token punctuation">;</span>	 <span class="token punctuation">}</span><span class="token punctuation">;</span> int <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     person a<span class="token punctuation">;</span>     <span class="token function">strcpy</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token string">"white"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     a<span class="token punctuation">.</span>gender <span class="token operator">=</span> <span class="token string">'M'</span><span class="token punctuation">;</span>     a<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">21</span><span class="token punctuation">;</span> 	cout <span class="token operator">&lt;&lt;</span> a<span class="token punctuation">.</span>name <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> a<span class="token punctuation">.</span>gender <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> a<span class="token punctuation">.</span>age <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> </li> </ol> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-43868.htm">养猫容易生病吗（养猫容易生病吗）</a></p>
+                                        <p>下一个：<a href="/news/article-44346.htm">synchronized有几种用法？</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-26019.htm" title="卖宠物粮的上市公司（卖宠物粮的上市公司名单）">卖宠物粮的上市公司（卖宠物粮的上市公司名单）</a></li>
+                        <li class="py-2"><a href="/news/article-44345.htm" title="C++引用以及结构体">C++引用以及结构体</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-v2ray.htm" title="12月8日|V2ray/SSR/Clash/Shadowrocket每天更新18.9M/S免费节点订阅链接，付费节点订阅推荐">12月8日|V2ray/SSR/Clash/Shadowrocket每天更新18.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-node-share.htm" title="11月17日|Shadowrocket/Clash/V2ray/SSR每天更新21.1M/S免费节点订阅链接，付费节点订阅推荐">11月17日|Shadowrocket/Clash/V2ray/SSR每天更新21.1M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-27-free-node-subscribe.htm" title="10月27日|Clash/SSR/V2ray/Shadowrocket每天更新20.4M/S免费节点订阅链接，付费节点订阅推荐">10月27日|Clash/SSR/V2ray/Shadowrocket每天更新20.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-v2ray.htm" title="11月21日|SSR/Clash/V2ray/Shadowrocket每天更新20.6M/S免费节点订阅链接，付费节点订阅推荐">11月21日|SSR/Clash/V2ray/Shadowrocket每天更新20.6M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-31702.htm" title="济南宠物领养机构电话多少（济南宠物领养济南宠物赠送）">济南宠物领养机构电话多少（济南宠物领养济南宠物赠送）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-free-subscribe-node.htm" title="12月30日|SSR/Shadowrocket/Clash/V2ray每天更新21.1M/S免费节点订阅链接地址分享">12月30日|SSR/Shadowrocket/Clash/V2ray每天更新21.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-node-share-links.htm" title="12月13日|SSR/Clash/Shadowrocket/V2ray每天更新19.5M/S免费节点订阅链接，付费节点订阅推荐">12月13日|SSR/Clash/Shadowrocket/V2ray每天更新19.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-35536.htm" title="动物疫苗价格表图片大全及价格图 动物疫苗价格表图片大全及价格图">动物疫苗价格表图片大全及价格图 动物疫苗价格表图片大全及价格图</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">65</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
