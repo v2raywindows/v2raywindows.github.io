@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-44842.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>右值引用，移动语义，完美转发</title>
+        <meta name="description" content="文章预先发布于：pokpok.ink  名词解释   移动语义：用不那么昂贵的操作代替昂贵的复制操作，也使得只支持移动变得可能，比如 unique_ptr，将数据的所有权移交给别人而不是多者同时引用。" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-44842.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="右值引用，移动语义，完美转发" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/835ea12ad17778f3417a1781f138cd90.webp" />
+        <meta property="og:release_date" content="2025-01-23T10:40:03" />
+    <meta property="og:updated_time" content="2025-01-23T10:40:03" />
+        <meta property="og:description" content="文章预先发布于：pokpok.ink  名词解释   移动语义：用不那么昂贵的操作代替昂贵的复制操作，也使得只支持移动变得可能，比如 unique_ptr，将数据的所有权移交给别人而不是多者同时引用。" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="右值引用，移动语义，完美转发">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>右值引用，移动语义，完美转发</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<blockquote> <p>文章预先发布于：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pokpok.ink/c-rvalue-reference/"  target="_blank" rel="nofollow">pokpok.ink</a></p> </blockquote> <h2 id="名词解释">名词解释</h2> <ul> <li> <p>移动语义：用不那么昂贵的操作代替昂贵的复制操作，也使得只支持移动变得可能，比如 unique_ptr，将数据的所有权移交给别人而不是多者同时引用。</p> </li> <li> <p>完美转发：目标函数会收到转发函数完全相同类似的实参。</p> </li> <li> <p>右值引用：是这两个机制的底层语言机制，形式是 Type&amp;&amp;，能够引用到“不再使用”的数据，直接用于对象的构造</p> </li> </ul> <p>要注意的是，形参一定是左值，即使类型是右值引用：</p> <pre><code class="language-c++">void f(Widget&amp;&amp; w) {     /* w 在作用域内就是一个左值。 */ }</code></pre> <p>实现移动语意和完美转发的重要工具就是<code>std::move</code> 和<code>std::forward</code>，<code>std::move</code> 和<code>std::forward</code> 其实都是强制类型转换函数，<code>std::move</code> 无条件将实参转换为右值，而<code>std::forward</code> 根据实参的类型将参数类型转化为左值或者右值到目标函数。</p> <h2 id="移动语义">移动语义</h2> <p><code>std::move(v)</code> 相当于<code>static_cast&lt;T&amp;&amp;&gt;(v)</code>，强制将类型转化为需要类型的右值，move 的具体实现为：</p> <pre><code class="language-c++">template&lt;typename T&gt; typename remove_reference&lt;T&gt;::type&amp;&amp; move(T&amp;&amp; param) {     using ReturnType = typename remove_reference&lt;T&gt;::type&amp;&amp;;     return static_cast&lt;ReturnType&gt;(param); }</code></pre> <ol> <li> <p>其中<code>typename remove_reference&lt;T&gt;::type&amp;&amp;</code> 作用就是为了解决是当入参数是<code>reference to lvalue</code> 的时候，返回类型<code>ReturnType</code>会因为<code>引用折叠</code>被推导为<code>T&amp;</code>，<code>remove_reference&lt;T&gt;::type</code> 就是为了去除推导出的模版参数 T 的引用，从到强制得到<code>T&amp;&amp;</code>。</p> </li> <li> <p>如果没有<code>remove_reference&lt;T&gt;</code>，而是用<code>T&amp;&amp;</code> 来代替函数返回值以及<code>static_cast&lt;&gt;</code>，就会有下面的推导规则：</p> <ul> <li>如果入参是<code>lvalue</code>，那么<code>T</code> 就会被推导成为<code>T&amp;</code>，参数<code>param</code> 的类型就变成了<code>T&amp; &amp;&amp;</code>，再通过<code>引用折叠</code>的规则，推导最终结果为<code>T&amp;</code>，而根据表达式的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://en.cppreference.com/w/cpp/language/value_category"  target="_blank" rel="nofollow">value category</a> 规则，如果一个函数的返回值类型是左值引用，那么返回值的类型为左值，那么<code>std::move(v)</code> 就不能实现需要的功能，做到强制右值转换。</li> <li>如果入参是<code>rvalue</code>，那么<code>T</code> 会被直接推导成<code>T</code>，参数<code>param</code> 的类型也就变成了<code>T&amp;&amp;</code>，函数返回的类型(type)也是<code>T&amp;&amp;</code>，返回的值类别也是右值。</li> </ul> </li> <li> <p>此外，在 c++14 能直接将<code>typename remove_reference&lt;T&gt;::type&amp;&amp;</code> 替换为<code>remove_reference_t&lt;T&gt;&amp;&amp;</code>。</p> </li> </ol> <h2 id="完美转发">完美转发</h2> <p><code>std::forward&lt;T&gt;(v)</code> 的使用场景用于函数需要转发不同左值或者右值的场景，假设有两个重载函数：</p> <pre><code class="language-c++">void process(const Widget&amp; lvalArg); void process(Widget&amp;&amp; rvalArg);</code></pre> <p>有一个函数<code>LogAndProcess</code> 会根据<code>param</code> 左值或者右值的不同来区分调用不同函数签名的<code>process</code> 函数：</p> <pre><code class="language-c++">template&lt;typename T&gt; void LogAndProcess(T&amp;&amp; param) {     // DoSomething     logging(param);      process(std::forward&lt;T&gt;(param)); }</code></pre> <p>这样使用<code>LogAndProcess</code> 的时候就能区分：</p> <pre><code class="language-c++">Widget w; LogAndProcess(w); // call process(const Widget&amp;); LogAndProcess(std::move(w)); // call process(Widget&amp;&amp;);</code></pre> <p>这里就有 emplace_back 一种常见的用错的情况，在代码中也经常看见，如果要将某个不用的对象<code>a</code>放到<code>vector</code>中：</p> <pre><code class="language-c++">class A { 	A(A&amp;&amp; a) {} };  A a; std::vector&lt;A&gt; vec; vec.push_back(a);</code></pre> <p>如果使用<code>push_back</code> 就会造成一次拷贝，常见的错误做法是将其替换为<code>vector::emplace_back()</code>：</p> <pre><code class="language-c++">vec.emplace_back(a);</code></pre> <p>但是<code>emplace_back</code> 的实现有<code>std::forward</code> 根据实参数做转发，实参<code>a</code> 实际上是个<code>lvaue</code>，转发到构造函数时得到的也是左值的 a，就相当于调用赋值拷贝构造：</p> <pre><code class="language-c++">vec[back()] = a;</code></pre> <p>解决方法其实只需要调用<code>std::move</code> 做一次右值转换即可，就能完成数据的移动。</p> <pre><code class="language-c++">vec.emplace_back(std::move(a));</code></pre> <h2 id="万能引用和右值引用">万能引用和右值引用</h2> <p>万能引用和右值引用最大的区别在于万能引用会涉及模板的推导。但并不是说函数参数中有模板参数就是万能引用，例如<code>std::vector::push_back()</code> 的函数签名是<code>push_back(T&amp;&amp; x)</code>， 但是<code>T</code> 的类型在<code>std::vector&lt;T&gt;</code> 声明的时候就已经确定了，在调用<code>push_back</code> 的时候不会涉及类型推导，而<code>std::vector</code> 的<code>emplace_back</code> 是确实存在推导的。另外即使类型是<code>T&amp;&amp;</code>，但是如果有<code>const</code> 修饰得到<code>const T&amp;&amp;</code>，那么也不是一个合格的万能引用。</p> <p>对于万能引用，如果是入参是右值引用，模版参数<code>T</code> 的推导结果还是<code>T</code>，而不是<code>T&amp;&amp;</code>，这不是右值引用的特殊性，而是左值引用的特殊性，<br /> 模板函数的函数参数列表中包含<code>forwarding reference</code> 且相应的实参是一个<code>lvalue</code> 的情况时，模版类型会被推导为左值引用。<code>forwarding reference</code> 是 C++ 标准中的词，翻译叫转发引用；《<em>modern effective c++</em>》的作者 Scott Meyers 将这种引用称之为万能引用（universal reference）。</p> <h2 id="右值引用的重载">右值引用的重载</h2> <p>有了右值引用后，就能通过<code>std::move</code> 将左值转换为右值，完成目标对象的移动构造，省去大对象的拷贝，但是如果传递的参数是个左值，调用者不希望入参被移动，数据被移走，那就需要提供一个左值引用的版本，因为右值引用无法绑定左值。假设大对象是一个<code>string</code>，就会写出下面这种函数签名：</p> <pre><code class="language-c++">void f(const std::string&amp; s); void f(string&amp;&amp; s);</code></pre> <p>一个参数没问题，我们学会了左值和右值的区别并给出了不同的函数重载，但是如果参数是两个 string，情况就变得复杂的，针对不同的情况，就需要提供四种函数签名和实现：</p> <pre><code class="language-c++">void f(const std::string&amp; s1, const std::string&amp; s2); void f(const std::string&amp; s1, string&amp;&amp; s s2); void f(string&amp;&amp; s s1, const std::string&amp; s2); void f(string&amp;&amp; s s1, string&amp;&amp; s s2);</code></pre> <p>如果参数进一步增加，编码就会越来越复杂，遇到这种情况就可以使用万能引用处理，在函数体内对string做<code>std::forward()</code>即可：</p> <pre><code class="language-c++">template&lt;typename T1, typename T2&gt; void f(T1&amp;&amp; s1, T2&amp;&amp; s2);</code></pre> <h2 id="万能引用的重载">万能引用的重载</h2> <p>万能引用存在一个问题，过于贪婪而导致调用的函数不一定是想要的那个，假设<code>f()</code> 除了要处理左值和右值的 string 外，还有可能需要处理一个整形，例如<code>int</code>，就会有下面这种方式的重载。</p> <pre><code class="language-c++">// 万能引用版本的 f()，处理左值右值 template&lt;typename T&gt; void f(T&amp;&amp; s) {     std::cout &lt;&lt; "f(T&amp;&amp;)" &lt;&lt; std::endl; }  // 整数类型版本的 f()，处理整形 void f(int i)  {     std::cout &lt;&lt; "f(int)" &lt;&lt; std::endl; }</code></pre> <p>如果用不同的整型去调用<code>f()</code>，就会发生问题：</p> <pre><code class="language-c++">int i1; f(i1); // output: f(int)  size_t i2; f(i2); // output: f(T&amp;&amp;)</code></pre> <ul> <li>如果参数是一个<code>int</code>，那么一切正常，调用<code>f(int)</code>的版本，因为c++规定，如果一个常规函数和一个模板函数具备相同的匹配性，优先使用常规函数。</li> <li>但是如果入参是个<code>size_t</code>，那么就出现问题了，<code>size_t</code> 的类型和<code>int</code> 并不相等，需要做一些转换才能变成<code>int</code>，那么就会调用到万能引用的版本。</li> </ul> <p>如何限制万能引用呢？</p> <p>1、标签分派：根据万能引用推导的类型，<code>f(T&amp;&amp;)</code> 新增一个形参变成<code>f(T&amp;&amp;, std::true_type)</code>和<code>f(T&amp;&amp;, std::false_type)</code>，调用<code>f(args, std::is_integral&lt;T&gt;())</code> 就能正确分发到不同的<code>f()</code> 上。<br /> 2、模板禁用：<code>std::enable_if</code> 能强制让编译器使得某种模板不存在一样，称之为禁用，底层机制是<code>SFINAE</code></p> <p><code>std::_enable_if</code> 的正确使用方法为：</p> <pre><code class="language-c++">template&lt;typename T,         typename = typename std::enable_if&lt;condition&gt;::type&gt; void f(T param) {  }</code></pre> <p>应用到前面的例子上，希望整型只调用<code>f(int)</code>而 string 会调用<code>f(T&amp;&amp;)</code>，就会有：</p> <pre><code class="language-c++">void f(int i) {     std::cout &lt;&lt; "f(int)" &lt;&lt; std::endl; }  template&lt;typename T,          typename = typename std::enable_if&lt;             std::is_same&lt;                 typename std::remove_reference&lt;T&gt;::type,                  std::string&gt;::value             &gt;::type         &gt; void f(T&amp;&amp; s) {     std::cout &lt;&lt; "f(T&amp;&amp;)" &lt;&lt; std::endl; }</code></pre> <p>模板的内容看上去比较长，其实只是在<code>std::enable_if</code>的<code>condition</code>内希望入参的类型为<code>string</code>，无论左值和右值，这样就完成了一个万能引用的正确重载。</p> <h2 id="引用折叠">引用折叠</h2> <p>在c++中，引用的引用是非法的，但是编译器可以推导出引用的引用的引用再进行折叠，通过这种机制实现移动语义和完美转发。</p> <p>模板参数<code>T</code>的推导规则有一点就是，如果传参是个左值，<code>T</code>的推导类型就是<code>T&amp;</code>，如果传参是个右值，那么<code>T</code>推导结果就是<code>T</code>（不变）。引用的折叠规则也很简单，当编译器出现引用的引用后，结果会变成单个引用，在两个引用中，任意一个的推导结果为左值引用，结果就是左值引用，否则就是右值引用。</p> <h2 id="返回值优化rvo">返回值优化(RVO)</h2> <p>编译器如果要在一个按值返回的函数省略局部对象的复制和移动，需要满足两个条件：</p> <ol> <li>局部对象的类型和返回值类型相同</li> <li>返回的就是局部对象本身</li> </ol> <p>如果在<code>return</code>的时候对局部变量做<code>std::move()</code>，那么就会使得局部变量的类型和返回值类型不匹配，原本可以只构造一次的操作，变成了需要构造一次加移动一次，限制了编译器的发挥。</p> <p>另外，如果不满足上面的条件二，按值返回的局部对象是不确定的，编译器也会将返回值当作右值处理，所以对于按值返回局部变量这种情况，并不需要实施<code>std::move()</code>。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-44346.htm">synchronized有几种用法？</a></p>
+                                        <p>下一个：<a href="/news/article-44843.htm">动物防疫检疫站可以打疫苗吗（动物防疫检疫站可以看病吗）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-node-share-links.htm" title="11月2日|Shadowrocket/V2ray/Clash/SSR每天更新19.1M/S免费节点订阅链接，付费节点订阅推荐">11月2日|Shadowrocket/V2ray/Clash/SSR每天更新19.1M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-44346.htm" title="synchronized有几种用法？">synchronized有几种用法？</a></li>
+                        <li class="py-2"><a href="/news/article-37910.htm" title="Pygame从0实战10(泡泡小游戏添加音效)">Pygame从0实战10(泡泡小游戏添加音效)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-v2ray-subscribe.htm" title="12月25日|V2ray/SSR/Shadowrocket/Clash每天更新22M/S免费节点订阅链接地址分享">12月25日|V2ray/SSR/Shadowrocket/Clash每天更新22M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-27902.htm" title="南平领养宠物网站官网（南平领养宠物网站官网电话）">南平领养宠物网站官网（南平领养宠物网站官网电话）</a></li>
+                        <li class="py-2"><a href="/news/article-25572.htm" title="宠物粮市场前景分析图片 宠物粮市场前景分析图片大全">宠物粮市场前景分析图片 宠物粮市场前景分析图片大全</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-node-share.htm" title="11月4日|SSR/Shadowrocket/Clash/V2ray每天更新20.6M/S免费节点订阅链接，付费节点订阅推荐">11月4日|SSR/Shadowrocket/Clash/V2ray每天更新20.6M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-free-high-speed-nodes.htm" title="10月19日|Clash/SSR/V2ray/Shadowrocket每天更新19.5M/S免费节点订阅链接，付费节点订阅推荐">10月19日|Clash/SSR/V2ray/Shadowrocket每天更新19.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-subscribe-node.htm" title="11月19日|Shadowrocket/SSR/V2ray/Clash每天更新21.3M/S免费节点订阅链接，付费节点订阅推荐">11月19日|Shadowrocket/SSR/V2ray/Clash每天更新21.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-clash-v2ray-ss-ssr.htm" title="12月3日|V2ray/Shadowrocket/Clash/SSR每天更新19.8M/S免费节点订阅链接，付费节点订阅推荐">12月3日|V2ray/Shadowrocket/Clash/SSR每天更新19.8M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">68</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
