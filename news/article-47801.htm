@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-47801.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Sm2国密算法后端加解密demo</title>
+        <meta name="description" content="简介 什么是SM2 SM2是国家密码管理局于2010年12月17日发布的椭圆曲线公钥密码算法。 SM2 算法和 RSA 算法都是公钥密码算法，SM2 算法是一种更先进安全的算法，在我们国家商用密码体系" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-47801.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="Sm2国密算法后端加解密demo" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/f55f1e852f84c5284d90ddecf4a72a55.webp" />
+        <meta property="og:release_date" content="2025-01-29T10:26:22" />
+    <meta property="og:updated_time" content="2025-01-29T10:26:22" />
+        <meta property="og:description" content="简介 什么是SM2 SM2是国家密码管理局于2010年12月17日发布的椭圆曲线公钥密码算法。 SM2 算法和 RSA 算法都是公钥密码算法，SM2 算法是一种更先进安全的算法，在我们国家商用密码体系" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Sm2国密算法后端加解密demo">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+                        <a href="/"><span>V2ray Windows</span></a>
+                    </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Sm2国密算法后端加解密demo</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>简介<br /> 什么是SM2<br /> SM2是国家密码管理局于2010年12月17日发布的椭圆曲线公钥密码算法。</p> <p>SM2 算法和 RSA 算法都是公钥密码算法，SM2 算法是一种更先进安全的算法，在我们国家商用密码体系中被用来替换 RSA 算法。</p> <p>随着密码技术和计算机技术的发展，目前常用的 1024 位 RSA 算法面临严重的安全威胁，我们国家密码管理部门经过研究，决定采用 SM2 椭圆曲线算法替换RSA算法。</p> <p>SM2算法和RSA算法比较<br /> SM2性能更优更安全：密码复杂度高、处理速度快、机器性能消耗更小</p> <table border="1" cellpadding="1" cellspacing="1" style="width:680px;"> <tbody> <tr> <td>-</td> <td>SM2</td> <td>RSA</td> </tr> <tr> <td>算法结构</td> <td>基本椭圆曲线（ECC）</td> <td>基于特殊的可逆模幂运算</td> </tr> <tr> <td>计算复杂度</td> <td>完全指数级</td> <td>亚指数级</td> </tr> <tr> <td>存储空间</td> <td>192-256bit</td> <td>2048-4096bit</td> </tr> <tr> <td>秘钥生成速度</td> <td>较RSA算法快百倍以上</td> <td>慢</td> </tr> <tr> <td>解密加密速度</td> <td>较快</td> <td>一般</td> </tr> </tbody> </table> <p> POM依赖</p> <pre><code>&lt;dependency&gt; &nbsp; &nbsp; &lt;groupId&gt;org.bouncycastle&lt;/groupId&gt; &nbsp; &nbsp; &lt;artifactId&gt;bcprov-ext-jdk15to18&lt;/artifactId&gt; &nbsp; &nbsp; &lt;version&gt;1.68&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &nbsp;&nbsp; &nbsp;&lt;groupId&gt;org.bouncycastle&lt;/groupId&gt; &nbsp;&nbsp; &nbsp;&lt;artifactId&gt;bcprov-jdk15to18&lt;/artifactId&gt; &nbsp;&nbsp; &nbsp;&lt;version&gt;1.68&lt;/version&gt; &lt;/dependency&gt;</code></pre> <pre><code>package com.szsti.gasstation.utils;  import com.alibaba.fastjson.JSON; import org.bouncycastle.asn1.gm.GMNamedCurves; import org.bouncycastle.asn1.x9.X9ECParameters; import org.bouncycastle.crypto.CryptoException; import org.bouncycastle.crypto.engines.SM2Engine; import org.bouncycastle.crypto.params.*; import org.bouncycastle.crypto.signers.SM2Signer; import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey; import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey; import org.bouncycastle.jce.provider.BouncyCastleProvider; import org.bouncycastle.jce.spec.ECParameterSpec; import org.bouncycastle.jce.spec.ECPrivateKeySpec; import org.bouncycastle.jce.spec.ECPublicKeySpec; import org.bouncycastle.math.ec.ECPoint; import org.bouncycastle.util.Strings; import org.bouncycastle.util.encoders.Hex; import org.springframework.stereotype.Component;  import java.math.BigInteger; import java.security.*; import java.security.spec.ECGenParameterSpec; import java.util.Base64; import java.util.TreeMap;  /* 概念： SM1为对称加密。其加密强度与AES相当。该算法不公开，调用该算法时，需要通过加密芯片的接口进行调用。 SM2为非对称加密，基于ECC。该算法已公开。由于该算法基于ECC，故其签名速度与秘钥生成速度都快于RSA。ECC 256位（SM2采用的就是ECC 256位的一种）安全强度比RSA 2048位高，但运算速度快于RSA。 SM3消息摘要。可以用MD5作为对比理解。该算法已公开。校验结果为256位。 SM4无线局域网标准的分组数据算法。对称加密，密钥长度和分组长度均为128位。 ----------------------------------- java 国密算法sm2、sm3  */  public class Sm2 {     /**      * @return KeyPair      * @Description 生成秘钥对      * @Author msx      */     public static KeyPair createECKeyPair() {         //使用标准名称创建EC参数生成的参数规范         final ECGenParameterSpec sm2Spec = new ECGenParameterSpec("sm2p256v1");          // 获取一个椭圆曲线类型的密钥对生成器         final KeyPairGenerator kpg;         try {             kpg = KeyPairGenerator.getInstance("EC", new BouncyCastleProvider());             // 使用SM2算法域参数集初始化密钥生成器（默认使用以最高优先级安装的提供者的 SecureRandom 的实现作为随机源）             // kpg.initialize(sm2Spec);              // 使用SM2的算法域参数集和指定的随机源初始化密钥生成器             kpg.initialize(sm2Spec, new SecureRandom());              // 通过密钥生成器生成密钥对             return kpg.generateKeyPair();         } catch (Exception e) {             e.printStackTrace();             return null;         }     }      /**      * @Description 公钥加密      * @Author msx      * @param publicKeyHex SM2十六进制公钥      * @param data         明文数据      * @return String      */     public static String encrypt(String publicKeyHex, String data) {         return encrypt(getECPublicKeyByPublicKeyHex(publicKeyHex), data, 1);     }      /**      * @Description 公钥加密      * @Author msx      * @param publicKey SM2公钥      * @param data      明文数据      * @param modeType  加密模式      * @return String      */     public static String encrypt(BCECPublicKey publicKey, String data, int modeType) {         //加密模式         SM2Engine.Mode mode = SM2Engine.Mode.C1C3C2;         if (modeType != 1) {             mode = SM2Engine.Mode.C1C2C3;         }         //通过公钥对象获取公钥的基本域参数。         ECParameterSpec ecParameterSpec = publicKey.getParameters();         ECDomainParameters ecDomainParameters = new ECDomainParameters(ecParameterSpec.getCurve(),                 ecParameterSpec.getG(), ecParameterSpec.getN());         //通过公钥值和公钥基本参数创建公钥参数对象         ECPublicKeyParameters ecPublicKeyParameters = new ECPublicKeyParameters(publicKey.getQ(), ecDomainParameters);         //根据加密模式实例化SM2公钥加密引擎         SM2Engine sm2Engine = new SM2Engine(mode);         //初始化加密引擎         sm2Engine.init(true, new ParametersWithRandom(ecPublicKeyParameters, new SecureRandom()));         byte[] arrayOfBytes = null;         try {             //将明文字符串转换为指定编码的字节串             byte[] in = data.getBytes("utf-8");             //通过加密引擎对字节数串行加密             arrayOfBytes = sm2Engine.processBlock(in, 0, in.length);         } catch (Exception e) {             System.out.println("SM2加密时出现异常:" + e.getMessage());             e.printStackTrace();         }         //将加密后的字节串转换为十六进制字符串         return Hex.toHexString(arrayOfBytes);     }      /**      * @Description 私钥解密      * @Author msx      * @param privateKeyHex SM2十六进制私钥      * @param cipherData    密文数据      * @return String      */     public static String decrypt(String privateKeyHex, String cipherData) {         return decrypt(getBCECPrivateKeyByPrivateKeyHex(privateKeyHex), cipherData, 1);     }      /**      * @Description 私钥解密      * @Author msx      * @param privateKey SM私钥      * @param cipherData 密文数据      * @param modeType   解密模式      * @return      */     public static String decrypt(BCECPrivateKey privateKey, String cipherData, int modeType) {         //解密模式         SM2Engine.Mode mode = SM2Engine.Mode.C1C3C2;         if (modeType != 1)             mode = SM2Engine.Mode.C1C2C3;         //将十六进制字符串密文转换为字节数组（需要与加密一致，加密是：加密后的字节数组转换为了十六进制字符串）         byte[] cipherDataByte = Hex.decode(cipherData);         //通过私钥对象获取私钥的基本域参数。         ECParameterSpec ecParameterSpec = privateKey.getParameters();         ECDomainParameters ecDomainParameters = new ECDomainParameters(ecParameterSpec.getCurve(),                 ecParameterSpec.getG(), ecParameterSpec.getN());         //通过私钥值和私钥钥基本参数创建私钥参数对象         ECPrivateKeyParameters ecPrivateKeyParameters = new ECPrivateKeyParameters(privateKey.getD(),                 ecDomainParameters);         //通过解密模式创建解密引擎并初始化         SM2Engine sm2Engine = new SM2Engine(mode);         sm2Engine.init(false, ecPrivateKeyParameters);         String result = null;         try {             //通过解密引擎对密文字节串进行解密             byte[] arrayOfBytes = sm2Engine.processBlock(cipherDataByte, 0, cipherDataByte.length);             //将解密后的字节串转换为utf8字符编码的字符串（需要与明文加密时字符串转换成字节串所指定的字符编码保持一致）             result = new String(arrayOfBytes, "utf-8");         } catch (Exception e) {             System.out.println("SM2解密时出现异常" + e.getMessage());         }         return result;     }     //椭圆曲线ECParameters ASN.1 结构     private static X9ECParameters x9ECParameters = GMNamedCurves.getByName("sm2p256v1");     //椭圆曲线公钥或私钥的基本域参数。     private static ECParameterSpec ecDomainParameters = new ECParameterSpec(x9ECParameters.getCurve(), x9ECParameters.getG(), x9ECParameters.getN());      /**      * @Description 公钥字符串转换为 BCECPublicKey 公钥对象      * @Author msx      * @param pubKeyHex 64字节十六进制公钥字符串(如果公钥字符串为65字节首个字节为0x04：表示该公钥为非压缩格式，操作时需要删除)      * @return BCECPublicKey SM2公钥对象      */     public static BCECPublicKey getECPublicKeyByPublicKeyHex(String pubKeyHex) {         //截取64字节有效的SM2公钥（如果公钥首个字节为0x04）         if (pubKeyHex.length() &gt; 128) {             pubKeyHex = pubKeyHex.substring(pubKeyHex.length() - 128);         }         //将公钥拆分为x,y分量（各32字节）         String stringX = pubKeyHex.substring(0, 64);         String stringY = pubKeyHex.substring(stringX.length());         //将公钥x、y分量转换为BigInteger类型         BigInteger x = new BigInteger(stringX, 16);         BigInteger y = new BigInteger(stringY, 16);         //通过公钥x、y分量创建椭圆曲线公钥规范         ECPublicKeySpec ecPublicKeySpec = new ECPublicKeySpec(x9ECParameters.getCurve().createPoint(x, y), ecDomainParameters);         //通过椭圆曲线公钥规范，创建出椭圆曲线公钥对象（可用于SM2加密及验签）         return new BCECPublicKey("EC", ecPublicKeySpec, BouncyCastleProvider.CONFIGURATION);     }      /**      * @Description 私钥字符串转换为 BCECPrivateKey 私钥对象      * @Author msx      * @param privateKeyHex 32字节十六进制私钥字符串      * @return BCECPrivateKey SM2私钥对象      */     public static BCECPrivateKey getBCECPrivateKeyByPrivateKeyHex(String privateKeyHex) {         //将十六进制私钥字符串转换为BigInteger对象         BigInteger d = new BigInteger(privateKeyHex, 16);         //通过私钥和私钥域参数集创建椭圆曲线私钥规范         ECPrivateKeySpec ecPrivateKeySpec = new ECPrivateKeySpec(d, ecDomainParameters);         //通过椭圆曲线私钥规范，创建出椭圆曲线私钥对象（可用于SM2解密和签名）         return new BCECPrivateKey("EC", ecPrivateKeySpec, BouncyCastleProvider.CONFIGURATION);     }      /**      * 私钥签名      * @param privateKey    私钥      * @param content       待签名内容      * @return      */     public static String sign(String privateKey, String content) throws CryptoException {         //待签名内容转为字节数组         byte[] message = Hex.decode(content);          //获取一条SM2曲线参数         X9ECParameters sm2ECParameters = GMNamedCurves.getByName("sm2p256v1");         //构造domain参数         ECDomainParameters domainParameters = new ECDomainParameters(sm2ECParameters.getCurve(),                 sm2ECParameters.getG(), sm2ECParameters.getN());          BigInteger privateKeyD = new BigInteger(privateKey, 16);         ECPrivateKeyParameters privateKeyParameters = new ECPrivateKeyParameters(privateKeyD, domainParameters);          //创建签名实例         SM2Signer sm2Signer = new SM2Signer();          //初始化签名实例,带上ID,国密的要求,ID默认值:1234567812345678         try {             sm2Signer.init(true, new ParametersWithID(new ParametersWithRandom(privateKeyParameters, SecureRandom.getInstance("SHA1PRNG")), Strings.toByteArray("1234567812345678")));         } catch (NoSuchAlgorithmException e) {             System.out.println("签名时出现异常:"+e);         }         sm2Signer.update(message, 0, message.length);         //生成签名,签名分为两部分r和s,分别对应索引0和1的数组         byte[] signBytes = sm2Signer.generateSignature();          String sign = Hex.toHexString(signBytes);          return sign;     }       /**      * 验证签名      * @param publicKey     公钥      * @param content       待签名内容      * @param sign          签名值      * @return      */     public static boolean verify(String publicKey, String content, String sign) {         //待签名内容         byte[] message = Hex.decode(content);         byte[] signData = Hex.decode(sign);          // 获取一条SM2曲线参数         X9ECParameters sm2ECParameters = GMNamedCurves.getByName("sm2p256v1");         // 构造domain参数         ECDomainParameters domainParameters = new ECDomainParameters(sm2ECParameters.getCurve(),                 sm2ECParameters.getG(),                 sm2ECParameters.getN());         //提取公钥点         ECPoint pukPoint = sm2ECParameters.getCurve().decodePoint(Hex.decode(publicKey));         // 公钥前面的02或者03表示是压缩公钥，04表示未压缩公钥, 04的时候，可以去掉前面的04         ECPublicKeyParameters publicKeyParameters = new ECPublicKeyParameters(pukPoint, domainParameters);         //创建签名实例         SM2Signer sm2Signer = new SM2Signer();         ParametersWithID parametersWithID = new ParametersWithID(publicKeyParameters, Strings.toByteArray("1234567812345678"));         sm2Signer.init(false, parametersWithID);         sm2Signer.update(message, 0, message.length);         //验证签名结果         boolean verify = sm2Signer.verifySignature(signData);         return verify;     }       public static void main(String[] args) throws Exception{         System.out.println("#########################start############################");         //公钥         String publicKeyHex = "";         //私钥         String privateKeyHex = "";         //生成公钥、私钥方法(公钥给前端进行加密，私钥后端进行数据解密、验签)         KeyPair keyPair = createECKeyPair();         PublicKey publicKey = keyPair.getPublic();         if (publicKey instanceof BCECPublicKey) {             //获取65字节非压缩缩的十六进制公钥串(0x04)             publicKeyHex = Hex.toHexString(((BCECPublicKey) publicKey).getQ().getEncoded(false));             System.out.println("----&gt;SM2公钥：" + publicKeyHex);         }         PrivateKey privateKey = keyPair.getPrivate();         if (privateKey instanceof BCECPrivateKey) {             //获取32字节十六进制私钥串             privateKeyHex = ((BCECPrivateKey) privateKey).getD().toString(16);             System.out.println("----&gt;SM2私钥：" + privateKeyHex);         }          //加密数据         TreeMap&lt;String, Object&gt; params = new TreeMap&lt;String, Object&gt;();         params.put("alarmNum", "1000041");         params.put("alarmCode", "20101");         params.put("recordTime", "2020-06-30 09:05:31");          // RSA加密         String data = JSON.toJSONString(params);          //生成签名         String sign = "";         try {             sign = sign(privateKeyHex, Hex.toHexString(data.getBytes()));         } catch (CryptoException e) {             e.printStackTrace();         }         System.out.println("生成签名" + sign);          //签名验签         boolean verify = verify(publicKeyHex, Hex.toHexString(data.getBytes()), sign);         System.out.println("验签结果" + verify);          //公钥加密         //将十六进制公钥串转换为 BCECPublicKey 公钥对象         String encryptData = encrypt(publicKeyHex, data);         System.out.println("----&gt;加密结果：" + encryptData);          //私钥解密         //将十六进制私钥串转换为 BCECPrivateKey 私钥对象         String dataNew = decrypt(privateKeyHex, encryptData);         System.out.println("----&gt;解密结果：" + dataNew);           System.out.println("#########################end############################");     } }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-47800.htm">关于Windows系列密码抓取</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-free-high-speed-nodes.htm" title="10月31日|Shadowrocket/V2ray/SSR/Clash每天更新19.3M/S免费节点订阅链接，付费节点订阅推荐">10月31日|Shadowrocket/V2ray/SSR/Clash每天更新19.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-3-free-v2ray-subscribe.htm" title="1月3日|Clash/Shadowrocket/SSR/V2ray每天更新21.2M/S免费节点订阅链接地址分享">1月3日|Clash/Shadowrocket/SSR/V2ray每天更新21.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-high-speed-nodes.htm" title="12月1日|SSR/V2ray/Clash/Shadowrocket每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐">12月1日|SSR/V2ray/Clash/Shadowrocket每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-47800.htm" title="关于Windows系列密码抓取">关于Windows系列密码抓取</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-v2ray.htm" title="11月14日|SSR/Shadowrocket/V2ray/Clash每天更新19.4M/S免费节点订阅链接，付费节点订阅推荐">11月14日|SSR/Shadowrocket/V2ray/Clash每天更新19.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-33100.htm" title="python中的time库安装步骤-python中time库的实例使用方法">python中的time库安装步骤-python中time库的实例使用方法</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-node-subscribe.htm" title="1月5日|Shadowrocket/V2ray/SSR/Clash每天更新22.9M/S免费节点订阅链接地址分享">1月5日|Shadowrocket/V2ray/SSR/Clash每天更新22.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-36923.htm" title="新疆和田宠物店地址 新疆和田宠物店地址查询">新疆和田宠物店地址 新疆和田宠物店地址查询</a></li>
+                        <li class="py-2"><a href="/news/article-25114.htm" title="SpringBoot 使用 Feign进行远程调用、文件上传等操作">SpringBoot 使用 Feign进行远程调用、文件上传等操作</a></li>
+                        <li class="py-2"><a href="/news/article-46330.htm" title="动物医院资质级别有哪些类型的（动物医院资质级别有哪些类型的证书）">动物医院资质级别有哪些类型的（动物医院资质级别有哪些类型的证书）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">86</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
