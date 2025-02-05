@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-50311.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Eclipse开发Java如何Debug详解</title>
+        <meta name="description" content="写在前面：博主是一只经过实战开发历练后投身培训事业的“小山猪”，昵称取自动画片《狮子王》中的“彭彭”，总是以乐观、积极的心态对待周边的事物。本人的技术路线从Java全栈工程师一路奔向大数据开发、数据挖" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-50311.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="Eclipse开发Java如何Debug详解" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/959f54813c097f8283a731cf131590e0.webp" />
+        <meta property="og:release_date" content="2025-02-03T09:25:17" />
+    <meta property="og:updated_time" content="2025-02-03T09:25:17" />
+        <meta property="og:description" content="写在前面：博主是一只经过实战开发历练后投身培训事业的“小山猪”，昵称取自动画片《狮子王》中的“彭彭”，总是以乐观、积极的心态对待周边的事物。本人的技术路线从Java全栈工程师一路奔向大数据开发、数据挖" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Eclipse开发Java如何Debug详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Eclipse开发Java如何Debug详解</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atelier-sulphurpool-light"> <blockquote> <p>写在前面：博主是一只经过实战开发历练后投身培训事业的“小山猪”，昵称取自动画片《狮子王》中的“彭彭”，总是以乐观、积极的心态对待周边的事物。本人的技术路线从Java全栈工程师一路奔向大数据开发、数据挖掘领域，如今终有小成，愿将昔日所获与大家交流一二，希望对学习路上的你有所助益。同时，博主也想通过此次尝试打造一个完善的技术图书馆，任何与文章技术点有关的异常、错误、注意事项均会在末尾列出，欢迎大家通过各种方式提供素材。</p> </blockquote> <ul> <li>对于文章中出现的任何错误请大家批评指出，一定及时修改。</li> <li>有任何想要讨论和学习的问题可联系我：zhuyc@vip.163.com。</li> <li>发布文章的风格因专栏而异，均自成体系，不足之处请大家指正。</li> </ul> </h1> <p><strong>本文关键字：Java、Debug、程序调试、Eclipse</strong></p> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#JavaDebug__Eclipse_5" rel="nofollow">Java如何Debug - Eclipse</a></li> <li> <ul> <li><a href="#_10" rel="nofollow">一、什么是程序调试</a></li> <li> <ul> <li><a href="#1_bugdebug_11" rel="nofollow">1. bug与debug</a></li> <li><a href="#2_debug_21" rel="nofollow">2. debug的具体方式</a></li> </ul> </li> <li><a href="#_25" rel="nofollow">二、程序调试流程</a></li> <li> <ul> <li><a href="#1__27" rel="nofollow">1. 问题定位</a></li> <li><a href="#2__32" rel="nofollow">2. 设置断点</a></li> <li><a href="#3__34" rel="nofollow">3. 程序调试</a></li> </ul> </li> <li><a href="#Eclipse_36" rel="nofollow">三、Eclipse下的程序调试</a></li> <li> <ul> <li><a href="#1_debug_38" rel="nofollow">1. debug视图</a></li> <li><a href="#2_debug_44" rel="nofollow">2. debug模式运行</a></li> <li><a href="#3_debug_56" rel="nofollow">3. debug视图功能窗口</a></li> <li> <ul> <li><a href="#1_59" rel="nofollow">（1）堆栈信息区</a></li> <li><a href="#2_69" rel="nofollow">（2）程序代码区</a></li> <li><a href="#3_72" rel="nofollow">（3）观察操作区</a></li> <li><a href="#4_91" rel="nofollow">（4）脚本调试区</a></li> </ul> </li> </ul> </li> </ul> </li> </ul> </div> <p> 应粉丝群小伙伴的请求，更新一篇与Debug相关的文章。小编觉得掌握工具的使用是比较容易的，更加重要的是程序调试的思路，所以在这篇文章中会尽量全面的和大家讲解一下程序调试的流程以及如何使用Eclipse进行Debug。<br /><code>大家如果有任何问题也欢迎扫码加入文末的CSDN官方粉丝群，小编会尽自己所能优先创作大家想看的内容。</code></p> <h2><a id="_10" rel="nofollow"></a>一、什么是程序调试</h2> <h3><a id="1_bugdebug_11" rel="nofollow"></a>1. bug与debug</h3> <ul> <li>bug</li> </ul> <p>bug的本意是虫子，为什么现在用来代表计算机或软件中发生的错误你？这还要从一只飞蛾说起：</p> <p> 早在1947年，当时的计算机还不能算作真正的电子计算机，其中使用了大量的继电器。上图中的人物就是大名鼎鼎的<strong>格蕾斯·哈珀（GraceHopper）</strong>，在9月9号这一天，一台名为“MARK II”型的计算机死机了，最后定位到70号继电器出错。观察继电器后发现，一只虫虫飞了进去，并且已经触电身亡。<br /> 于是，这个<strong>bug</strong>就被记录下来，成为了第一个导致计算机出现问题的记录。在这之后在越来越多的领域都使用bug这个词汇来代表出现的问题或错误，游戏中的漏洞或错误也是使用这一单词。</p> <ul> <li>debug</li> </ul> <p>对于开发者来说，工作就是通过程序来实现需要的业务逻辑（也就是指定功能）。在实现的过程中会遇到各种各样的问题，<strong>debug</strong>的本意是解决这些<strong>bug</strong>，主要的方式就是<strong>程序调试</strong>。现在一说到<strong>debug</strong>指的就是在<strong>调试模式</strong>下运行程序或项目，这也是我们调试的前提。</p> <h3><a id="2_debug_21" rel="nofollow"></a>2. debug的具体方式</h3> <p>说起debug，需要明确一点的是，我们使用的编译器（如Eclipse，IDEA等）只是用可视化的方式将程序的调试过程变得更加直观和方便。不但能够调试模式运行，还能够查看到变量信息，堆栈信息等。本质上是因为语言本身就支持了调试功能，换句话说，如果你是高手中的高手，紧紧使用各种命令同样能够完成程序调试。<br /> 所以小编想说的就是调试的思想和流程比工具更为重要，希望大家不要可以记忆某一个工具对于程序的调试方法，而是能够提炼出通用的步骤。当然，小编也会尽力总结和具体讲解主流工具调试程序的过程，如果有任何疑问也欢迎大家指出。<br /> 在Java中，和程序调试相关的命令可以统称为<strong>jdb</strong>，其中包含了<strong>设置断点</strong>、<strong>查看堆栈信息</strong>、<strong>查看相关类详细信息</strong>、<strong>方法跟踪</strong>等等。这些功能也是我们进行程序调试时必须掌握和经常使用的，在后文中会为大家具体讲解如何在编译器中进行程序调试，对命令调试感兴趣的小伙伴可以自行搜索。</p> <h2><a id="_25" rel="nofollow"></a>二、程序调试流程</h2> <p>明白了程序调试的目的和基本概念后，我们先来梳理一下简单流程，可以让我们在使用工具时更加得心应手。</p> <h3><a id="1__27" rel="nofollow"></a>1. 问题定位</h3> <p>首先第一步要做的是定位问题发生的位置。<br /><strong>最简单的情况</strong>是单个运行的程序直接出现了异常信息，并且指明了报错行。如果我们检查了相关代码后仍然无法修正错误，此时可以直接考虑在出错位置附近开始调试。<br /><strong>稍微复杂一点的情况</strong>是单个程序运行的结果与预期不符，但却没有报错信息。这种情况是我们的代码出现了逻辑错误，虽然不影响程序的运行，但是却未实现我们想要的功能，此时也需要借助程序调试来排查错误，重点排查所传的参数与核心代码的部分。<br /><strong>较为复杂的情况</strong>是在大型项目中遇到了功能异常，此时问题的定位更为重要，但是同样可以使用以上两种情况的方法来解决。对于此类问题，可以将问题出现的位置大致划定为以下几个部分：<strong>前端功能调用与数据解析</strong>、<strong>前后端数据交互</strong>、<strong>服务端业务逻辑与项目配置</strong>、<strong>持久层数据交互</strong>。如果结构较为复杂可能还会存在<strong>缓存层</strong>和<strong>分布式架构</strong>，但是问题定位的方式大同小异，会在后面的文章中说明。</p> <h3><a id="2__32" rel="nofollow"></a>2. 设置断点</h3> <p>在确定了问题后，需要做的就是在对应的代码部分设置断点，这一步比较简单。如果使用编译器的话，只需要在相应代码行的位置双击（Eclipse等工具）或单击（IDEA等工具）。</p> <h3><a id="3__34" rel="nofollow"></a>3. 程序调试</h3> <p>设置好断点以后，只需要以调试模式启动程序或运行项目即可。当代码执行到了设置断点的地方后，会切换到Debug视图。在Debug视图下，我们可以查看堆栈信息，包括变量值的变化、方法调用信息。并且还可以方便的跟踪循环、递归等结构每次执行的效果，对于集合类型的数据变化也是一目了然。</p> <h2><a id="Eclipse_36" rel="nofollow"></a>三、Eclipse下的程序调试</h2> <p>下面来讲解一下在Eclipse中如何进行程序调试。</p> <h3><a id="1_debug_38" rel="nofollow"></a>1. debug视图</h3> <p>首先注意到，当打开Eclipse时，默认处在<strong>Java视图</strong>或<strong>Java EE</strong>视图，可以在右上角查看到。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/0fd7251d1935e32137fbc26c6509ef0f.jpg" alt="Eclipse开发Java如何Debug详解"><br /> 当我们第一次使用Debug功能时，会提示我们是否切换到<strong>Debug视图</strong>，也就是上图中<strong>小虫子</strong>的标志。切换视图的方法也很简单，只要点击对应的图标按钮就可以了，Eclipse的操作界面也会随之发生变化。<br /> 讲解Debug视图的原因是防止大家在进入Debug后不知道怎么返回，我们也可以手动将Debug视图添加到右上角的区域。点击<strong>Open perspective</strong>按钮，如下图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/f24e38639510d0b3f993e0f15f83555d.jpg" alt="Eclipse开发Java如何Debug详解"></p> <h3><a id="2_debug_44" rel="nofollow"></a>2. debug模式运行</h3> <p>想让程序在调试模式下运行只需要将原来的run改为debug即可。</p> <ul> <li>快捷键运行</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/bfd066f8539a1ca9cedd338d932f65ec.jpg" alt="Eclipse开发Java如何Debug详解"></p> <ul> <li>右键运行</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/41c4cf560fae17d37408a92d96db2913.jpg" alt="Eclipse开发Java如何Debug详解"></p> <ul> <li>项目运行</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/e60f242eefc8d33a71ef278e37a20a3b.jpg" alt="Eclipse开发Java如何Debug详解"><br /> 进入debug运行模式后，可以根据需要随时增加和取消断点。</p> <h3><a id="3_debug_56" rel="nofollow"></a>3. debug视图功能窗口</h3> <p>debug视图默认的功能窗口按如下分布，可以分为四个部分。每个部分的名字是小编自己总结的，理解作用就好。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/276391d66bb8c9c3e514de925c1703c6.jpg" alt="Eclipse开发Java如何Debug详解"></p> <h4><a id="1_59" rel="nofollow"></a>（1）堆栈信息区</h4> <p>在这个区域中可以查看到<strong>线程</strong>、<strong>堆栈</strong>的相关信息，我们在这一区域的做的操作主要通过右键菜单选项或者上方的快捷功能按钮来实现。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/19b51466198b5589890579f6b0d99a7c.jpg" alt="Eclipse开发Java如何Debug详解"></p> <ul> <li><strong>F5</strong>：进入当前方法（Step Into），也就是向下深入一层，查看具体执行的代码</li> <li><strong>F6</strong>：运行下一行代码（Step Over），也就是跨过当前行，继续调试后面的部分</li> <li><strong>F7</strong>：退出当前方法（Step Return），也就是向上一层，返回到调用的位置</li> <li><strong>F8</strong>：程序继续运行直到下一个断点（Resume），当想要快速跳过后续代码调试过程或者跳转到下一个断点位置时使用</li> <li>Terminate：直接终止程序运行，在运行模式下也可以使用这个按钮</li> <li>Use Step Filters：如果在程序调试的过程中想要忽略一些不关注的内容时，可以使用这个过滤器进行过滤。这个功能按钮只是过滤器的开关，具体的规则需要到Windows -&gt; Preferences -&gt; Java -&gt; Debug -&gt; Step Filtering中进行配置</li> </ul> <h4><a id="2_69" rel="nofollow"></a>（2）程序代码区</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/b671dc33b95ced294e6bf458870d90c1.jpg" alt="Eclipse开发Java如何Debug详解"><br /> 在程序代码区中，底色为<strong>绿色</strong>的代码行为<strong>即将要执行</strong>的代码行。并且在该区域中，已经执行过的代码行中变量的值，可以通过鼠标进行预览查看。</p> <h4><a id="3_72" rel="nofollow"></a>（3）观察操作区</h4> <p>观察操作区主要可以分为三个视窗：变量窗口，断点窗口，表达式窗口。</p> <ul> <li>变量</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/e585a65ef5e0bbd93a69cb65c9baa3cc.jpg" alt="Eclipse开发Java如何Debug详解"><br /> 在这个窗口中可以查看已经运行过的代码中<strong>出现的变量</strong>的值，对于集合类型可以展开查看。<br /><strong>Change Value</strong>：可以在调试过程中根据需要动态修改变量的值，也可以在右侧的Value部分直接修改<br /><strong>All References</strong>：查看与该变量所有相关的引用（变量）信息<br /><strong>All Instances</strong>：查看所有该变量类型的所有实例<br /><strong>Instance Count</strong>：查看该变量类型的所有实例个数<br /><strong>Inspect</strong>：查看选择的变量的值，将出现在表达式窗口</p> <ul> <li>断点</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/e2f6b575f4ca29e9582e75534ae7c1da.jpg" alt="Eclipse开发Java如何Debug详解"><br /> 断点窗口中可以开启和关闭已经设置的断点，也可以完全删除，上方的快捷功能按钮可以在多选后进行批量操作。</p> <ul> <li>表达式</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/3aea8f48e7eef89c5289dfb386bd5ef5.jpg" alt="Eclipse开发Java如何Debug详解"><br /> 在表达式窗口中，可以添加想要查看的变量（通过变量窗口的Inspect功能或者直接输入变量名称均可），还可以执行各种运算或者调用API获得返回结果，回车后直接执行。</p> <h4><a id="4_91" rel="nofollow"></a>（4）脚本调试区</h4> <p>在脚本调试区，可以写大段的代码，在进行项目调试时是绝对的利器。可以将选中的内容以表达式的形式记录在视图窗口（Watch按钮），也可以直接执行代码来查看结果，如下图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/dc0abe038b27c5feb60679c6a995fba9.jpg" alt="Eclipse开发Java如何Debug详解"></p> <p>在这个区域中可以调用已经出现的变量，也可以定义新的变量，调用各种API，最后一个表达式最为想要查看的内容即可，可以是一个变量名称，也可以是一个方法调用。只需要选中代码，然后右键选择<strong>Display</strong>即可。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-49803.htm">济南宠物领养中心在哪个位置呀（济南宠物寄养中心）</a></p>
+                                        <p>下一个：<a href="/news/article-50312.htm">宠物店一年能赚多少钱人民币（宠物店一年能赚多少钱人民币啊）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-v2ray-subscribe.htm" title="1月27日|Clash/V2ray/SSR/Shadowrocket每天更新22.7M/S免费节点订阅链接地址分享">1月27日|Clash/V2ray/SSR/Shadowrocket每天更新22.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-19593.htm" title="属蛇的做什么行业最赚钱（属蛇的做什么生意发财）">属蛇的做什么行业最赚钱（属蛇的做什么生意发财）</a></li>
+                        <li class="py-2"><a href="/news/article-30722.htm" title="河南省动物疫苗管理系统官网查询（河南省动物疫病强制免疫疫苗信息管理系统）">河南省动物疫苗管理系统官网查询（河南省动物疫病强制免疫疫苗信息管理系统）</a></li>
+                        <li class="py-2"><a href="/news/article-36015.htm" title="瑞鹏宠物医院企查查（瑞鹏宠物医院百科）">瑞鹏宠物医院企查查（瑞鹏宠物医院百科）</a></li>
+                        <li class="py-2"><a href="/news/article-43357.htm" title="狗狗领养协议书范本免费版图片高清（狗狗领养协议书有没有法律效益）">狗狗领养协议书范本免费版图片高清（狗狗领养协议书有没有法律效益）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-v2ray.htm" title="11月27日|SSR/Shadowrocket/V2ray/Clash每天更新20.5M/S免费节点订阅链接，付费节点订阅推荐">11月27日|SSR/Shadowrocket/V2ray/Clash每天更新20.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-31166.htm" title="SpringBoot(39) —— Shiro实现登陆拦截">SpringBoot(39) —— Shiro实现登陆拦截</a></li>
+                        <li class="py-2"><a href="/news/article-49292.htm" title="动物医院牌匾设计图片（动物医院名片设计）">动物医院牌匾设计图片（动物医院名片设计）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-15-free-node-subscribe.htm" title="1月15日|V2ray/Shadowrocket/SSR/Clash每天更新21.5M/S免费节点订阅链接地址分享">1月15日|V2ray/Shadowrocket/SSR/Clash每天更新21.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-46828.htm" title="css图片上面显示文字">css图片上面显示文字</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

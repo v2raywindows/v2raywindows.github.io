@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raywindows.github.io/news/article-21881.htm" />
@@ -8,16 +8,44 @@
     <title>深入理解Kafka核心设计及原理（二）：生产者</title>
         <meta name="description" content="2.1Kafka生产者客户端架构  2.2 Kafka 进行消息生产发送代码示例及ProducerRecord对象 　　kafka进行消息生产发送代码示例：  publicclass KafkaPro" />
         <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-21881.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="深入理解Kafka核心设计及原理（二）：生产者" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/0f31148a3caa2b44ee462103a9e32d70.webp" />
+        <meta property="og:release_date" content="2024-12-06T09:13:40" />
+    <meta property="og:updated_time" content="2024-12-06T09:13:40" />
+        <meta property="og:description" content="2.1Kafka生产者客户端架构  2.2 Kafka 进行消息生产发送代码示例及ProducerRecord对象 　　kafka进行消息生产发送代码示例：  publicclass KafkaPro" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="深入理解Kafka核心设计及原理（二）：生产者">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
-    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -86,16 +114,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share-links.htm" title="11月26日|V2ray/SSR/Clash/Shadowrocket每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐">11月26日|V2ray/SSR/Clash/Shadowrocket每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日|SSR/Shadowrocket/V2ray/Clash每天更新19.9M/S免费节点订阅链接，付费节点订阅推荐">12月12日|SSR/Shadowrocket/V2ray/Clash每天更新19.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-15-clash-v2ray-ss-ssr.htm" title="11月15日|Shadowrocket/SSR/V2ray/Clash每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐">11月15日|Shadowrocket/SSR/V2ray/Clash每天更新18.3M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-8-node-share-links.htm" title="8月8日|Shadowrocket/V2ray/Clash/SSR每天更新21.8M/S免费节点订阅链接">8月8日|Shadowrocket/V2ray/Clash/SSR每天更新21.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-32167.htm" title="宠物用品厂家进货渠道批发（宠物用品货源渠道）">宠物用品厂家进货渠道批发（宠物用品货源渠道）</a></li>
-                        <li class="py-2"><a href="/news/article-33100.htm" title="python中的time库安装步骤-python中time库的实例使用方法">python中的time库安装步骤-python中time库的实例使用方法</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-2-free-v2ray-subscribe.htm" title="9月2日|V2ray/SSR/Clash/Shadowrocket每天更新19.4M/S免费节点订阅链接">9月2日|V2ray/SSR/Clash/Shadowrocket每天更新19.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-28-free-v2ray-subscribe.htm" title="9月28日|Clash/SSR/Shadowrocket/V2ray每天更新19.2M/S免费节点订阅链接">9月28日|Clash/SSR/Shadowrocket/V2ray每天更新19.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-19-clash-v2ray-ss-ssr.htm" title="12月19日|V2ray/Clash/SSR/Shadowrocket每天更新21.4M/S免费节点订阅链接，付费节点订阅推荐">12月19日|V2ray/Clash/SSR/Shadowrocket每天更新21.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/news/article-25115.htm" title="动物疫苗证是什么样的图片啊（动物疫苗证书）">动物疫苗证是什么样的图片啊（动物疫苗证书）</a></li>
+                        <li class="py-2"><a href="/news/article-26965.htm" title="福建农大动物医学有小动物方向吗（福建农大动物医学有小动物方向吗考研）">福建农大动物医学有小动物方向吗（福建农大动物医学有小动物方向吗考研）</a></li>
+                        <li class="py-2"><a href="/news/article-45847.htm" title="三国杀武将展示图高清（三国杀全部武将高清图片群）">三国杀武将展示图高清（三国杀全部武将高清图片群）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-v2ray.htm" title="11月20日|SSR/V2ray/Clash/Shadowrocket每天更新19M/S免费节点订阅链接，付费节点订阅推荐">11月20日|SSR/V2ray/Clash/Shadowrocket每天更新19M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-31-node-share-links.htm" title="12月31日|V2ray/SSR/Clash/Shadowrocket每天更新19.5M/S免费节点订阅链接地址分享">12月31日|V2ray/SSR/Clash/Shadowrocket每天更新19.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-41864.htm" title="不宜养狗的属相有哪些（哪些属相不能养狗狗）">不宜养狗的属相有哪些（哪些属相不能养狗狗）</a></li>
+                        <li class="py-2"><a href="/news/article-31166.htm" title="SpringBoot(39) —— Shiro实现登陆拦截">SpringBoot(39) —— Shiro实现登陆拦截</a></li>
+                        <li class="py-2"><a href="/news/article-36016.htm" title="兽用疫苗放在冰箱对食物有伤害吗（兽用疫苗可以放家用冰箱里吗）">兽用疫苗放在冰箱对食物有伤害吗（兽用疫苗可以放家用冰箱里吗）</a></li>
+                        <li class="py-2"><a href="/news/article-24650.htm" title="动物疫苗类型分类标准（动物疫苗包括哪些）">动物疫苗类型分类标准（动物疫苗包括哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-27902.htm" title="南平领养宠物网站官网（南平领养宠物网站官网电话）">南平领养宠物网站官网（南平领养宠物网站官网电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-node-share-links.htm" title="1月30日|SSR/Clash/V2ray/Shadowrocket每天更新21.1M/S免费节点订阅链接地址分享">1月30日|SSR/Clash/V2ray/Shadowrocket每天更新21.1M/S免费节点订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -107,25 +135,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

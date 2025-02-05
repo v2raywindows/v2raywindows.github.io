@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raywindows.github.io/news/article-36922.htm" />
@@ -8,16 +8,44 @@
     <title>搭建gateway删除spring-boot-starter-web依旧无效</title>
         <meta name="description" content="**搭建gateway删除spring-boot-starter-web依旧无效**  记录一次搭建gateway启动报错的情况删除spring-boot-starter-web依赖没有效果。 本着遇" />
         <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-36922.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="搭建gateway删除spring-boot-starter-web依旧无效" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/020831da681fb032af8a4a7a173a7272.webp" />
+        <meta property="og:release_date" content="2025-01-07T10:05:24" />
+    <meta property="og:updated_time" content="2025-01-07T10:05:24" />
+        <meta property="og:description" content="**搭建gateway删除spring-boot-starter-web依旧无效**  记录一次搭建gateway启动报错的情况删除spring-boot-starter-web依赖没有效果。 本着遇" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="搭建gateway删除spring-boot-starter-web依旧无效">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
-    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -86,16 +114,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-10-node-share-links.htm" title="10月10日|Shadowrocket/SSR/Clash/V2ray每天更新22M/S免费节点订阅链接">10月10日|Shadowrocket/SSR/Clash/V2ray每天更新22M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-v2ray-subscribe.htm" title="12月25日|V2ray/SSR/Shadowrocket/Clash每天更新22M/S免费节点订阅链接地址分享">12月25日|V2ray/SSR/Shadowrocket/Clash每天更新22M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-v2ray-subscribe.htm" title="12月22日|Clash/Shadowrocket/V2ray/SSR每天更新20.2M/S免费节点订阅链接地址分享">12月22日|Clash/Shadowrocket/V2ray/SSR每天更新20.2M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-30722.htm" title="河南省动物疫苗管理系统官网查询（河南省动物疫病强制免疫疫苗信息管理系统）">河南省动物疫苗管理系统官网查询（河南省动物疫病强制免疫疫苗信息管理系统）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-node-subscribe-links.htm" title="1月6日|Clash/Shadowrocket/SSR/V2ray每天更新20.4M/S免费节点订阅链接地址分享">1月6日|Clash/Shadowrocket/SSR/V2ray每天更新20.4M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-v2ray.htm" title="11月29日|V2ray/SSR/Clash/Shadowrocket每天更新21.5M/S免费节点订阅链接，付费节点订阅推荐">11月29日|V2ray/SSR/Clash/Shadowrocket每天更新21.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/news/article-26963.htm" title="动物防疫站***多少钱一针 动物防疫站***多少钱一针啊">动物防疫站***多少钱一针 动物防疫站***多少钱一针啊</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-28-free-v2ray-subscribe.htm" title="12月28日|SSR/V2ray/Clash/Shadowrocket每天更新18.3M/S免费节点订阅链接地址分享">12月28日|SSR/V2ray/Clash/Shadowrocket每天更新18.3M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-node-subscribe-links.htm" title="11月16日|V2ray/Clash/Shadowrocket/SSR每天更新18.4M/S免费节点订阅链接，付费节点订阅推荐">11月16日|V2ray/Clash/Shadowrocket/SSR每天更新18.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/news/article-20509.htm" title="成都领养犬（成都领养狗狗贴吧）">成都领养犬（成都领养狗狗贴吧）</a></li>
+                        <li class="py-2"><a href="/news/article-33587.htm" title="办宠物食品加工厂需要投资多少钱呢 办宠物食品加工厂需要投资多少钱呢视频">办宠物食品加工厂需要投资多少钱呢 办宠物食品加工厂需要投资多少钱呢视频</a></li>
+                        <li class="py-2"><a href="/news/article-38399.htm" title="怎么样正确使用动物疫苗视频（怎么样正确使用动物疫苗视频教程）">怎么样正确使用动物疫苗视频（怎么样正确使用动物疫苗视频教程）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-high-speed-nodes.htm" title="12月2日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐">12月2日|V2ray/SSR/Shadowrocket/Clash每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-23722.htm" title="动物疫苗有哪几种类型的疫苗（常用动物疫苗）">动物疫苗有哪几种类型的疫苗（常用动物疫苗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe-links.htm" title="11月30日|Shadowrocket/Clash/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐">11月30日|Shadowrocket/Clash/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-28826.htm" title="bellman-ford 单源最短路问题 图解">bellman-ford 单源最短路问题 图解</a></li>
+                        <li class="py-2"><a href="/news/article-30251.htm" title="全国宠物粮食基地排名榜（国内宠物粮食十大厂家）">全国宠物粮食基地排名榜（国内宠物粮食十大厂家）</a></li>
+                        <li class="py-2"><a href="/news/article-36016.htm" title="兽用疫苗放在冰箱对食物有伤害吗（兽用疫苗可以放家用冰箱里吗）">兽用疫苗放在冰箱对食物有伤害吗（兽用疫苗可以放家用冰箱里吗）</a></li>
+                        <li class="py-2"><a href="/news/article-34543.htm" title="C语言数据结构之算法的时间复杂度_C 语言">C语言数据结构之算法的时间复杂度_C 语言</a></li>
+                        <li class="py-2"><a href="/news/article-38896.htm" title="react项目配置postcss-px2rem-exclude">react项目配置postcss-px2rem-exclude</a></li>
                     </ul>
     </div>
 </div>
@@ -107,16 +135,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

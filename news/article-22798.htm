@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raywindows.github.io/news/article-22798.htm" />
@@ -8,16 +8,44 @@
     <title>Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)</title>
         <meta name="description" content="大纲  Spring Boot Web项目(含源码)ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)   业务场景   项目结构" />
         <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-22798.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/1c2365e451d942120ba6051ac73d8467.webp" />
+        <meta property="og:release_date" content="2024-12-08T07:14:27" />
+    <meta property="og:updated_time" content="2024-12-08T07:14:27" />
+        <meta property="og:description" content="大纲  Spring Boot Web项目(含源码)ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)   业务场景   项目结构" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring Boot Web项目ConcurrentLinkedQueue+ReentrantLock+Condition实现消费者功能(类似MQ队列)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
-    <link href="__ADDON__/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -86,16 +114,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-8-10-node-share-links.htm" title="8月10日|Clash/V2ray/SSR/Shadowrocket每天更新19M/S免费节点订阅链接">8月10日|Clash/V2ray/SSR/Shadowrocket每天更新19M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-v2ray-subscribe.htm" title="12月22日|Clash/Shadowrocket/V2ray/SSR每天更新20.2M/S免费节点订阅链接地址分享">12月22日|Clash/Shadowrocket/V2ray/SSR每天更新20.2M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-21-free-node-subscribe.htm" title="12月21日|Shadowrocket/V2ray/SSR/Clash每天更新21M/S免费节点订阅链接地址分享">12月21日|Shadowrocket/V2ray/SSR/Clash每天更新21M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-high-speed-nodes.htm" title="12月1日|SSR/V2ray/Clash/Shadowrocket每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐">12月1日|SSR/V2ray/Clash/Shadowrocket每天更新18.2M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-29768.htm" title="宠物零食加工设备批发市场在哪（宠物零食加工设备批发市场在哪个位置）">宠物零食加工设备批发市场在哪（宠物零食加工设备批发市场在哪个位置）</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-12-3-clash-v2ray-ss-ssr.htm" title="12月3日|V2ray/Shadowrocket/Clash/SSR每天更新19.8M/S免费节点订阅链接，付费节点订阅推荐">12月3日|V2ray/Shadowrocket/Clash/SSR每天更新19.8M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-13-clash-v2ray-ss-ssr.htm" title="8月13日|Shadowrocket/Clash/V2ray/SSR每天更新21.4M/S免费节点订阅链接">8月13日|Shadowrocket/Clash/V2ray/SSR每天更新21.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-12-free-node-subscribe.htm" title="10月12日|SSR/V2ray/Shadowrocket/Clash每天更新19.3M/S免费节点订阅链接">10月12日|SSR/V2ray/Shadowrocket/Clash每天更新19.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-14-free-node-subscribe-links.htm" title="10月14日|Clash/V2ray/SSR/Shadowrocket每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐">10月14日|Clash/V2ray/SSR/Shadowrocket每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-node-subscribe-links.htm" title="11月16日|V2ray/Clash/Shadowrocket/SSR每天更新18.4M/S免费节点订阅链接，付费节点订阅推荐">11月16日|V2ray/Clash/Shadowrocket/SSR每天更新18.4M/S免费节点订阅链接，付费节点订阅推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-31-free-high-speed-nodes.htm" title="7月31日|V2ray/Clash/Shadowrocket/SSR每天更新20.9M/S免费节点订阅链接">7月31日|V2ray/Clash/Shadowrocket/SSR每天更新20.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-subscribe-node.htm" title="11月13日|Shadowrocket/SSR/Clash/V2ray每天更新22M/S免费节点订阅链接，付费节点订阅推荐">11月13日|Shadowrocket/SSR/Clash/V2ray每天更新22M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-45847.htm" title="三国杀武将展示图高清（三国杀全部武将高清图片群）">三国杀武将展示图高清（三国杀全部武将高清图片群）</a></li>
+                        <li class="py-2"><a href="/news/article-22338.htm" title="想开一家宠物医院怎么开（如何开个宠物医院）">想开一家宠物医院怎么开（如何开个宠物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-29293.htm" title="宠物领养收费吗多少钱一次（宠物领养要钱吗?）">宠物领养收费吗多少钱一次（宠物领养要钱吗?）</a></li>
+                        <li class="py-2"><a href="/news/article-24188.htm" title="springcloudalibaba架构(12):Feign整合Sentinel实现服务容错">springcloudalibaba架构(12):Feign整合Sentinel实现服务容错</a></li>
+                        <li class="py-2"><a href="/news/article-32632.htm" title="自己开一个宠物店（自己开一个宠物店需要多少钱）">自己开一个宠物店（自己开一个宠物店需要多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-45339.htm" title="vue中的可拖拽宽度div的实现示例_vue.js">vue中的可拖拽宽度div的实现示例_vue.js</a></li>
+                        <li class="py-2"><a href="/news/article-41365.htm" title="旋转矩阵与欧拉角的相互转换">旋转矩阵与欧拉角的相互转换</a></li>
                     </ul>
     </div>
 </div>
@@ -107,25 +135,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
