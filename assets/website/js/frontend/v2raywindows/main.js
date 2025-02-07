@@ -169,13 +169,6 @@
   }
 
   /**
-   * Initiate gallery lightbox 
-   */
-  const galleryLightbox = GLightbox({
-    selector: '.gallery-lightbox'
-  });
-
-  /**
    * Testimonials slider
    */
   new Swiper('.testimonials-slider', {

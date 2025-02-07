@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-51890.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue的路由组件的引入以及路由组件懒加载和router-link</title>
+        <meta name="description" content="App.vue &lt;template&gt;   &lt;div&gt;     &lt;router-link to="/"&gt;首页&lt;/router-link&gt;     &lt;" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-51890.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="vue的路由组件的引入以及路由组件懒加载和router-link" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/f55f1e852f84c5284d90ddecf4a72a55.webp" />
+        <meta property="og:release_date" content="2025-02-06T05:28:11" />
+    <meta property="og:updated_time" content="2025-02-06T05:28:11" />
+        <meta property="og:description" content="App.vue &lt;template&gt;   &lt;div&gt;     &lt;router-link to="/"&gt;首页&lt;/router-link&gt;     &lt;" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue的路由组件的引入以及路由组件懒加载和router-link">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                <li><a class="nav-link" href="#">关于</a></li>
+                <li><a class="nav-link" href="#">联系</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>vue的路由组件的引入以及路由组件懒加载和router-link</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="Appvue_1" rel="nofollow"></a>App.vue</h2> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>router<span class="token operator">-</span>link to<span class="token operator">=</span><span class="token string">"/"</span><span class="token operator">&gt;</span>首页<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>router<span class="token operator">-</span>link to<span class="token operator">=</span><span class="token string">"/about"</span><span class="token operator">&gt;</span>关于<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>router<span class="token operator">-</span>link to<span class="token operator">=</span><span class="token string">"/zhu"</span><span class="token operator">&gt;</span>猪<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 用a标签会导致页面全部重新加载<span class="token punctuation">,</span>router<span class="token operator">-</span>link则只是局部加载 <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"/sky"</span><span class="token operator">&gt;</span>sky<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 什么是路由系统：就是创建多页网站      原生开发是整个页面切换     现代开发方式是局部切换，全称为single page aplication单页应用<span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 需求：根据路径切换页面显示的组件      view文件夹是用来放路由器的组件的<span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"box"</span><span class="token operator">&gt;</span>       <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 什么是router<span class="token operator">-</span>view就是路由的占位符<span class="token punctuation">,</span>它会根据具体的路径切换对应路由组件<span class="token operator">--</span><span class="token operator">&gt;</span>       <span class="token operator">&lt;</span>router<span class="token operator">-</span>view <span class="token operator">/</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span> <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>style lang<span class="token operator">=</span><span class="token string">"scss"</span> scoped<span class="token operator">&gt;</span> #box <span class="token punctuation">{<!-- --></span>   background<span class="token operator">-</span>color<span class="token operator">:</span> orange<span class="token punctuation">;</span>   <span class="token literal-property property">padding</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token comment">// router-link最终表现出来的是a标签,所以css用a标签修饰</span> a <span class="token punctuation">{<!-- --></span>   <span class="token literal-property property">margin</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span>   <span class="token literal-property property">display</span><span class="token operator">:</span> inline<span class="token operator">-</span>block<span class="token punctuation">;</span>   <span class="token literal-property property">padding</span><span class="token operator">:</span> 10px<span class="token punctuation">;</span>   text<span class="token operator">-</span>decoration<span class="token operator">:</span> none<span class="token punctuation">;</span>   background<span class="token operator">-</span>color<span class="token operator">:</span> palevioletred<span class="token punctuation">;</span>   <span class="token literal-property property">opacity</span><span class="token operator">:</span> <span class="token number">0.8</span><span class="token punctuation">;</span>   <span class="token literal-property property">transition</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">.</span>3s<span class="token punctuation">;</span>   <span class="token operator">&amp;</span><span class="token operator">:</span>hover <span class="token punctuation">{<!-- --></span>     <span class="token literal-property property">opacity</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>     border<span class="token operator">-</span>radius<span class="token operator">:</span> 4px<span class="token punctuation">;</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token comment">// router-link会自动为当前项设置active激活class</span> <span class="token comment">/*一个是router-link-active 这个是模糊匹配例如路径是/a/b/c 与之模糊匹配的有四个,一个是/,一个是/a,一个是/a/b/c 也就是一个路径下的的父级路径下的也会匹配激活状态*/</span> a<span class="token punctuation">.</span>router<span class="token operator">-</span>link<span class="token operator">-</span>active <span class="token punctuation">{<!-- --></span>   background<span class="token operator">-</span>color<span class="token operator">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span><span class="token number">172</span><span class="token punctuation">,</span> <span class="token number">104</span><span class="token punctuation">,</span> <span class="token number">236</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token comment">/*router-link-exact-active excat就是精确的*/</span> a<span class="token punctuation">.</span>router<span class="token operator">-</span>link<span class="token operator">-</span>exact<span class="token operator">-</span>active <span class="token punctuation">{<!-- --></span>   <span class="token literal-property property">border</span><span class="token operator">:</span> 2px dashed brown<span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span> </code></pre> <h2> <a id="zhuvueskyvueHomeViewvueAboutViewvue_59" rel="nofollow"></a>zhu.vue&amp;sky.vue&amp;HomeView.vue&amp;AboutView.vue</h2> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>hello<span class="token punctuation">,</span>我是sky<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span> <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>style lang<span class="token operator">=</span><span class="token string">"scss"</span> scoped<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span> </code></pre> <h2> <a id="routerindex_75" rel="nofollow"></a>router下的index引入路由组件</h2> <pre><code class="prism language-javascript"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> <span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span> <span class="token keyword">import</span> HomeView <span class="token keyword">from</span> <span class="token string">'../views/HomeView.vue'</span> <span class="token keyword">import</span> zhu <span class="token keyword">from</span> <span class="token string">"../views/zhu.vue"</span> <span class="token comment">//import sky from "../views/sky.vue"</span>  <span class="token comment">/*最合理的加载方式：常用的页面用import，在进入页面的时候就已经加载完 不常用的页面就用懒加载的箭头函数，只有在被调用的时候才会被引入*/</span>  Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>  <span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>   <span class="token punctuation">{<!-- --></span>     <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">"/zhu"</span><span class="token punctuation">,</span>     <span class="token literal-property property">component</span><span class="token operator">:</span> zhu<span class="token punctuation">,</span>     <span class="token comment">// name是后期调bug用的,说明这个组件是给谁用的</span>     <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"zhu"</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>   <span class="token punctuation">{<!-- --></span>     <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">"/sky"</span><span class="token punctuation">,</span>     <span class="token literal-property property">component</span><span class="token operator">:</span> sky<span class="token punctuation">,</span>     <span class="token comment">// name是后期调bug用的,说明这个组件是给谁用的</span>     <span class="token function-variable function">name</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">"../views/sky.vue"</span><span class="token punctuation">)</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>   <span class="token punctuation">{<!-- --></span>     <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>     <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'home'</span><span class="token punctuation">,</span>     <span class="token literal-property property">component</span><span class="token operator">:</span> HomeView   <span class="token punctuation">}</span><span class="token punctuation">,</span>   <span class="token punctuation">{<!-- --></span>     <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span>     <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'about'</span><span class="token punctuation">,</span>     <span class="token comment">// route level code-splitting</span>     <span class="token comment">// this generates a separate chunk (about.[hash].js) for this route</span>     <span class="token comment">// which is lazy-loaded when the route is visited.</span>     <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "about" */</span> <span class="token string">'../views/AboutView.vue'</span><span class="token punctuation">)</span>   <span class="token punctuation">}</span> <span class="token punctuation">]</span>  <span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span>   <span class="token literal-property property">base</span><span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">BASE_URL</span><span class="token punctuation">,</span>   routes <span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token keyword">export</span> <span class="token keyword">default</span> router  </code></pre> <ul> <li>默认打开的是HomeView路由组件</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/ba1e728e953cb0c18380f5a42236b7ec.jpg" alt="vue的路由组件的引入以及路由组件懒加载和router-link"></p> <ul> <li>url后接/about切换到另一个路由组件</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/c4522bff997f19c23dc1734de9d1de0d.jpg" alt="vue的路由组件的引入以及路由组件懒加载和router-link"></p> <ul> <li>router-link和a标签的区别<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/3438437605f284046885e180e2dd8561.jpg" alt="vue的路由组件的引入以及路由组件懒加载和router-link"> </li> <li>router-link-exact的应用结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/a727726166e3fad44653a5807b6852e6.jpg" alt="vue的路由组件的引入以及路由组件懒加载和router-link"> </li> </ul> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-51352.htm">宠物粮食加工厂哪里多点（宠物粮食加工设备贵吗）</a></p>
+                                        <p>下一个：<a href="/news/article-51891.htm">宠物疫苗可以带上飞机吗国内（宠物疫苗可以带上飞机吗国内可以带吗）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-31167.htm" title="动物医院科室分布 动物医院科室分布图">动物医院科室分布 动物医院科室分布图</a></li>
+                        <li class="py-2"><a href="/news/article-32167.htm" title="宠物用品厂家进货渠道批发（宠物用品货源渠道）">宠物用品厂家进货渠道批发（宠物用品货源渠道）</a></li>
+                        <li class="py-2"><a href="/news/article-40888.htm" title="广州宠物领养网免费地址 广州宠物领养网免费地址在哪里">广州宠物领养网免费地址 广州宠物领养网免费地址在哪里</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-node-share-links.htm" title="12月15日|SSR/Shadowrocket/Clash/V2ray每天更新21.1M/S免费节点订阅链接，付费节点订阅推荐">12月15日|SSR/Shadowrocket/Clash/V2ray每天更新21.1M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-49292.htm" title="动物医院牌匾设计图片（动物医院名片设计）">动物医院牌匾设计图片（动物医院名片设计）</a></li>
+                        <li class="py-2"><a href="/news/article-28826.htm" title="bellman-ford 单源最短路问题 图解">bellman-ford 单源最短路问题 图解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="11月10日|Clash/Shadowrocket/V2ray/SSR每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐">11月10日|Clash/Shadowrocket/V2ray/SSR每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-41366.htm" title="重庆宠物猫领养中心有哪些地址（重庆猫咪领养中心地址）">重庆宠物猫领养中心有哪些地址（重庆猫咪领养中心地址）</a></li>
+                        <li class="py-2"><a href="/news/article-42868.htm" title="电锅哪个品牌的质量好耐用(电锅哪个品牌的质量好用)">电锅哪个品牌的质量好耐用(电锅哪个品牌的质量好用)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-clash-v2ray-ss-ssr.htm" title="12月3日|V2ray/Shadowrocket/Clash/SSR每天更新19.8M/S免费节点订阅链接，付费节点订阅推荐">12月3日|V2ray/Shadowrocket/Clash/SSR每天更新19.8M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
