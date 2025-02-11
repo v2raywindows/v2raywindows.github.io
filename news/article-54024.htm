@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-54024.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>ElasticSearch7.3学习Filter与Query对比、使用explain关键字分析语法</title>
+        <meta name="description" content="1、数据准备 首先创建book索引 PUT /book/ {   "settings": {     "number_of_shards": 1,     "number_of_replicas": " />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-54024.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="ElasticSearch7.3学习Filter与Query对比、使用explain关键字分析语法" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/91f8309f0bf512da99d996791e8c9a34.webp" />
+        <meta property="og:release_date" content="2025-02-10T07:36:56" />
+    <meta property="og:updated_time" content="2025-02-10T07:36:56" />
+        <meta property="og:description" content="1、数据准备 首先创建book索引 PUT /book/ {   "settings": {     "number_of_shards": 1,     "number_of_replicas": " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ElasticSearch7.3学习Filter与Query对比、使用explain关键字分析语法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>ElasticSearch7.3学习Filter与Query对比、使用explain关键字分析语法</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2 class="md-end-block md-heading"><span class="md-plain">1、数据准备</span></h2> <p class="md-end-block md-p"><span class="md-plain">首先创建book索引</span></p> <pre class="language-java"><code>PUT /book/ {   "settings": {     "number_of_shards": 1,     "number_of_replicas": 0   },   "mappings": {     "properties": {       "name": {         "type": "text",         "analyzer": "ik_max_word",         "search_analyzer": "ik_smart"       },       "description": {         "type": "text",         "analyzer": "ik_max_word",         "search_analyzer": "ik_smart"       },       "studymodel": {         "type": "keyword"       },       "price": {         "type": "double"       },       "timestamp": {         "type": "date",         "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"       },       "pic": {         "type": "text",         "index": false       }     }   } }</code></pre> <p class="md-end-block md-p"><span class="md-plain">插入数据</span></p> <pre class="language-java"><code>PUT /book/_doc/1 {   "name": "Bootstrap开发",   "description": "Bootstrap是一个非常流行的开发框架。此开发框架可以帮助不擅长css页面开发的程序人员轻松的实现一个css，不受浏览器限制的精美界面css效果。",   "studymodel": "201002",   "price": 38.6,   "timestamp": "2019-08-25 19:11:35",   "pic": "group1/M00/00/00/wKhlQFs6RCeAY0pHAAJx5ZjNDEM428.jpg",   "tags": [     "bootstrap",     "dev"   ] }  PUT /book/_doc/2 {   "name": "java编程思想",   "description": "java语言是世界第一编程语言，在软件开发领域使用人数最多。",   "studymodel": "201001",   "price": 68.6,   "timestamp": "2019-08-25 19:11:35",   "pic": "group1/M00/00/00/wKhlQFs6RCeAY0pHAAJx5ZjNDEM428.jpg",   "tags": [     "java",     "dev"   ] }  PUT /book/_doc/3 {   "name": "spring开发基础",   "description": "spring 在java领域非常流行，java程序员都在用。",   "studymodel": "201001",   "price": 88.6,   "timestamp": "2019-08-24 19:11:35",   "pic": "group1/M00/00/00/wKhlQFs6RCeAY0pHAAJx5ZjNDEM428.jpg",   "tags": [     "spring",     "java"   ] }</code></pre> <h2 class="md-end-block md-heading"><span class="md-plain">2、Filter与Query示例</span></h2> <p class="md-end-block md-p"><span class="md-plain">需求：用户查询description中有"java程序员"，并且价格大于80小于90的数据。</span></p> <h3 class="md-end-block md-p"><span class="md-plain">2.1 Query</span></h3> <p class="md-end-block md-p"><span class="md-plain">首先采用Query来进行查询，首先查询description中有"java程序员"。</span></p> <pre class="language-plaintext"><code>GET /book/_search {   "query": {     "bool": {       "must": [         {           "match": {             "description": "java程序员"           }         }       ]     }   } }</code></pre> <p class="md-end-block md-p">查询结果如下：</p> <p class="md-end-block md-p"><img fetchpriority="high" decoding="async" src="http://img.555519.xyz/uploads3/20220509/56b4e15b851560edb754cc20e5000e74.jpg" alt="ElasticSearch7.3学习Filter与Query对比、使用explain关键字分析语法" width="548" height="658"/></p> <p class="md-end-block md-p"><span class="md-plain">可以看到，查询出来两条数据，score分别是1.9、0.5。</span></p> <p class="md-end-block md-p"><span class="md-plain">然后查询description中有"java程序员"，并且价格大于80小于90的数据</span></p> <pre class="language-java"><code>GET /book/_search {   "query": {     "bool": {       "must": [         {           "match": {             "description": "java程序员"           }         },         {           "range": {             "price": {               "gte": 80,               "lte": 90             }           }         }       ]     }   } }</code></pre> <p class="md-end-block md-p"><span class="md-plain">再次查看结果：</span></p> <p class="md-end-block md-p"><span class="md-plain"><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/aeddd84ae2b7f2b2672c2d91758538c1.jpg" alt="ElasticSearch7.3学习Filter与Query对比、使用explain关键字分析语法" width="468" height="497"/></span></p> <p class="md-end-block md-p"><span class="md-plain">这次查询出来一条数据，score变为2.9。这一条数据在上一次的查询结果中的score为1.9。然后接着往下看使用Filter。</span></p> <h3 class="md-end-block md-p"><span class="md-plain">2.2 filter</span></h3> <p class="md-end-block md-p"><span class="md-plain">还是相同的需求，首先查询description中有"java程序员"。</span></p> <pre class="language-plaintext"><code>GET /book/_search {   "query": {     "bool": {       "must": [         {           "match": {             "description": "java程序员"           }         }       ]     }   } }</code></pre> <p class="md-end-block md-heading"><span class="md-plain">查询结果如下：</span></p> <p><span class="md-plain"><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/0df038d594054df368a9fe9dab763246.jpg" alt="ElasticSearch7.3学习Filter与Query对比、使用explain关键字分析语法" width="520" height="623"/></span></p> <p class="md-end-block md-heading"><span class="md-plain">通过查询结果可以看到，查询的两条数据的score是1.9、0.5。</span></p> <p><span class="md-plain">然后使用filter查询description中有"java程序员"，并且价格大于80小于90的数据</span></p> <pre class="language-java"><code>GET /book/_search {   "query": {     "bool": {       "must": [         {           "match": {             "description": "java程序员"           }         }       ],       "filter": {         "range": {           "price": {             "gte": 80,             "lte": 90           }         }       }     }   } }</code></pre> <p class="md-end-block md-heading"><span class="md-plain">查询结果如下：</span></p> <p><span class="md-plain"><img loading="lazy" decoding="async" src="http://img.555519.xyz/uploads3/20220509/bffdea7aabc8feafb9c31519152eb67f.jpg" alt="ElasticSearch7.3学习Filter与Query对比、使用explain关键字分析语法" width="520" height="568"/></span></p> <p class="md-end-block md-heading"><span class="md-plain">可以看到，查询出来的数据与使用query查询结果一样，但是score依旧为1.9。</span></p> <p>说明在使用query查询的过程中，影响到了相关度(score)的排序，在使用filter进行查询，并不会影响相关度(score)的计算。</p> <h3 class="md-end-block md-heading"><span class="md-plain">2.3&nbsp; filter与query对比</span></h3> <p class="md-end-block md-p"><span class="md-plain">filter，仅仅只是按照搜索条件过滤出需要的数据而已，不计算任何相关度分数，对相关度没有任何影响。</span></p> <p class="md-end-block md-p"><span class="md-plain">query，会去计算每个document相对于搜索条件的相关度，并按照相关度进行排序。</span></p> <p class="md-end-block md-p"><span class="md-plain">应用场景：</span></p> <p class="md-end-block md-p"><span class="md-plain">一般来说，如果你是在进行搜索，需要将最匹配搜索条件的数据先返回，那么用query。</span><span class="md-plain">如果你只是要根据一些条件筛选出一部分数据，不关注其排序，那么用filter。</span></p> <h3 class="md-end-block md-heading"><span class="md-plain">2.4 filter与query性能</span></h3> <p class="md-end-block md-p"><span class="md-plain">filter，不需要计算相关度分数，不需要按照相关度分数进行排序，同时还有内置的自动cache最常使用filter的数据。比如在范围查询，keyword字段查询中推荐使用filter来进行查询。</span></p> <p class="md-end-block md-p"><span class="md-plain">query，相反，要计算相关度分数，按照分数进行排序，而且无法cache结果。</span></p> <p class="md-end-block md-p"><span class="md-plain">在同等查询结果下，filter的性能一般是要优于query的。</span></p> <h2 class="md-end-block md-heading"><span class="md-plain">3、explain分析语法</span></h2> <p class="md-end-block md-p"><span class="md-plain">在实际的应用过程中，需要查询的逻辑一般比较复杂，那当语句冗长的时候，这时候显然不太可能通过直接执行语句来调试语法正确与否，这个时候就可以通过explain来验证语句的正确性。</span></p> <p class="md-end-block md-p"><span class="md-plain">验证错误语句：</span></p> <pre class="language-plaintext"><code>GET /book/_validate/query?explain {   "query": {     "mach": {       "description": "java程序员"     }   } }</code></pre> <p class="md-end-block md-p"><span class="md-plain">返回结果如下，错误信息为没有名叫mach的query。</span></p> <pre class="language-plaintext"><code>{   "valid" : false,   "error" : "org.elasticsearch.common.ParsingException: no [query] registered for [mach]" }</code></pre> <p class="md-end-block md-p"><span class="md-plain">再来看语句正确的情况下</span></p> <pre class="language-plaintext"><code>GET /book/_validate/query?explain {   "query": {     "match": {       "description": "java程序员"     }   } }</code></pre> <p class="md-end-block md-p"><span class="md-plain">返回，返回结果还包含对语句的解释：从description查询java关键词，从description查询程序员关键词。</span></p> <pre class="language-plaintext"><code>{   "_shards" : {     "total" : 1,     "successful" : 1,     "failed" : 0   },   "valid" : true,   "explanations" : [     {       "index" : "book",       "valid" : true,       "explanation" : "description:java description:程序员"     }   ] }</code></pre> <p class="md-end-block md-p"><span class="md-plain">应用场景：</span></p> <p class="md-end-block md-p"><span class="md-plain">一般用在那种特别复杂庞大的搜索下，比如你一下子写了上百行的搜索，这个时候可以先用validate api去验证一下，搜索是否合法。</span><span class="md-plain">合法以后，explain就像mysql的执行计划，可以看到搜索的目标等信息。</span></p> <p class="md-end-block md-p"> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-53485.htm">Java中equals和==的区别，equals和hashcode的区别</a></p>
+                                        <p>下一个：<a href="/news/article-54025.htm">上海宠物领养日期查询网（上海宠物领养网站）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-46329.htm" title="React Ant Design Pro + .Net5 WebApi：后端环境搭建-IdentityServer4（二）授权模式">React Ant Design Pro + .Net5 WebApi：后端环境搭建-IdentityServer4（二）授权模式</a></li>
+                        <li class="py-2"><a href="/news/article-39375.htm" title="被猫抓出血了一定要***吗多少钱（被猫抓出血了一定要***吗多少钱一针）">被猫抓出血了一定要***吗多少钱（被猫抓出血了一定要***吗多少钱一针）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe-links.htm" title="11月30日|Shadowrocket/Clash/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐">11月30日|Shadowrocket/Clash/V2ray/SSR每天更新18.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-42867.htm" title="SpringBoot AutoConfiguration">SpringBoot AutoConfiguration</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="11月10日|Clash/Shadowrocket/V2ray/SSR每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐">11月10日|Clash/Shadowrocket/V2ray/SSR每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-53484.htm" title="pythonmysql查询转list_python 解决mysql where in 对列表(list,,array)问题">pythonmysql查询转list_python 解决mysql where in 对列表(list,,array)问题</a></li>
+                        <li class="py-2"><a href="/news/article-41366.htm" title="重庆宠物猫领养中心有哪些地址（重庆猫咪领养中心地址）">重庆宠物猫领养中心有哪些地址（重庆猫咪领养中心地址）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-free-node-subscribe-links.htm" title="1月8日|Shadowrocket/V2ray/Clash/SSR每天更新19M/S免费节点订阅链接地址分享">1月8日|Shadowrocket/V2ray/Clash/SSR每天更新19M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-25573.htm" title="北京观赏动物医院电话地址 北京观赏动物医院电话地址查询">北京观赏动物医院电话地址 北京观赏动物医院电话地址查询</a></li>
+                        <li class="py-2"><a href="/news/article-38399.htm" title="怎么样正确使用动物疫苗视频（怎么样正确使用动物疫苗视频教程）">怎么样正确使用动物疫苗视频（怎么样正确使用动物疫苗视频教程）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
