@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-55127.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>TENSORFLOW：TENSORS</title>
+        <meta name="description" content="TensorFlow,就像名字所示，是一个关于怎么定义和计算tensors的框架。一个tensor是对向量，矩阵和更高维度的数据的通用表示。实现上，TensorFlow用n维array来表示tenso" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-55127.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="TENSORFLOW：TENSORS" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/ceeee742a03f0540882ac5072e8b605d.webp" />
+        <meta property="og:release_date" content="2025-02-12T09:06:25" />
+    <meta property="og:updated_time" content="2025-02-12T09:06:25" />
+        <meta property="og:description" content="TensorFlow,就像名字所示，是一个关于怎么定义和计算tensors的框架。一个tensor是对向量，矩阵和更高维度的数据的通用表示。实现上，TensorFlow用n维array来表示tenso" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="TENSORFLOW：TENSORS">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>TENSORFLOW：TENSORS</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>TensorFlow,就像名字所示，是一个关于怎么定义和计算tensors的框架。一个<strong>tensor</strong>是对向量，矩阵和更高维度的数据的通用表示。实现上，TensorFlow用n维array来表示tensor这个基本数据类型。</p> <p>当你写一个TensorFlow的程序，你操作和传递的主要对象就是tf.Tensor。一个tf.Tensor对象表示了一部分最终可以得到一个值的计算。TensorFlow程序首先构建一个tf.Tensor的graph，graph详细描述了每个tensor怎么根据可用的tensors来计算。然后通过图的一部分运算来得到期望的值。</p> <p>一个tf.Tensor 有如下的属性<br /> – 一个数据类型（float32,inte32,或者string,…）<br /> – 一个shape</p> <p>一个Tensor内的元素必须类型一致。并且data type是已知的。shape（表示维度的数目和每个维度的大小）可以只知道一部分。如果input的shape的形状是全部知道的，大多数的operations产生完全知道的shape。但是在一些情况下只可能在执行的时候知道一个tensor的shape。</p> <p>一些tensor的类型是特殊的，它们会在文档的其他地方被介绍。主要包括：<br /> – tf.Variable<br /> – tf.constant<br /> – tf.placeholder<br /> – tf.SparseTensor<br /> tf.Variable可能和你想的不一样，tensor的值是不能改变的，这意味着在一次执行中，一个tensor只会产生一个值。但是，对同样的tensor求值两次可以返回不同的值。比如一个tensor是从磁盘读取数据，或者产生一个随机数。</p> <h2>Rank</h2> <hr/> <p>一个tf.Tensor的rank表示tensor的维度。rank还被叫做order，degree或者n-dimension。在tensorflow里的rank和数学里的矩阵的rank不一样。如下表，每一个TensorFlow里的rank都对应不同的数学实体：</p> <table> <thead> <tr> <th>Rank</th> <th>数学实体</th> </tr> </thead> <tbody> <tr> <td>0</td> <td>Scala(只有大小)</td> </tr> <tr> <td>1</td> <td>Vector(大小和方向)</td> </tr> <tr> <td>2</td> <td>Matrix(表状数据)</td> </tr> <tr> <td>3</td> <td>3-Tensor(数据立方体)</td> </tr> <tr> <td>4</td> <td>4-Tensor(自己想想吧)</td> </tr> </tbody> </table> <p><strong>Rank 0</strong></p> <p>下边的一段代码演示了如何创建一个Rank 0的变量：</p> <pre class="has"><code class="language-python">mammal&nbsp;=&nbsp;tf.Variable("Elephant",tf.string) ignition&nbsp;=&nbsp;tf.Variable(451,tf.int16) floating&nbsp;=&nbsp;tf.Variable(3.1415926,tf.float64) its_comlicated&nbsp;=&nbsp;tf.Variable(12.3-4.85j,tf.complex64)</code></pre> <blockquote> <p>注意，在TensorFlow里，一个字符串被当值一个单一的元素，并不是一个字母的序列。有可能有标量的strings，也可以有向量的strings。</p> </blockquote> <p><strong>Rank 1</strong></p> <p>可以通过一个list来初始化一个rank为1的tf.Tensor对象。</p> <pre class="has"><code class="language-python">mystr&nbsp;=&nbsp;tf.Variable(["Hello"],tf.string) cool_number&nbsp;=&nbsp;tf.Variable([3.14,2.11],tf.flat32) first_primes&nbsp;=&nbsp;tf.Variable([2,3,5,7,11],tf.int32)</code></pre> <p><strong>更高 Rank</strong></p> <p>一个rank为2的tensor，最少含有一个行和一个列：</p> <pre class="has"><code class="language-python">mymat&nbsp;=&nbsp;tf.Variable([[7],[11]],&nbsp;tf.int16) myxor&nbsp;=&nbsp;tf.Variable([[False,&nbsp;True],[True,&nbsp;False]],&nbsp;tf.bool) linear_squares&nbsp;=&nbsp;tf.Variable([[4],&nbsp;[9],&nbsp;[16],&nbsp;[25]],&nbsp;tf.int32) squarish_squares&nbsp;=&nbsp;tf.Variable([&nbsp;[4,&nbsp;9],&nbsp;[16,&nbsp;25]&nbsp;],&nbsp;tf.int32) rank_of_squares&nbsp;=&nbsp;tf.rank(squarish_squares) mymatC&nbsp;=&nbsp;tf.Variable([[7],[11]],&nbsp;tf.int32)</code></pre> <p>高纬度的tensor，类似的，是一个包含了n维的数组。比如在图像处理中，很多tensor都使用了4维。4个维度分别代表：第几个样本，图像宽，图像高，颜色channel。</p> <pre class="has"><code class="language-python">my_image&nbsp;=&nbsp;tf.zeros([10,299,299,3])</code></pre> <p><strong>获取tf.Tensor对象的rank</strong></p> <p>为了获取一个tensor的rank，可以通过tf.rank方法。比如下边的代码演示了如何获取之前定义的tensor的rank：</p> <pre class="has"><code class="language-python">r&nbsp;=&nbsp;tf.rank(my_image) # 运行graph后，r的值是4</code></pre> <p><strong>引用tensor的一部分</strong></p> <p>因为tf.Tensor是一个n维的数组。如果想获取其中一个元素，你需要指定n个坐标。<br /> 对于rank为0的tensor（一个标量），你不需要坐标。因为它已经是一个数字。<br /> 对于rank为1的tensor（一个向量），你需要传一个index去获取一个数字：</p> <pre class="has"><code class="language-python">my_scalar=my_vector[2]</code></pre> <p>需要注意的是，如果你在方括号里传一个标量的tensor，这样你可以在程序里动态的获取向量tensor的值。<br /> 同样，对于一个rank为2，或者更高，你需要传更多的index。比如对一个rank为2的tensor，需要传两个index去获取一个值：</p> <pre class="has"><code class="language-python">my_scalar&nbsp;=&nbsp;my_matrix[1,2]</code></pre> <p>如果值传递一个值，那么会返回矩阵的一个子向量。比如：</p> <pre class="has"><code class="language-python">my_row_vector&nbsp;=&nbsp;my_matrix[2] my_column_vector&nbsp;=&nbsp;my_matrix[:,3]</code></pre> <p>:这个符号在python的切片语法表示，保留这个维度。这个操作对高维tensor非常有用，它允许你存取它的子vector，子matrix，子tensor。</p> <h2>Shape</h2> <p>shape表示一个tensor在不同维度的元素数。TensorFlow会在graph构造时自己推断shape。推断出的shape可能有已知或者未知的rank。如果rank已知，每个dimension的大小也可能已知或者未知。</p> <p>在TensorFlow的文档里用了3种标记方法来描述关于tensor的维度。rank，shape，dimension number。下边这张表展示了它们之间的关系：</p> <table> <thead> <tr> <th>Rank</th> <th>Shape</th> <th>Dimension number</th> <th>Example</th> </tr> </thead> <tbody> <tr> <td>0</td> <td>[]</td> <td>0-D</td> <td>一个0维的tensor，标量</td> </tr> <tr> <td>1</td> <td>[D0]</td> <td>1-D</td> <td>一个shape为[5]的1维tensor</td> </tr> <tr> <td>2</td> <td>[D0,D2]</td> <td>2-D</td> <td>一个shape为[3,4]的2维tensor</td> </tr> <tr> <td>n</td> <td>[D0,D2,…Dn]</td> <td>n-D</td> <td>一个shape为[D0,D1,Dn-1]的tensor</td> </tr> </tbody> </table> <p>Tensor的shape可以通过Python的int类型的list/tuple来改变。或者用tf.TensorShape也可以改变。</p> <p><strong>获取tf.Tensor对象的shape</strong></p> <p>有两种办法。在构建一个graph的时候，获得一个tensor的shape是很有用的。可以通过读取tensor对象的shape属性来获得。这个方法返回的是TensorShape的对象,它是一种方便的表示部分指定的shape的方法。因为在构建graph的时候，并不是所有的shape都是完全知道的。</p> <p>还有一种可能是在运行时通过获取一个tf.tensor，他表示其他一个tensor的完全定义的shape。这时通过调用tf.shape操作完成的。通过这种方式，你可以构建一个graph它操作tensor的shape的方式是通过input tensor的动态shape来构建其他tensor。比如下边的例子是根据一个矩阵的列数来构建一个全是0值的向量。</p> <pre class="has"><code class="language-python">zeros&nbsp;=&nbsp;tf.zeros(my_matrix.shape[1])</code></pre> <p><strong>改变 Tensor的shape</strong></p> <p>一个tensor里所有元素的个数就是shape里各个值的乘积。一个标量的元素数是1. 因为很多不同shape的tensor会有相同的元素个数。所以如果能改变一个tensor的shape，但是元素不变是很有用的。这个可以用tf.reshape来实现：</p> <pre class="has"><code class="language-python">rank_three_tensor&nbsp;=&nbsp;tf.ones([3,&nbsp;4,&nbsp;5]) matrix&nbsp;=&nbsp;tf.reshape(rank_three_tensor,&nbsp;[6,&nbsp;10])&nbsp;&nbsp;# Reshape把现有的元素放到 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# 一个 6x10 的矩阵里 matrixB&nbsp;=&nbsp;tf.reshape(matrix,&nbsp;[3,&nbsp;-1])&nbsp;&nbsp;# &nbsp;Reshape把现有的元素放到 一个 3x20 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# 的矩阵里. -1 是让reshape自己去计算 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# 这个维度的大小 matrixAlt&nbsp;=&nbsp;tf.reshape(matrixB,&nbsp;[4,&nbsp;3,&nbsp;-1])&nbsp;&nbsp;# Reshape把现有的元素放到一个 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;#4x3x5 的tensor  # 你可以通过-1，来让reshape自己计算某个维度的大小，但是有一个原则就是在保证元素数不变的前提下， # 需要计算的维度的元素数必须是整数。下边的代码会出错，因为60除以13*2,不是一个整数 yet_another&nbsp;=&nbsp;tf.reshape(matrixAlt,&nbsp;[13,&nbsp;2,&nbsp;-1])&nbsp;&nbsp;# ERROR!</code></pre> <h2>数据类型</h2> <hr/> <p>除了维度，tensor还有类型。<br /> 一个tensor不可能有超过一种类型的元素。然而把任意类型的元素序列化为string，然后放到一个tensor里。这样你一个tensor里就存了很多“不同类型”的值了。<br /> 你可以用tf.cast把一种类型的值转化为另一种：</p> <pre class="has"><code class="language-python">float_tensor&nbsp;=&nbsp;tf.cast(tf.contant([1,2,3]),dtype&nbsp;=&nbsp;tf.float32)</code></pre> <p>可以通过Tensor.dtype属性查看一个tensor的数据类型。</p> <p>如果是通过一个python对象来创建的tensor，指定数据类型不是必须的。如果你不指定，tensorflow会自己选一个可以表示你的数据的数据类型。Python里的integer转为tf.int32, 浮点型转为tf.float32。除此之外，tensorflow用和numpy一样的规则来转化array。</p> <h2>Tensor求值</h2> <hr/> <p>一旦建好了graph，你就可以通过计算来产生一个特定的tensor。并且获取它里边的值。这对调试有用，也是tensorflow绝大多数运行时所必须的。<br /> 最简单的方法去给一个tensor求值是通过Tensor.eval方法。比如：</p> <pre class="has"><code class="language-python">constant&nbsp;=&nbsp;tf.constant([1,2,3]) tensor&nbsp;=&nbsp;constant * constant print&nbsp;tensor.eval()</code></pre> <p>只有当default的session是有效的时候才可以用tensor.eval方法。<br /> Tensor.eval返回一个和tesnor里的内容一样的 numpy 数组。<br /> 有时候tf.Tensor依赖于动态的信息，所以如果没有一个上下文，它是无法求值的。比如说它依赖于一个placeholder：</p> <pre class="has"><code class="language-python">p&nbsp;=&nbsp;tf.placeholder(tf.float32) t&nbsp;=&nbsp;p+1.0 t.eval()&nbsp;#失败，因为p没有值 t.eval(feed_dict={p:2.0})# 成功，因为我们已经给了p的值。</code></pre> <p>注意，我们不光可以给一个placeholder，也可以是另外一个tensor。</p> <p>其他方式的tf.Tensor求值比较复杂。TensorFlow不能对定义在Funtion或者在流程控制中的tensor求值。如果一个tensor依赖于一个队列里的一个值。只有队列里有值才可以对tensor求值，不然就一直hang在哪。当你使用queues的时候，记得先调用tf.train.start_queue_runners,然后再对tensor求值。</p> <h2>打印Tensor</h2> <hr/> <p>为了调试，你可能想打印一个tensor。在tfdbg提供的高级的debug功能的同时，tensorflow也可以让你直接打印一个tensor。</p> <p>你很少希望用下边的方式去打印一个tensor。</p> <pre class="has"><code class="language-python">t&nbsp;=&nbsp;&lt;&lt;一些tensorflow的操作&gt;&gt; print(t)&nbsp;# 这时正在构件图，t里并没有值。你打印出来的只是符号t。并不是它的值。</code></pre> <p>上边的code只是打印了tf.Tensor的对象。它表示了将要执行的计算。而不是它的值。你应该使用tensorflow提供的tf.Print操作，它有两个参数，第一个是你想不做任何改动返回的tensor，第二个参数是个列表，是你想打印的tensor。</p> <p>正确的做法是tf.Pring返回的tensor必须被加入到计算流中。当它的下游tensor被求值的时候。我们的print方法就起作用了。</p> <pre class="has"><code class="language-python">t&nbsp;=&nbsp;&lt;&lt;一些tensorflow的操作&gt;&gt; tf.Print(t,[t])&nbsp;#这个没有什么作用 t&nbsp;=&nbsp;tf.Print(t,[t])&nbsp;#返回一个tensor。 result&nbsp;=&nbsp;t+1&nbsp;#将返回的tensor加入计算。当result被求值时，t会被打印。</code></pre> <p>当你对result求值，所有它依赖的tensor都被求值。因为result依赖于t，对t求值就有副作用打印出它的input（老的t），所以t被打印。</p> <p>&nbsp;</p> <p>-----------------------------------------------------------------------------------</p> <p>原文：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.rethink.fun/index.php/2018/03/11/tensorflow3/"  rel="nofollow">http://www.rethink.fun/index.php/2018/03/11/tensorflow3/</a></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-54586.htm">动物防疫疫苗费取消的相关文件是 动物防疫疫苗费取消的相关文件是什么</a></p>
+                                        <p>下一个：<a href="/news/article-55128.htm">长春宠物医院排名（长春良心的宠物医院）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-53485.htm" title="Java中equals和==的区别，equals和hashcode的区别">Java中equals和==的区别，equals和hashcode的区别</a></li>
+                        <li class="py-2"><a href="/news/article-27902.htm" title="南平领养宠物网站官网（南平领养宠物网站官网电话）">南平领养宠物网站官网（南平领养宠物网站官网电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-v2ray.htm" title="11月20日|SSR/V2ray/Clash/Shadowrocket每天更新19M/S免费节点订阅链接，付费节点订阅推荐">11月20日|SSR/V2ray/Clash/Shadowrocket每天更新19M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐">11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-27433.htm" title="动物疫苗的管理方法包括 动物疫苗的管理方法包括哪些">动物疫苗的管理方法包括 动物疫苗的管理方法包括哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-v2ray-subscribe.htm" title="1月26日|SSR/Shadowrocket/Clash/V2ray每天更新23M/S免费节点订阅链接地址分享">1月26日|SSR/Shadowrocket/Clash/V2ray每天更新23M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-free-v2ray-subscribe.htm" title="2月3日|Shadowrocket/V2ray/Clash/SSR每天更新22.1M/S免费节点订阅链接地址分享">2月3日|Shadowrocket/V2ray/Clash/SSR每天更新22.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-39376.htm" title="打了动物疫苗为什么发热呢（动物疫苗反应有哪些）">打了动物疫苗为什么发热呢（动物疫苗反应有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-51351.htm" title="上海宠物繁殖基地（上海最大的宠物基地）">上海宠物繁殖基地（上海最大的宠物基地）</a></li>
+                        <li class="py-2"><a href="/news/article-28364.htm" title="基于Apache Hudi和Debezium构建CDC入湖管道">基于Apache Hudi和Debezium构建CDC入湖管道</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
