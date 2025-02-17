@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-56799.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>基于casbin的RBAC权限实践_在线工具</title>
+        <meta name="description" content="五一假期疫情封在家也没事做，就想来优化一下一个前端容器小项目 之前的TODOlist里面有一项是权限这块时隔2年了还一直没有动手 迟迟没搞主要还是我太懒了，哈哈 其实我一直想要找一个轻量级的权限通用方" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-56799.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="基于casbin的RBAC权限实践_在线工具" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/43fd1b5a4b0a8802253a4fb8ad309202.webp" />
+        <meta property="og:release_date" content="2025-02-15T05:21:17" />
+    <meta property="og:updated_time" content="2025-02-15T05:21:17" />
+        <meta property="og:description" content="五一假期疫情封在家也没事做，就想来优化一下一个前端容器小项目 之前的TODOlist里面有一项是权限这块时隔2年了还一直没有动手 迟迟没搞主要还是我太懒了，哈哈 其实我一直想要找一个轻量级的权限通用方" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="基于casbin的RBAC权限实践_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>基于casbin的RBAC权限实践_在线工具</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com"> <figure data-tool="mdnice编辑器"><img decoding="async" src="https://dimg04.c-ctrip.com/images/0v56c120009fyyj1098AE.png" alt="基于casbin的RBAC权限实践_在线工具"><figcaption></figcaption></figure> <p data-tool="mdnice编辑器">五一假期疫情封在家也没事做，就想来优化一下一个前端容器小项目</p> <p data-tool="mdnice编辑器">之前的TODOlist里面有一项是权限这块时隔2年了还一直没有动手</p> <p data-tool="mdnice编辑器">迟迟没搞主要还是我太懒了，哈哈 其实我一直想要找一个轻量级的权限通用方案</p> <ul data-tool="mdnice编辑器"> <li> <section>权限的数据源可以切换，但是逻辑基本不用动</section> </li> <li> <section>权限策略定义简单不复杂,支持RBAC,ABAC(粒度可粗可细)</section> </li> <li> <section>支持内置超级用户(上帝模式)</section> </li> </ul> <p data-tool="mdnice编辑器">知道我最近研究了一下casbin（基于各种访问控制模型的授权）， 发现它正好满足了我以上几个点 官网： <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://casbin.org/"   rel="nofollow">https://casbin.org/</a></p> <h3 data-tool="mdnice编辑器"><span class="content">基于cashbin的权限实践</span></h3> <h4 data-tool="mdnice编辑器"><span class="content">1. 权限设计</span></h4> <p data-tool="mdnice编辑器">分为2种权限：超级管理员(上帝模式) 和 普通用户</p> <p data-tool="mdnice编辑器">我这个程序的功能是按照项目维度来区分的，超级管理员创建一个空项目后，授权给别人去维护，总共包含7大功能：</p> <p data-tool="mdnice编辑器">超级管理员可以访问所有功能， 但只能是【超级管理员】做的有1和2和3</p> <ul data-tool="mdnice编辑器"> <li> <section>1.权限配置(普通用户创建和删除,权限的修改和保存)</section> </li> <li> <section>2.全局配置</section> </li> <li> <section>3.创建空项目</section> </li> <li> <section>4.上传并部署该项目</section> </li> <li> <section>5.把项目回滚到上一个版本</section> </li> <li> <section>6.项目维度的服务端js脚本(读和写)</section> </li> <li> <section>7.项目维度的配置文件(读和写)</section> </li> </ul> <p data-tool="mdnice编辑器">普通用户则可以被超级管理员在权限配置页面创建并进行配置来限制是否授予访问4~7这几个功能</p> <h4 data-tool="mdnice编辑器"><span class="content">2. 代码开发</span></h4> <p data-tool="mdnice编辑器">casbin基本主流的开发语言都有对应的实现，这里我用netcore版本(<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.nuget.org/packages/Casbin.NET/1.12.2"   rel="nofollow">Casbin.NET</a>)</p> <p data-tool="mdnice编辑器">首先定义模型：</p> <pre class="custom" data-tool="mdnice编辑器"><code> [request_definition] r = sub, obj, act  [policy_definition] p = sub, obj, act  [policy_effect] e = some(where (p.eft == allow))  [matchers] r.sub == p.sub &amp;&amp; keyMatch(r.obj, p.obj) &amp;&amp; regexMatch(r.act, p.act) || r.sub == "root"</code></pre> <p data-tool="mdnice编辑器">由于我这个是按照project进行权限控制的，所以我选用的是这个模型</p> <ul data-tool="mdnice编辑器"> <li> <section>sub -&gt; user(登录用户名,root是超级用户/上帝模式)</section> </li> <li> <section>obj -&gt; project(项目)</section> </li> <li> <section>act -&gt; api资源(这里用了基于正则的方式为了应对配置一个用户可以访问project下所有权限)</section> </li> </ul> <pre class="custom" data-tool="mdnice编辑器"><code> /// &lt;summary&gt; /// 创建casbin模型 /// &lt;/summary&gt; /// &lt;returns&gt;&lt;/returns&gt; public static Enforcer createEnforcer() {     var e = new Enforcer();     var m = NetCasbin.Model.Model.CreateDefault();     m.AddDef("r", "r", "sub, obj, act");     m.AddDef("p", "p", "sub, obj, act");     m.AddDef("e", "e", "some(where (p.eft == allow))");     m.AddDef("m", "m", "r.sub == p.sub &amp;&amp; keyMatch(r.obj, p.obj) &amp;&amp; regexMatch(r.act, p.act) || r.sub == "root"");     var csv = Path.Combine(WebRootPath, CasBinPolicyFile);     if (!File.Exists(csv))     {         File.CreateText(csv);     }      e.SetModel(m);     // 目前我的权限配置文件是放在csv文件中 切换成存db的话 就切换一个adapter     e.SetAdapter(new DefaultFileAdapter(csv));     e.LoadPolicy();     return e; }</code></pre> <p data-tool="mdnice编辑器">由于本身我的这个项目是一个中间件，</p> <figure data-tool="mdnice编辑器"><img decoding="async" src="https://dimg04.c-ctrip.com/images/0v501120009fynqx1ACD6.png" alt="基于casbin的RBAC权限实践_在线工具"><figcaption></figcaption></figure> <pre class="custom" data-tool="mdnice编辑器"><code> //内部api app.UseWhen(     c =&gt;     {         // 检查路由是否满足要求         if (!ApiMiddleware.CanInvoke(c, out var route))         {             return false;         }         // 路由规则满足后检查api是否存在         return c.RequestServices.GetService&lt;SpaDomain&gt;()?.IsSpaApi(route.Item2) ?? false;     },     _ =&gt; _.UseMiddleware&lt;ApiMiddleware&gt;());</code></pre> <p data-tool="mdnice编辑器">对于普通用户可访问的内部的api访问路径进行规则约束</p> <ul data-tool="mdnice编辑器"> <li> <section>4.上传并部署该项目-&gt; /{project}.reupload</section> </li> <li> <section>5.把项目回滚到上一个版本 -&gt; /{project}.rollback</section> </li> <li> <section>6.项目维度的服务端js脚本(读) -&gt; /{project}.getconfigjson</section> </li> <li> <section>项目维度的服务端js脚本(写) -&gt; /{project}.saveconfigjson</section> </li> <li> <section>7.项目维度的配置文件(读) -&gt; /{project}.serverjsget</section> </li> <li> <section>项目维度的配置文件(写)-&gt; /{project}.serverjssave</section> </li> </ul> <p data-tool="mdnice编辑器">这样我在ApiMiddleware里面可以进行统一权限拦截处理了</p> <ul data-tool="mdnice编辑器"> <li> <section>解析请求路径 拿到 project（obj） 和 act (api)</section> </li> <li> <section>拿到当前登录 拿到 sub（user）</section> </li> <li> <section>拿到了sub,obj,act三要素后调用casbin方法进行验证</section> </li> </ul> <pre class="custom" data-tool="mdnice编辑器"><code>bool isAuthed = ef.Enforce(sub, obj, act);</code></pre> <figure data-tool="mdnice编辑器"><img decoding="async" src="https://dimg04.c-ctrip.com/images/0v510120009fyy71o82DD.png" alt="基于casbin的RBAC权限实践_在线工具"><figcaption></figcaption></figure> <h4 data-tool="mdnice编辑器"><span class="content">设计一个页面来去配置策略</span></h4> <figure data-tool="mdnice编辑器"><img decoding="async" src="https://dimg04.c-ctrip.com/images/0v571120009fypsqs694B.png" alt="基于casbin的RBAC权限实践_在线工具"><figcaption></figcaption></figure> <p data-tool="mdnice编辑器">这也是针对casbin的一个ui操作的封装</p> <ul data-tool="mdnice编辑器"> <li> <section>支持创建用户</section> </li> <li> <section>casbin的策略进行增删改查</section> </li> <li> <section>支持的api资源的列表展示</section> </li> </ul> <p data-tool="mdnice编辑器">那么通过这个ui操作就很容易去配置</p> <h5 data-tool="mdnice编辑器"><span class="content">粗粒度：某个用户对哪些project有权限</span></h5> <figure data-tool="mdnice编辑器"><img decoding="async" src="https://dimg04.c-ctrip.com/images/0v510120009fyypytD1B6.png" alt="基于casbin的RBAC权限实践_在线工具"><figcaption></figcaption></figure> <p data-tool="mdnice编辑器">如上图，资源路径我配置了/* 代表这个zdyu用户可以访问project：test的所有操作</p> <h5 data-tool="mdnice编辑器"><span class="content">细力度：某个用户对哪些project的哪些具体操作有权限</span></h5> <figure data-tool="mdnice编辑器"><img decoding="async" src="https://dimg04.c-ctrip.com/images/0v51c120009fyy9312F35.png" alt="基于casbin的RBAC权限实践_在线工具"><figcaption></figcaption></figure> <p data-tool="mdnice编辑器">如上图，代表zdyu这个用户只荀彧访问test这个project下的 部署和回滚2个功能</p> <h4 data-tool="mdnice编辑器"><span class="content">总结</span></h4> <p data-tool="mdnice编辑器">本身研究怎么用casbin是非常简单的，这里主要分享了结合具体项目来如何设计，细节源码可以查看</p> <p data-tool="mdnice编辑器"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/yuzd/Spa/wiki"   rel="nofollow">https://github.com/yuzd/Spa</a></p> <p data-tool="mdnice编辑器">spa单页面容器里面一个project相当于一个二级域名的应用，应用内互相隔离，可以代替部署nginx或apache，对前端开发者友好,适合在某些只是用来静态项目访问的场景，来提高效率！</p> <p data-tool="mdnice编辑器"> </p> <p data-tool="mdnice编辑器"><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/47b25cfe0fe7dc756764e854e85d003c.jpg" alt="基于casbin的RBAC权限实践_在线工具"></p> </section> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-56798.htm">Spring Boot的依赖配置文件的解析</a></p>
+                                        <p>下一个：<a href="/news/article-57370.htm">redis学习之redis持久化</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-29767.htm" title="成都领养宠物中心电话号码（成都领养宠物中心电话号码是多少）">成都领养宠物中心电话号码（成都领养宠物中心电话号码是多少）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-v2ray-subscribe.htm" title="12月25日|V2ray/SSR/Shadowrocket/Clash每天更新22M/S免费节点订阅链接地址分享">12月25日|V2ray/SSR/Shadowrocket/Clash每天更新22M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-20508.htm" title="动物防疫打针收费吗多少钱一次（动物防疫站打疫苗多少钱）">动物防疫打针收费吗多少钱一次（动物防疫站打疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-node-share-links.htm" title="12月15日|SSR/Shadowrocket/Clash/V2ray每天更新21.1M/S免费节点订阅链接，付费节点订阅推荐">12月15日|SSR/Shadowrocket/Clash/V2ray每天更新21.1M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-34543.htm" title="C语言数据结构之算法的时间复杂度_C 语言">C语言数据结构之算法的时间复杂度_C 语言</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-node-share.htm" title="1月31日|SSR/V2ray/Clash/Shadowrocket每天更新19.2M/S免费节点订阅链接地址分享">1月31日|SSR/V2ray/Clash/Shadowrocket每天更新19.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-46829.htm" title="三国杀所有技能详解（三国杀里面的技能是什么）">三国杀所有技能详解（三国杀里面的技能是什么）</a></li>
+                        <li class="py-2"><a href="/news/article-30250.htm" title="栈、队列、链表">栈、队列、链表</a></li>
+                        <li class="py-2"><a href="/news/article-45846.htm" title="JavaWeb项目基于SpringBoot框架实现统一的数据返回格式 + 统一异常处理 + 统一日志处理">JavaWeb项目基于SpringBoot框架实现统一的数据返回格式 + 统一异常处理 + 统一日志处理</a></li>
+                        <li class="py-2"><a href="/news/article-43867.htm" title="动物疫苗的正确使用方法图片及价格（动物疫苗有哪几种）">动物疫苗的正确使用方法图片及价格（动物疫苗有哪几种）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

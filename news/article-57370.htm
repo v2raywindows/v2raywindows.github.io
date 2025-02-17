@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-57370.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>redis学习之redis持久化</title>
+        <meta name="description" content="目录 概述 RDB（Redis DataBase） 是什么 备份是如何执行的 Fork  RDB持久化流程 dump.rdb文件 &nbsp;配置位置 如何触发RDB快照；保持策略 配置文件中默认的快" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-57370.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="redis学习之redis持久化" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/020831da681fb032af8a4a7a173a7272.webp" />
+        <meta property="og:release_date" content="2025-02-16T07:19:27" />
+    <meta property="og:updated_time" content="2025-02-16T07:19:27" />
+        <meta property="og:description" content="目录 概述 RDB（Redis DataBase） 是什么 备份是如何执行的 Fork  RDB持久化流程 dump.rdb文件 &nbsp;配置位置 如何触发RDB快照；保持策略 配置文件中默认的快" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="redis学习之redis持久化">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>redis学习之redis持久化</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>目录</strong></p> <p id="%E6%A6%82%E8%BF%B0-toc" style="margin-left:0px;"><a href="#%E6%A6%82%E8%BF%B0" rel="nofollow">概述</a></p> <p id="RDB%EF%BC%88Redis%20DataBase%EF%BC%89-toc" style="margin-left:0px;"><a href="#RDB%EF%BC%88Redis%20DataBase%EF%BC%89" rel="nofollow">RDB（Redis DataBase）</a></p> <p id="%E6%98%AF%E4%BB%80%E4%B9%88-toc" style="margin-left:40px;"><a href="#%E6%98%AF%E4%BB%80%E4%B9%88" rel="nofollow">是什么</a></p> <p id="%E5%A4%87%E4%BB%BD%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84-toc" style="margin-left:40px;"><a href="#%E5%A4%87%E4%BB%BD%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84" rel="nofollow">备份是如何执行的</a></p> <p id="Fork-toc" style="margin-left:40px;"><a href="#Fork" rel="nofollow">Fork</a></p> <p id="-toc" style="margin-left:0px;"> <p id="RDB%E6%8C%81%E4%B9%85%E5%8C%96%E6%B5%81%E7%A8%8B-toc" style="margin-left:40px;"><a href="#RDB%E6%8C%81%E4%B9%85%E5%8C%96%E6%B5%81%E7%A8%8B" rel="nofollow">RDB持久化流程</a></p> <p id="dump.rdb%E6%96%87%E4%BB%B6%C2%A0-toc" style="margin-left:40px;"><a href="#dump.rdb%E6%96%87%E4%BB%B6%C2%A0" rel="nofollow">dump.rdb文件</a></p> <p id="%C2%A0%E9%85%8D%E7%BD%AE%E4%BD%8D%E7%BD%AE-toc" style="margin-left:40px;"><a href="#%C2%A0%E9%85%8D%E7%BD%AE%E4%BD%8D%E7%BD%AE" rel="nofollow">&nbsp;配置位置</a></p> <p id="%E2%80%8B%E5%A6%82%E4%BD%95%E8%A7%A6%E5%8F%91RDB%E5%BF%AB%E7%85%A7%EF%BC%9B%E4%BF%9D%E6%8C%81%E7%AD%96%E7%95%A5-toc" style="margin-left:40px;"><a href="#%E2%80%8B%E5%A6%82%E4%BD%95%E8%A7%A6%E5%8F%91RDB%E5%BF%AB%E7%85%A7%EF%BC%9B%E4%BF%9D%E6%8C%81%E7%AD%96%E7%95%A5" rel="nofollow">如何触发RDB快照；保持策略</a></p> <p id="%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E9%BB%98%E8%AE%A4%E7%9A%84%E5%BF%AB%E7%85%A7%E9%85%8D%E7%BD%AE-toc" style="margin-left:80px;"><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E9%BB%98%E8%AE%A4%E7%9A%84%E5%BF%AB%E7%85%A7%E9%85%8D%E7%BD%AE" rel="nofollow">配置文件中默认的快照配置</a></p> <p id="%E5%91%BD%E4%BB%A4save%20VS%20bgsave-toc" style="margin-left:80px;"><a href="#%E5%91%BD%E4%BB%A4save%20VS%20bgsave" rel="nofollow">命令save VS bgsave</a></p> <p id="flushall%E5%91%BD%E4%BB%A4-toc" style="margin-left:80px;"><a href="#flushall%E5%91%BD%E4%BB%A4" rel="nofollow">flushall命令</a></p> <p id="Save-toc" style="margin-left:80px;"><a href="#Save" rel="nofollow">Save</a></p> <p id="stop-writes-on-bgsave-error%C2%A0-toc" style="margin-left:80px;"><a href="#stop-writes-on-bgsave-error%C2%A0" rel="nofollow">stop-writes-on-bgsave-error</a></p> <p id="rdbcompression%20%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%C2%A0-toc" style="margin-left:80px;"><a href="#rdbcompression%20%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%C2%A0" rel="nofollow">rdbcompression 压缩文件</a></p> <p id="rdbchecksum%20%E6%A3%80%E6%9F%A5%E5%AE%8C%E6%95%B4%E6%80%A7-toc" style="margin-left:80px;"><a href="#rdbchecksum%20%E6%A3%80%E6%9F%A5%E5%AE%8C%E6%95%B4%E6%80%A7" rel="nofollow">rdbchecksum 检查完整性</a></p> <p id="rdb%E7%9A%84%E5%A4%87%E4%BB%BD-toc" style="margin-left:80px;"><a href="#rdb%E7%9A%84%E5%A4%87%E4%BB%BD" rel="nofollow">rdb的备份</a></p> <p id="%C2%A0%E4%BC%98%E5%8A%BF-toc" style="margin-left:40px;"><a href="#%C2%A0%E4%BC%98%E5%8A%BF" rel="nofollow">&nbsp;优势</a></p> <p id="%E5%8A%A3%E5%8A%BF%C2%A0-toc" style="margin-left:40px;"><a href="#%E5%8A%A3%E5%8A%BF%C2%A0" rel="nofollow">劣势</a></p> <p id="%E5%A6%82%E4%BD%95%E5%81%9C%E6%AD%A2-toc" style="margin-left:40px;"><a href="#%E5%A6%82%E4%BD%95%E5%81%9C%E6%AD%A2" rel="nofollow">如何停止</a></p> <p id="%E5%B0%8F%E6%80%BB%E7%BB%93-toc" style="margin-left:40px;"><a href="#%E5%B0%8F%E6%80%BB%E7%BB%93" rel="nofollow">小总结</a></p> <p id="AOF%C2%A0-toc" style="margin-left:0px;"><a href="#AOF%C2%A0" rel="nofollow">AOF</a></p> <p id="%E6%98%AF%E4%BB%80%E4%B9%88-toc" style="margin-left:40px;"><a href="#%E6%98%AF%E4%BB%80%E4%B9%88" rel="nofollow">是什么</a></p> <p id="OF%E6%8C%81%E4%B9%85%E5%8C%96%E6%B5%81%E7%A8%8B-toc" style="margin-left:40px;"><a href="#OF%E6%8C%81%E4%B9%85%E5%8C%96%E6%B5%81%E7%A8%8B" rel="nofollow">OF持久化流程</a></p> <p id="%C2%A0AOF%E9%BB%98%E8%AE%A4%E4%B8%8D%E5%BC%80%E5%90%AF-toc" style="margin-left:40px;"><a href="#%C2%A0AOF%E9%BB%98%E8%AE%A4%E4%B8%8D%E5%BC%80%E5%90%AF" rel="nofollow">&nbsp;AOF默认不开启</a></p> <p id="AOF%E5%92%8CRDB%E5%90%8C%E6%97%B6%E5%BC%80%E5%90%AF%EF%BC%8Credis%E5%90%AC%E8%B0%81%E7%9A%84%EF%BC%9F-toc" style="margin-left:40px;"><a href="#AOF%E5%92%8CRDB%E5%90%8C%E6%97%B6%E5%BC%80%E5%90%AF%EF%BC%8Credis%E5%90%AC%E8%B0%81%E7%9A%84%EF%BC%9F" rel="nofollow">AOF和RDB同时开启，redis听谁的？</a></p> <p id="AOF%E5%90%AF%E5%8A%A8%2F%E4%BF%AE%E5%A4%8D%2F%E6%81%A2%E5%A4%8D-toc" style="margin-left:40px;"><a href="#AOF%E5%90%AF%E5%8A%A8%2F%E4%BF%AE%E5%A4%8D%2F%E6%81%A2%E5%A4%8D" rel="nofollow">AOF启动/修复/恢复</a></p> <p id="AOF%E5%90%8C%E6%AD%A5%E9%A2%91%E7%8E%87%E8%AE%BE%E7%BD%AE-toc" style="margin-left:40px;"><a href="#AOF%E5%90%8C%E6%AD%A5%E9%A2%91%E7%8E%87%E8%AE%BE%E7%BD%AE" rel="nofollow">AOF同步频率设置</a></p> <p id="Rewrite%E5%8E%8B%E7%BC%A9-toc" style="margin-left:40px;"><a href="#Rewrite%E5%8E%8B%E7%BC%A9" rel="nofollow">Rewrite压缩</a></p> <p id="%E4%BC%98%E5%8A%BF-toc" style="margin-left:40px;"><a href="#%E4%BC%98%E5%8A%BF" rel="nofollow">优势</a></p> <p id="%E5%8A%A3%E5%8A%BF-toc" style="margin-left:40px;"><a href="#%E5%8A%A3%E5%8A%BF" rel="nofollow">劣势</a></p> <p id="%E5%B0%8F%E6%80%BB%E7%BB%93-toc" style="margin-left:40px;"><a href="#%E5%B0%8F%E6%80%BB%E7%BB%93" rel="nofollow">小总结</a></p> <p id="%C2%A0%E6%80%BB%E7%BB%93(Which%20one)-toc" style="margin-left:0px;"><a href="#%C2%A0%E6%80%BB%E7%BB%93%28Which%20one%29" rel="nofollow">&nbsp;总结(Which one)</a></p> <p id="%E7%94%A8%E5%93%AA%E4%B8%AA%E5%A5%BD-toc" style="margin-left:40px;"><a href="#%E7%94%A8%E5%93%AA%E4%B8%AA%E5%A5%BD" rel="nofollow">用哪个好</a></p> <p id="%E5%AE%98%E7%BD%91%E5%BB%BA%E8%AE%AE-toc" style="margin-left:40px;"><a href="#%E5%AE%98%E7%BD%91%E5%BB%BA%E8%AE%AE" rel="nofollow">官网建议</a></p> <hr id="hr-toc"/> </h1> <p><span style="color:#0d0016;">Redis 提供了2个不同形式的持久化方式。</span></p> <ol> <li><span style="color:#0d0016;">RDB（Redis DataBase）</span></li> <li><span style="color:#0d0016;">AOF（Append Of File）</span></li> </ol> </h1> <h2 id="%E6%98%AF%E4%BB%80%E4%B9%88" style="text-align:justify;"><strong><strong>是什么</strong></strong></h2> <p>在指定的<span style="color:#ff0000;">时间间隔</span>内将内存中的数据集<span style="color:#ff0000;">快照</span>写入磁盘， 也就是行话讲的Snapshot快照，它恢复时是将快照文件直接读到内存里。</p> <h2 id="%E5%A4%87%E4%BB%BD%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84"><strong><strong>备份是如何执行的</strong></strong></h2> <p>Redis会单独创建（fork）一个子进程来进行持久化，会<span style="color:#ff0000;">先</span>将数据<span style="color:#ff0000;">写</span>入到 一个<span style="color:#ff0000;">临时文件</span>中，待持久化过程都结束了，再用这个<span style="color:#ff0000;">临时文件替换上次持久化</span>好的文件。 整个过程中，主进程是不进行任何IO操作的，这就确保了极高的性能 如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那RDB方式要比AOF方式更加的高效。<strong><strong>RDB的缺点是</strong></strong><strong><span style="color:#ff0000;"><strong>最后一次持久化后的数据可能丢失</strong></span></strong>。</p> <h2 id="Fork" style="text-align:justify;"><strong><strong>Fork</strong></strong></h2> <ol> <li>Fork的作用是复制一个与当前进程<span style="color:#ff0000;">一样的进程</span>。新进程的所有数据（变量、环境变量、程序计数器等） 数值都和原进程一致，但是是一个全新的进程，并<span style="color:#ff0000;">作为原进程的子进程</span></li> <li><span style="color:#007c6a;">在Linux程序中，</span><span style="color:#007c6a;">fork()</span><span style="color:#007c6a;">会产</span><span style="color:#007c6a;">生一个和父进程完全相同的子进程，但子进程在此后多会</span><span style="color:#007c6a;">exec</span><span style="color:#007c6a;">系统调用，出于效率考虑，</span><span style="color:#007c6a;">Linux</span><span style="color:#007c6a;">中引入了“</span><strong><span style="color:#ff0000;"><strong>写时复制技术</strong></span></strong><span style="color:#007c6a;">”</span></li> <li><strong><span style="color:#007c6a;"><strong>一般情况父进程和子进程会共用同一段物理内存</strong></span></strong><span style="color:#007c6a;">，只有进程空间的各段的内容要发生变化时，才会将父进程的内容复制一份给子进程。</span></li> </ol> </h1> <h2 id="RDB%E6%8C%81%E4%B9%85%E5%8C%96%E6%B5%81%E7%A8%8B"><strong><strong>RDB持久化流程</strong></strong></h2> <p><img fetchpriority="high" decoding="async" alt="" height="515" src="http://img.555519.xyz/uploads3/20220823/8190c52f382321c3978c6b290036120d.jpg"></p> <h2 id="dump.rdb%E6%96%87%E4%BB%B6%C2%A0"><strong><strong>dump.rdb文件</strong></strong></h2> <p>在redis.conf中配置文件名称，默认为dump.rdb。</p> <p><img decoding="async" alt="" height="157" src="http://img.555519.xyz/uploads3/20220823/7a919392f88852293f7411ee8190933c.jpg"></p> <h2 id="%C2%A0%E9%85%8D%E7%BD%AE%E4%BD%8D%E7%BD%AE"><strong><strong>配置位置</strong></strong></h2> <p>rdb文件的保存路径，也可以修改。默认为Redis启动时命令行所在的目录下</p> <p>dir "/myredis/"。</p> <h2 id="%E2%80%8B%E5%A6%82%E4%BD%95%E8%A7%A6%E5%8F%91RDB%E5%BF%AB%E7%85%A7%EF%BC%9B%E4%BF%9D%E6%8C%81%E7%AD%96%E7%95%A5"><img decoding="async" alt="" height="300" src="http://img.555519.xyz/uploads3/20220823/c20a5efa39e20c41c73e85d4e57f87a8.jpg"><strong><strong>如何触发RDB快照；保持策略</strong></strong></h2> <h3 id="%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E9%BB%98%E8%AE%A4%E7%9A%84%E5%BF%AB%E7%85%A7%E9%85%8D%E7%BD%AE" style="text-align:justify;"><strong><strong>配置文件中默认的快照配置</strong></strong></h3> <p><img loading="lazy" decoding="async" alt="" height="336" src="http://img.555519.xyz/uploads3/20220823/7b307b20dfe5c31ea1c970cc7c53ed8e.jpg"></p> <h3 id="%E5%91%BD%E4%BB%A4save%20VS%20bgsave"><strong><strong>命令</strong></strong><strong><strong>save VS bgsave</strong></strong></h3> <p>save ：save时只管保存，其它不管，全部阻塞。手动保存。不建议。</p> <p><strong><span style="color:#ff0000;"><strong>bgsave：</strong></span></strong><strong><span style="color:#ff0000;"><strong>Redis</strong></span></strong><strong><span style="color:#ff0000;"><strong>会在后台异步进行快照操作， 快照同时还可以响应客户端请求。</strong></span></strong></p> <p>可以通过lastsave 命令获取最后一次成功执行快照的时间。</p> <h3 id="flushall%E5%91%BD%E4%BB%A4" style="text-align:justify;"><strong><strong>flushall</strong></strong><strong><strong>命令</strong></strong></h3> <p>执行flushall命令，也会产生dump.rdb文件，但里面是空的，无意义。</p> <h3 id="Save" style="text-align:justify;"><strong><strong>Save</strong></strong></h3> <p>格式：save 秒钟 写操作次数</p> <p>RDB是整个内存的压缩过的Snapshot，RDB的数据结构，可以配置复合的快照触发条件，</p> <p><strong><span style="color:#ff0000;"><strong>默认是1分钟内改了</strong></span></strong><strong><span style="color:#ff0000;"><strong>1</strong></span></strong><strong><span style="color:#ff0000;"><strong>万次，或</strong></span></strong><strong><span style="color:#ff0000;"><strong>5</strong></span></strong><strong><span style="color:#ff0000;"><strong>分钟内改了</strong></span></strong><strong><span style="color:#ff0000;"><strong>10</strong></span></strong><strong><span style="color:#ff0000;"><strong>次，或</strong></span></strong><strong><span style="color:#ff0000;"><strong>15</strong></span></strong><strong><span style="color:#ff0000;"><strong>分钟内改了</strong></span></strong><strong><span style="color:#ff0000;"><strong>1</strong></span></strong><strong><span style="color:#ff0000;"><strong>次。</strong></span></strong></p> <p><span style="color:#ff0000;">禁用</span></p> <p><span style="color:#ff0000;">不设置save指令</span>，或者<span style="color:#ff0000;">给save传入空字符串。</span></p> <h3 id="stop-writes-on-bgsave-error%C2%A0"><strong><strong>stop-writes-on-bgsave-error</strong></strong></h3> <p><img loading="lazy" decoding="async" alt="" height="190" src="http://img.555519.xyz/uploads3/20220823/f1075dbf5de1076ab9a761ad71c7e7d1.jpg"></p> <p>当Redis无法写入磁盘的话，直接关掉Redis的写操作。推荐yes.</p> <h3 id="rdbcompression%20%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%C2%A0"><strong><strong>rdbcompression</strong></strong><strong><strong>压缩文件</strong></strong></h3> <p><img loading="lazy" decoding="async" alt="" height="189" src="http://img.555519.xyz/uploads3/20220823/2c75e69d70b4bf8339c753d93a309374.jpg"></p> <p>对于存储到磁盘中的快照，可以设置是否进行压缩存储。如果是的话，redis会采用<span style="color:#ff0000;">LZF算法</span>进行压缩。</p> <p>如果你不想消耗CPU来进行压缩的话，可以设置为关闭此功能。推荐yes。</p> <h3 id="rdbchecksum%20%E6%A3%80%E6%9F%A5%E5%AE%8C%E6%95%B4%E6%80%A7"><strong><strong>rdbchecksum</strong></strong><strong><strong>检查完整性</strong></strong></h3> <p><img loading="lazy" decoding="async" alt="" height="145" src="http://img.555519.xyz/uploads3/20220823/d4dc688370b48ea15863bfe70f50f05d.jpg"></p> <p>在存储快照后，还可以让redis使用CRC64算法来进行数据校验，</p> <p>但是这样做会增加大约10%的性能消耗，如果希望获取到最大的性能提升，可以关闭此功能</p> <p>推荐yes.</p> <h3 id="rdb%E7%9A%84%E5%A4%87%E4%BB%BD"><strong><strong>rdb</strong></strong><strong><strong>的备份</strong></strong></h3> <p>先通过config get dir &nbsp;查询rdb文件的目录</p> <p>将*.rdb的文件拷贝到别的地方</p> <p>rdb的恢复</p> <ol> <li>&nbsp; &nbsp; &nbsp; &nbsp; 1.关闭Redis2.</li> <li>&nbsp;启动Redis, 备份数据会直接加载3</li> <li>先把备份的文件拷贝到工作目录下 cp dump2.rdb dump.rdb</li> </ol> <h2 id="%C2%A0%E4%BC%98%E5%8A%BF"><strong><strong>优势</strong></strong></h2> <ol> <li>适合大规模的数据恢复</li> <li>对数据完整性和一致性要求不高更适合使用</li> <li><span style="color:#007c6a;">节省磁盘空间</span></li> <li><span style="color:#007c6a;">恢复速度快</span></li> </ol> <p><img loading="lazy" decoding="async" alt="" height="326" src="http://img.555519.xyz/uploads3/20220823/7cb1a161f631d4d42853bc017b13cb7b.jpg"></p> <h2 id="%E5%8A%A3%E5%8A%BF%C2%A0"><strong><strong>劣势</strong></strong></h2> <ol> <li>Fork的时候，内存中的数据被克隆了一份，大致2倍的膨胀性需要考虑</li> <li><span style="color:#007c6a;">虽然Redis在</span><span style="color:#007c6a;">fork</span><span style="color:#007c6a;">时使用了</span><strong><span style="color:#ff0000;"><strong>写时拷贝技术</strong></span></strong><span style="color:#007c6a;">,但是如果数据庞大时还是比较消耗性能。</span></li> <li><span style="color:#007c6a;">在备份周期在一定间隔时间做一次备份，所以如果Redis意外</span><span style="color:#007c6a;">down</span><span style="color:#007c6a;">掉的话，就会丢失最后一次快照后的所有修改。</span></li> </ol> <h2 id="%E5%A6%82%E4%BD%95%E5%81%9C%E6%AD%A2"><strong><strong>如何停止</strong></strong></h2> <p>动态停止RDB：redis-cli config set save ""#save后给空值，表示禁用保存策略。</p> <h2 id="%E5%B0%8F%E6%80%BB%E7%BB%93" style="text-align:justify;"><strong><strong>小总结</strong></strong></h2> <p><img loading="lazy" decoding="async" alt="" height="325" src="http://img.555519.xyz/uploads3/20220823/bd98f6486e12c88c92538a3a985821b9.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="349" src="http://img.555519.xyz/uploads3/20220823/a6b4cc3170d8891464f783101c3147e1.jpg"></p> </h1> <h2 style="text-align:justify;"><strong><strong>是什么</strong></strong></h2> <p><span style="color:#ff0000;">以</span><strong><span style="color:#ff0000;"><strong>日志</strong></span></strong><span style="color:#ff0000;">的形式来记录每个写操作（增量保存），</span>将Redis执行过的所有写指令记录下来(<strong><span style="color:#ff0000;"><strong>读操作不记录</strong></span></strong>)，<strong><span style="color:#ff0000;"><strong>只许追加文件但不可以改写文件</strong></span></strong>，redis启动之初会读取该文件重新构建数据，换言之，redis 重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作。</p> <h2 id="OF%E6%8C%81%E4%B9%85%E5%8C%96%E6%B5%81%E7%A8%8B" style="text-align:justify;"><strong><strong>OF持久化流程</strong></strong></h2> <p>（1）客户端的请求写命令会被append追加到AOF缓冲区内；</p> <p>（2）AOF缓冲区根据AOF持久化策略[always,everysec,no]将操作sync同步到磁盘的AOF文件中；</p> <p>（3）AOF文件大小超过重写策略或手动重写时，会对AOF文件rewrite重写，压缩AOF文件容量；</p> <p>（4）Redis服务重启时，会重新load加载AOF文件中的写操作达到数据恢复的目的；</p> <p><img loading="lazy" decoding="async" alt="" height="690" src="http://img.555519.xyz/uploads3/20220823/104b104a87e8302f2737ccc07619d74d.jpg"></p> <h2 id="%C2%A0AOF%E9%BB%98%E8%AE%A4%E4%B8%8D%E5%BC%80%E5%90%AF"><strong><strong>AOF默认不开启</strong></strong></h2> <p>可以在redis.conf中配置文件名称，默认为<span style="color:#ff0000;">appendonly.aof</span></p> <p>AOF文件的保存路径，同RDB的路径一致。</p> <h2 id="AOF%E5%92%8CRDB%E5%90%8C%E6%97%B6%E5%BC%80%E5%90%AF%EF%BC%8Credis%E5%90%AC%E8%B0%81%E7%9A%84%EF%BC%9F" style="text-align:justify;"><strong><strong>AOF和</strong></strong><strong><strong>RDB</strong></strong><strong><strong>同时开启，</strong></strong><strong><strong>redis</strong></strong><strong><strong>听谁的？</strong></strong></h2> <p>AOF和RDB同时开启，系统默认取AOF的数据（数据不会存在丢失）。</p> <h2 id="AOF%E5%90%AF%E5%8A%A8%2F%E4%BF%AE%E5%A4%8D%2F%E6%81%A2%E5%A4%8D"><strong><strong>AOF启动</strong></strong><strong><strong>/</strong></strong><strong><strong>修复</strong></strong><strong><strong>/</strong></strong><strong><strong>恢复</strong></strong></h2> <ol> <li>AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同RDB一样，都是拷贝备份文件，需要恢复时再拷贝到Redis工作目录下，启动系统即加载。</li> <li><span style="color:#000000;">正常恢复</span></li> </ol> <ol> <li>修改默认的appendonly no，改为yes</li> <li>将有数据的aof文件复制一份保存到对应目录(查看目录：config get dir)</li> <li>恢复：重启redis然后重新加载</li> </ol> <p style="text-align:justify;"> <ol> <li><span style="color:#000000;">异常恢复</span></li> </ol> <ol> <li>修改默认的appendonly no，改为yes</li> <li>如遇到<strong><span style="color:#ff0000;"><strong>AOF文件损坏</strong></span></strong>，通过/usr/local/bin/<strong><span style="color:#ff0000;"><strong>redis-check-aof--fix appendonly.aof</strong></span></strong>进行恢复</li> <li>备份被写坏的AOF文件</li> <li>恢复：重启redis，然后重新加载</li> </ol> <h2 id="AOF%E5%90%8C%E6%AD%A5%E9%A2%91%E7%8E%87%E8%AE%BE%E7%BD%AE" style="text-align:justify;"><strong><strong>AOF同步频率设置</strong></strong></h2> <p>appendfsync always</p> <p><span style="color:#007c6a;">始终同步，每次Redis的写入都会立刻记入日志；</span>性能较差但数据完整性比较好</p> <p>appendfsync<span style="color:#ff0000;">everysec</span></p> <p><span style="color:#007c6a;">每秒同步，每秒记入日志一次，如果宕机，本秒的数据可能丢失。</span></p> <p>appendfsync no</p> <p><span style="color:#007c6a;">redis不主动进行同步，把</span><span style="color:#ff0000;">同步时机交给操作系统</span><span style="color:#007c6a;">。</span></p> <h2 id="Rewrite%E5%8E%8B%E7%BC%A9" style="text-align:justify;"><strong><strong>Rewrite压缩</strong></strong></h2> <p>1是什么：</p> <p>AOF采用文件追加方式，文件会越来越大为避免出现此种情况，新增了重写机制, 当AOF文件的大小超过所设定的阈值时，Redis就会启动AOF文件的内容压缩， 只保留可以恢复数据的最小指令集.可以使用命令bgrewriteaof</p> <p>2重写原理，如何实现重写</p> <p>AOF文件持续增长而过大时，会fork出一条新进程来将文件重写(也是先写临时文件最后再rename)，<span style="color:#ff0000;">redis4.0</span><span style="color:#ff0000;">版本后的重写，是指上就是把r</span><span style="color:#ff0000;">db</span><span style="color:#ff0000;">的快照，以二级制的形式附在新的a</span><span style="color:#ff0000;">of</span><span style="color:#ff0000;">头部，作为已有的历史数据，替换掉原来的流水账操作。</span></p> <p><span style="color:#ff0000;">no-appendfsync-on-rewrite：</span></p> <p>如果 no-appendfsync-on-rewrite=yes ,不写入aof文件只写入缓存，用户请求不会阻塞，但是在这段时间如果宕机会丢失这段时间的缓存数据。（降低数据安全性，提高性能）</p> <p>如果 no-appendfsync-on-rewrite=no, &nbsp;还是会把数据往磁盘里刷，但是遇到重写操作，可能会发生阻塞。（数据安全，但是性能降低）</p> <p>触发机制，何时重写</p> <p>Redis会记录上次重写时的AOF大小，默认配置是当AOF文件大小是上次rewrite后大小的一倍且文件大于64M时触发</p> <p><span style="color:#00b050;">重写虽然可以节约大量磁盘空间，减少恢复时间。但是每次重写还是有一定的负担的，因此设定Redis要满足一定条件才会进行重写。</span></p> <p>auto-aof-rewrite-percentage：设置重写的基准值，文件达到100%时开始重写（文件是原来重写后文件的2倍时触发）</p> <p>auto-aof-rewrite-min-size：设置重写的基准值，最小文件64MB。达到这个值开始重写。</p> <p>例如：文件达到70MB开始重写，降到50MB，下次什么时候开始重写？100MB</p> <p>系统载入时或者上次重写完毕时，Redis会记录此时AOF大小，设为base_size,</p> <p>如果Redis的<span style="color:#ff0000;">AOF当前大小&gt;= base_size +base_size*100%</span>(默认)且<span style="color:#ff0000;">当前大小&gt;=64mb</span>(默认)的情况下，Redis会对AOF进行重写。</p> <p><span style="color:#000000;">3、重写流程</span></p> <p><span style="color:#000000;">（1）bgrewriteaof触发重写，判断是否当前有bgsave或bgrewriteaof在运行，如果有，则等待该命令结束后再继续执行。</span></p> <p><span style="color:#000000;">（2）主进程fork出子进程执行重写操作，保证主进程不会阻塞。</span></p> <p><span style="color:#000000;">（3）子进程遍历redis内存中数据到临时文件，客户端的写请求同时写入aof_buf缓冲区和aof_rewrite_buf重写缓冲区保证原AOF文件完整以及新AOF文件生成期间的新的数据修改动作不会丢失。</span></p> <p><span style="color:#000000;">（4）1).子进程写完新的AOF文件后，向主进程发信号，父进程更新统计信息。2).主进程把aof_rewrite_buf中的数据写入到新的AOF文件。</span></p> <p><span style="color:#000000;">（5）使用新的AOF文件覆盖旧的AOF文件，完成AOF重写。</span></p> <h2 id="%E4%BC%98%E5%8A%BF" style="text-align:justify;"><strong><strong>优势</strong></strong></h2> <p><img loading="lazy" decoding="async" alt="" height="209" src="http://img.555519.xyz/uploads3/20220823/ee707c85151f83edf276d7d3a67a5e07.jpg"></p> <ol> <li>备份机制更稳健，丢失数据概率更低。</li> <li>可读的日志文本，通过操作AOF稳健，可以处理误操作。</li> </ol> <h2 id="%E5%8A%A3%E5%8A%BF" style="text-align:justify;"><strong><strong>劣势</strong></strong></h2> <ol> <li>比起RDB占用更多的磁盘空间。</li> <li>恢复备份速度要慢。</li> <li>每次读写都同步的话，有一定的性能压力。</li> <li>存在个别Bug，造成恢复不能。</li> </ol> <h2><strong><strong>小总结</strong></strong></h2> <p><img loading="lazy" decoding="async" alt="" height="605" src="http://img.555519.xyz/uploads3/20220823/13267c5ecaf31cc128f2773996c6027a.jpg"></p> </h1> <h2 id="%E7%94%A8%E5%93%AA%E4%B8%AA%E5%A5%BD" style="text-align:justify;"><strong><strong>用哪个好</strong></strong></h2> <p>官方推荐两个都启用。</p> <p>如果对数据不敏感，可以选单独用RDB。</p> <p>不建议单独用 AOF，因为可能会出现Bug。</p> <p>如果只是做纯内存缓存，可以都不用。</p> <h2 id="%E5%AE%98%E7%BD%91%E5%BB%BA%E8%AE%AE"><strong><strong>官网建议</strong></strong></h2> <ol> <li>RDB持久化方式能够在指定的时间间隔能对你的数据进行快照存储</li> <li>AOF持久化方式记录每次对服务器写的操作,当服务器重启的时候会重新执行这些命令来恢复原始的数据,AOF命令以redis协议追加保存每次写的操作到文件末尾.</li> <li>Redis还能对AOF文件进行后台重写,使得AOF文件的体积不至于过大</li> <li>只做缓存：如果你只希望你的数据在服务器运行的时候存在,你也可以不使用任何持久化方式.</li> <li>同时开启两种持久化方式</li> <li>在这种情况下,当redis重启的时候会优先载入AOF文件来恢复原始的数据, 因为在通常情况下AOF文件保存的数据集要比RDB文件保存的数据集要完整.</li> <li>RDB的数据不实时，同时使用两者时服务器重启也只会找AOF文件。那要不要只使用AOF呢？</li> <li>建议不要<span style="color:#000000;">，因为RDB更适合用于备份数据库</span><span style="color:#000000;">(AOF</span><span style="color:#000000;">在不断变化不好备份</span><span style="color:#000000;">)</span><span style="color:#000000;">， 快速重启，而且不会有</span><span style="color:#000000;">AOF</span><span style="color:#000000;">可能潜在的</span><span style="color:#000000;">bug</span><span style="color:#000000;">，留着作为一个万一的手段。</span></li> <li>性能建议</li> </ol> <pre><code>因为RDB文件只用作后备用途，建议只在Slave上持久化RDB文件，而且只要15分钟备份一次就够了，只保留save 900 1这条规则。 如果使用AOF，好处是在最恶劣情况下也只会丢失不超过两秒数据，启动脚本较简单只load自己的AOF文件就可以了。 代价,一是带来了持续的IO，二是AOF rewrite的最后将rewrite过程中产生的新数据写到新文件造成的阻塞几乎是不可避免的。 只要硬盘许可，应该尽量减少AOF rewrite的频率，AOF重写的基础大小默认值64M太小了，可以设到5G以上。 默认超过原大小100%大小时重写可以改到适当的数值。</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-56799.htm">基于casbin的RBAC权限实践_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-57371.htm">动物疫苗检测标准有哪些内容（动物疫苗检测找哪个部门）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-node-subscribe-links.htm" title="1月6日|Clash/Shadowrocket/SSR/V2ray每天更新20.4M/S免费节点订阅链接地址分享">1月6日|Clash/Shadowrocket/SSR/V2ray每天更新20.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-55128.htm" title="长春宠物医院排名（长春良心的宠物医院）">长春宠物医院排名（长春良心的宠物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-46829.htm" title="三国杀所有技能详解（三国杀里面的技能是什么）">三国杀所有技能详解（三国杀里面的技能是什么）</a></li>
+                        <li class="py-2"><a href="/news/article-44346.htm" title="synchronized有几种用法？">synchronized有几种用法？</a></li>
+                        <li class="py-2"><a href="/news/article-25114.htm" title="SpringBoot 使用 Feign进行远程调用、文件上传等操作">SpringBoot 使用 Feign进行远程调用、文件上传等操作</a></li>
+                        <li class="py-2"><a href="/news/article-51890.htm" title="vue的路由组件的引入以及路由组件懒加载和router-link">vue的路由组件的引入以及路由组件懒加载和router-link</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-free-v2ray-subscribe.htm" title="2月3日|Shadowrocket/V2ray/Clash/SSR每天更新22.1M/S免费节点订阅链接地址分享">2月3日|Shadowrocket/V2ray/Clash/SSR每天更新22.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-55127.htm" title="TENSORFLOW：TENSORS">TENSORFLOW：TENSORS</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐">11月5日|Shadowrocket/V2ray/Clash/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日|SSR/Shadowrocket/V2ray/Clash每天更新19.9M/S免费节点订阅链接，付费节点订阅推荐">12月12日|SSR/Shadowrocket/V2ray/Clash每天更新19.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
