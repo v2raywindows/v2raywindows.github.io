@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-59658.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue中使用$http.post请求传参的错误及解决_vue.js</title>
+        <meta name="description" content="目录  使用$http.post请求传参的错误 vue post请求之坑  解决方法     使用$http.post请求传参的错误 在使用$http请求后台，照常我们在后端 使用注解@PostMap" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-59658.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="vue中使用$http.post请求传参的错误及解决_vue.js" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/1c2365e451d942120ba6051ac73d8467.webp" />
+        <meta property="og:release_date" content="2025-02-20T09:55:12" />
+    <meta property="og:updated_time" content="2025-02-20T09:55:12" />
+        <meta property="og:description" content="目录  使用$http.post请求传参的错误 vue post请求之坑  解决方法     使用$http.post请求传参的错误 在使用$http请求后台，照常我们在后端 使用注解@PostMap" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue中使用$http.post请求传参的错误及解决_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>vue中使用$http.post请求传参的错误及解决_vue.js</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">使用$http.post请求传参的错误</a></li> <li><a href="#_label1" rel="nofollow">vue post请求之坑</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">解决方法</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>使用$http.post请求传参的错误</h2> <p>在使用$http请求后台，照常我们在后端 使用注解@PostMapper或者 @RequestMapping(value = “XXXX”,method = RequestMethod.POST)接受请求</p> <div class="ay1code"> <pre class="brush:js;">	 handleAdd(node) {  		this.$http.post("/item/category/addCategory",{  				node:node  				})  				.then(({data})=&gt;{  						this.$emit("close");  						this.$message.success("添加成功！");  				}).catch(() =&gt; {  				     this.$message.error("添加失败！");  				    });  				    }  </pre> </div> <p>结果报了一个’GET’的错误,我就很纳闷。并没有写get方法，那必定会出错。</p> <p style="text-align:center"><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220424/044d0a23a8c19ede2f3e936bd7e7634f.jpg"></p> <p><strong>截图奉上==</strong></p> <p style="text-align:center"><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220424/46fef17e7d26d979477e19a382928f46.jpg"></p> <p>传递的是json对象而不是数组。</p> <p>还好之前有过post传递参数的项目之后又搜了一下，</p> <p>如下面这种</p> <div class="ay1code"> <pre class="brush:js;"> handleAdd(node) {  		this.$http({  					method:'post',  					url:'/item/category/addCategory',  					data: node  				}).then(({data})=&gt;{  						this.$emit("close");  						this.$message.success("添加成功！");  				}).catch(() =&gt; {               this.$message.error("添加失败！");              });              }  </pre> </div> <p>整体上没有问题</p> <p style="text-align:center"><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220424/848fa848a7ec8b96364ae38ba410cd86.jpg"></p> <p>之后我有尝试了一下</p> <div class="ay1code"> <pre class="brush:js;"> handleAdd(node) {  	this.$http.post("/item/category/addCategory",{  				node:this.$qs.stringify(node)  				})  				.then(({data})=&gt;{  						this.$emit("close");  						this.$message.success("添加成功！");  				}).catch(() =&gt; {  				     this.$message.error("添加失败！");  				    });  	}  </pre> </div> <p>传递的结果</p> <p style="text-align:center"><img decoding="async" alt="在这里插入图片描述" src="http://img.555519.xyz/uploads3/20220424/537548835f05aed443f140010f848634.jpg"></p> <p>三种方式都可以使用，但我只有第二种方式成功啦。</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>vue post请求之坑</h2> <p>最近用的vue请求数据，坑死，还是对前端vue框架不熟。</p> <p>与后端通信有问题，要么是json加入到url有问题、要么是json解析有问题。</p> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>解决方法</h3> <p>1、请求参数一个用url传</p> <div class="ay1code"> <pre class="brush:js;"> var json=[{"msg”：“123"}];   var temp=encodeURI(JSON.stringify(json));      //重点   var urls="http://202.114.207.232:8080/web/data?operations="+temp;              this.$axios({type:'post',url:urls, dataType:'json' }).then( res =&gt; { console.log(res) }).catch( e =&gt; { console.info(e) })</pre> </div> <p>2、一个用data包装传</p> <div class="ay1code"> <pre class="brush:js;">var Data=[{}]  var url = "http://111.111.111.111:8080/web/data";  var params = new URLSearchParams();  params.append("operations", JSON.stringify(Data));           //重点  // params.append('param2', 'value2');  that.$axios.post(url, params)      .then(response =&gt; {          // post 成功，response.data 为返回的数据          console.log(response.data)      })      .catch(error =&gt; {          // 请求失败          console.log(error)      })</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-59080.htm">养猫打疫苗贵吗（养猫注射疫苗）</a></p>
+                                        <p>下一个：<a href="/news/article-59659.htm">深圳宠物领养中心有哪些（深圳市领养宠物中心）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-32632.htm" title="自己开一个宠物店（自己开一个宠物店需要多少钱）">自己开一个宠物店（自己开一个宠物店需要多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-33586.htm" title="javaScript深拷贝和浅拷贝简单梳理_在线工具">javaScript深拷贝和浅拷贝简单梳理_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-40887.htm" title="央视推荐过的国产猫粮品牌 央视推荐过的国产猫粮品牌有哪些">央视推荐过的国产猫粮品牌 央视推荐过的国产猫粮品牌有哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-20-clash-v2ray-ss-ssr.htm" title="12月20日|Shadowrocket/Clash/SSR/V2ray每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐">12月20日|Shadowrocket/Clash/SSR/V2ray每天更新22.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-55127.htm" title="TENSORFLOW：TENSORS">TENSORFLOW：TENSORS</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-subscribe-node.htm" title="1月25日|Shadowrocket/Clash/SSR/V2ray每天更新21.7M/S免费节点订阅链接地址分享">1月25日|Shadowrocket/Clash/SSR/V2ray每天更新21.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share.htm" title="11月24日|Shadowrocket/Clash/V2ray/SSR每天更新19.9M/S免费节点订阅链接，付费节点订阅推荐">11月24日|Shadowrocket/Clash/V2ray/SSR每天更新19.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-free-v2ray.htm" title="12月14日|Shadowrocket/Clash/V2ray/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐">12月14日|Shadowrocket/Clash/V2ray/SSR每天更新19.7M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-18721.htm" title="Java核心知识1：泛型机制详解">Java核心知识1：泛型机制详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-free-high-speed-nodes.htm" title="11月23日|V2ray/Shadowrocket/Clash/SSR每天更新21.6M/S免费节点订阅链接，付费节点订阅推荐">11月23日|V2ray/Shadowrocket/Clash/SSR每天更新21.6M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
