@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-61405.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>利用Python实现RSA加密解密方法实例_python</title>
+        <meta name="description" content="目录  前言 一、安装模块 二、生成密钥对 三、加密 四、解密 五、完整代码 总结    前言  加密技术在数据安全存储，数据传输中发挥着重要作用，能够保护用户隐私数据安全，防止信息窃取。RSA是一种" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-61405.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="利用Python实现RSA加密解密方法实例_python" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/ceeee742a03f0540882ac5072e8b605d.webp" />
+        <meta property="og:release_date" content="2025-02-23T09:45:05" />
+    <meta property="og:updated_time" content="2025-02-23T09:45:05" />
+        <meta property="og:description" content="目录  前言 一、安装模块 二、生成密钥对 三、加密 四、解密 五、完整代码 总结    前言  加密技术在数据安全存储，数据传输中发挥着重要作用，能够保护用户隐私数据安全，防止信息窃取。RSA是一种" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="利用Python实现RSA加密解密方法实例_python">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>利用Python实现RSA加密解密方法实例_python</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">前言</a></li> <li><a href="#_label1" rel="nofollow">一、安装模块</a></li> <li><a href="#_label2" rel="nofollow">二、生成密钥对</a></li> <li><a href="#_label3" rel="nofollow">三、加密</a></li> <li><a href="#_label4" rel="nofollow">四、解密</a></li> <li><a href="#_label5" rel="nofollow">五、完整代码</a></li> <li><a href="#_label6" rel="nofollow">总结</a></li> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>前言</h2> <ul> <li>加密技术在数据安全存储，数据传输中发挥着重要作用，能够保护用户隐私数据安全，防止信息窃取。RSA是一种非对称加密技术，在软件、网页中已得到广泛应用。本文将介绍RSA加密解密在python中的实现。</li> <li>原则：公钥加密，私钥解密</li> <li>解释：具体过程的解释请见代码前的注释</li> </ul> <p><strong>RSA加密实验基本流程：</strong></p> <p>一、选取两个大素数p、q，并计算得到n、phi_n</p> <p>二、选取常用的e = 0x10001，方便将幂运算优化为左移，加快运算速度</p> <p>三、计算d，使用了扩展欧几里得算法</p> <p>四、输入明文a，将明文转化为可以用于计算的数字形式</p> <p>五、对a使用快速幂取模，得到密文b，以16进制显示</p> <p><strong>RSA解密流程：</strong></p> <p>六、对b使用快速幂取模，得到明文a，以字符形式显示</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>一、安装模块</h2> <div class="ay1code"> <pre class="brush:py;">pip install pycryptodome </pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>二、生成密钥对</h2> <ul> <li>密钥对文件生成和读取</li> <li>代码：</li> </ul> <div class="ay1code"> <pre class="brush:py;">from Crypto.PublicKey import RSA  def create_rsa_pair(is_save=False):      '''      创建rsa公钥私钥对      :param is_save: default:False      :return: public_key, private_key      '''      f = RSA.generate(2048)      private_key = f.exportKey("PEM")  # 生成私钥      public_key = f.publickey().exportKey()  # 生成公钥      if is_save:          with open("crypto_private_key.pem", "wb") as f:              f.write(private_key)          with open("crypto_public_key.pem", "wb") as f:              f.write(public_key)      return public_key, private_key    def read_public_key(file_path="crypto_public_key.pem") -&gt; bytes:      with open(file_path, "rb") as x:          b = x.read()          return b    def read_private_key(file_path="crypto_private_key.pem") -&gt; bytes:      with open(file_path, "rb") as x:          b = x.read()          return b</pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>三、加密</h2> <ul> <li>流程：输入文本（str）→字符串编码（默认utf-8）（bytes）→rsa加密（bytes）→base64编码（bytes）→解码为字符串（str）</li> <li>代码：</li> </ul> <div class="ay1code"> <pre class="brush:py;">import base64  from Crypto.Cipher import PKCS1_v1_5  from Crypto.PublicKey import RSA    def encryption(text: str, public_key: bytes):  	# 字符串指定编码（转为bytes）  	text = text.encode('utf-8')  	# 构建公钥对象  	cipher_public = PKCS1_v1_5.new(RSA.importKey(public_key))  	# 加密（bytes）  	text_encrypted = cipher_public.encrypt(text)   	# base64编码，并转为字符串  	text_encrypted_base64 = base64.b64encode(text_encrypted ).decode()  	return text_encrypted_base64   	  if __name__ == '__main__':  	public_key = read_public_key()  	text = '123456'  	text_encrypted_base64 = encryption(text, public_key)  	print('密文：',text_encrypted_base64)</pre> </div> <p class="maodian"><a name="_label4" rel="nofollow"></a></p> <h2>四、解密</h2> <ul> <li>说明：解密流程与加密流程相反（按照加密流程逆序解密）</li> <li>流程：输入文本（str）→字符串编码（默认utf-8）（bytes）→base64解码（bytes）→rsa解密（bytes）→解码为字符串（str）</li> <li>代码：</li> </ul> <div class="ay1code"> <pre class="brush:py;">import base64  from Crypto.Cipher import PKCS1_v1_5  from Crypto import Random  from Crypto.PublicKey import RSA    def decryption(text_encrypted_base64: str, private_key: bytes):  	# 字符串指定编码（转为bytes）  	text_encrypted_base64 = text_encrypted_base64.encode('utf-8')  	# base64解码  	text_encrypted = base64.b64decode(text_encrypted_base64 )  	# 构建私钥对象  	cipher_private = PKCS1_v1_5.new(RSA.importKey(private_key))  	# 解密（bytes）  	text_decrypted = cipher_private.decrypt(text_encrypted , Random.new().read)  	# 解码为字符串  	text_decrypted = text_decrypted.decode()  	return text_decrypted   	  if __name__ == '__main__':  	# 生成密文  	public_key = read_public_key()  	text = '123456'  	text_encrypted_base64 = encryption(text, public_key)  	print('密文：',text_encrypted_base64)  	  	# 解密  	private_key = read_private_key()  	text_decrypted = decryption(text_encrypted_base64, private_key)  	print('明文：',text_decrypted)</pre> </div> <p class="maodian"><a name="_label5" rel="nofollow"></a></p> <h2>五、完整代码</h2> <div class="ay1code"> <pre class="brush:py;">import base64  from Crypto.Cipher import PKCS1_v1_5  from Crypto import Random  from Crypto.PublicKey import RSA  # ------------------------生成密钥对------------------------  def create_rsa_pair(is_save=False):      '''      创建rsa公钥私钥对      :param is_save: default:False      :return: public_key, private_key      '''      f = RSA.generate(2048)      private_key = f.exportKey("PEM")  # 生成私钥      public_key = f.publickey().exportKey()  # 生成公钥      if is_save:          with open("crypto_private_key.pem", "wb") as f:              f.write(private_key)          with open("crypto_public_key.pem", "wb") as f:              f.write(public_key)      return public_key, private_key    def read_public_key(file_path="crypto_public_key.pem") -&gt; bytes:      with open(file_path, "rb") as x:          b = x.read()          return b    def read_private_key(file_path="crypto_private_key.pem") -&gt; bytes:      with open(file_path, "rb") as x:          b = x.read()          return b  # ------------------------加密------------------------  def encryption(text: str, public_key: bytes):      # 字符串指定编码（转为bytes）      text = text.encode('utf-8')      # 构建公钥对象      cipher_public = PKCS1_v1_5.new(RSA.importKey(public_key))      # 加密（bytes）      text_encrypted = cipher_public.encrypt(text)      # base64编码，并转为字符串      text_encrypted_base64 = base64.b64encode(text_encrypted).decode()      return text_encrypted_base64    # ------------------------解密------------------------  def decryption(text_encrypted_base64: str, private_key: bytes):      # 字符串指定编码（转为bytes）      text_encrypted_base64 = text_encrypted_base64.encode('utf-8')      # base64解码      text_encrypted = base64.b64decode(text_encrypted_base64)      # 构建私钥对象      cipher_private = PKCS1_v1_5.new(RSA.importKey(private_key))      # 解密（bytes）      text_decrypted = cipher_private.decrypt(text_encrypted, Random.new().read)      # 解码为字符串      text_decrypted = text_decrypted.decode()      return text_decrypted    if __name__ == '__main__':      # 生成密钥对      # create_rsa_pair(is_save=True)      # public_key = read_public_key()      # private_key = read_private_key()      public_key, private_key = create_rsa_pair(is_save=False)        # 加密      text = '123456'      text_encrypted_base64 = encryption(text, public_key)      print('密文：', text_encrypted_base64)        # 解密      text_decrypted = decryption(text_encrypted_base64, private_key)      print('明文：', text_decrypted)</pre> </div> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220423/7e768834d830ca9bcbfff981d0293203.jpg"></p> <p class="maodian"><a name="_label6" rel="nofollow"></a></p> <h2>总结</h2> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-60820.htm">宠物粮食加工厂加盟条件要求高吗 宠物粮食加工厂加盟条件要求高吗知乎</a></p>
+                                        <p>下一个：<a href="/news/article-61406.htm">猫粮自制制作方法（猫粮的自制方法）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-42867.htm" title="SpringBoot AutoConfiguration">SpringBoot AutoConfiguration</a></li>
+                        <li class="py-2"><a href="/news/article-21418.htm" title="塞尔达海拉鲁神庙位置（塞尔达海拉鲁图鉴定位神庙）">塞尔达海拉鲁神庙位置（塞尔达海拉鲁图鉴定位神庙）</a></li>
+                        <li class="py-2"><a href="/news/article-57937.htm" title="弄个猫粮加工厂投资多少钱 宠物粮食加工厂好做吗">弄个猫粮加工厂投资多少钱 宠物粮食加工厂好做吗</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-node-share.htm" title="11月7日|SSR/Shadowrocket/Clash/V2ray每天更新18.9M/S免费节点订阅链接，付费节点订阅推荐">11月7日|SSR/Shadowrocket/Clash/V2ray每天更新18.9M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-23270.htm" title="宠物猫疫苗隔多久打一针（宠物猫疫苗间隔多久打一次）">宠物猫疫苗隔多久打一针（宠物猫疫苗间隔多久打一次）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-v2ray.htm" title="11月27日|SSR/Shadowrocket/V2ray/Clash每天更新20.5M/S免费节点订阅链接，付费节点订阅推荐">11月27日|SSR/Shadowrocket/V2ray/Clash每天更新20.5M/S免费节点订阅链接，付费节点订阅推荐</a></li>
+                        <li class="py-2"><a href="/news/article-26963.htm" title="动物防疫站***多少钱一针 动物防疫站***多少钱一针啊">动物防疫站***多少钱一针 动物防疫站***多少钱一针啊</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-free-v2ray-subscribe.htm" title="2月3日|Shadowrocket/V2ray/Clash/SSR每天更新22.1M/S免费节点订阅链接地址分享">2月3日|Shadowrocket/V2ray/Clash/SSR每天更新22.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-26019.htm" title="卖宠物粮的上市公司（卖宠物粮的上市公司名单）">卖宠物粮的上市公司（卖宠物粮的上市公司名单）</a></li>
+                        <li class="py-2"><a href="/news/article-27433.htm" title="动物疫苗的管理方法包括 动物疫苗的管理方法包括哪些">动物疫苗的管理方法包括 动物疫苗的管理方法包括哪些</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
