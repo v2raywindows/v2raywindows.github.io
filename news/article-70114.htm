@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-70114.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>解决Redis并发带来的雪崩，击穿和穿透问题，以及搭建一个Redis伪集群</title>
+        <meta name="description" content="Redis集群的分类： 1.主从架构（主服务器负责写，从服务器负责读）。 2.哨兵架构（哨兵服务器负责监控主服务器的状态，主服务器如果宕机，将从服务器提升为主）。  &nbsp; 3.集群架构（并发能" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-70114.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="解决Redis并发带来的雪崩，击穿和穿透问题，以及搭建一个Redis伪集群" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/f55f1e852f84c5284d90ddecf4a72a55.webp" />
+        <meta property="og:release_date" content="2025-03-09T09:44:11" />
+    <meta property="og:updated_time" content="2025-03-09T09:44:11" />
+        <meta property="og:description" content="Redis集群的分类： 1.主从架构（主服务器负责写，从服务器负责读）。 2.哨兵架构（哨兵服务器负责监控主服务器的状态，主服务器如果宕机，将从服务器提升为主）。  &nbsp; 3.集群架构（并发能" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="解决Redis并发带来的雪崩，击穿和穿透问题，以及搭建一个Redis伪集群">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>解决Redis并发带来的雪崩，击穿和穿透问题，以及搭建一个Redis伪集群</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p><img fetchpriority="high" decoding="async" alt="" height="560" src="http://img.555519.xyz/uploads/20221230/97ef5ad431181b8be7a27969cf0878e1.jpg"></p> </h1> <p>Redis集群的分类：</p> <p>1.主从架构（主服务器负责写，从服务器负责读）。</p> <p>2.哨兵架构（哨兵服务器负责监控主服务器的状态，主服务器如果宕机，将从服务器提升为主）。</p> <p><img decoding="async" alt="" height="509" src="http://img.555519.xyz/uploads/20221230/adb215df9b7b9334a5310adec5413f9a.jpg"></p> <p>&nbsp;</p> <p>3.集群架构（并发能力，可用性高于哨兵架构），</p> <p>一个redis集群包含16384个插槽（hash slot），数据库中的每个键都属于这16384个插槽的其中一个。</p> <p>集群使用公式：将数据的key进行hash运算，获得保存数据的位置，该位置可能是集群中任意一台服务器。</p> <p><img decoding="async" alt="" height="543" src="http://img.555519.xyz/uploads/20221230/c5e88a9c24ddb40500736b4f499c2684.jpg"></p> <h2>&nbsp;搭建Redis伪集群的步骤</h2> <p>真正的集群：每个Redis安装到不同服务器上。</p> <p>伪集群：在一台机器上安装多个Redis实例。</p> <p>至少需要多少服务器：</p> <p>master的选举需要半数以上服务器投票支持，最少需要三台服务器，每台服务器需要有一个备份，最少需要六台服务器。</p> <pre><code class="language-html">1）新建redis-cluster目录,新建redis01~redis06六个子目录 cd /usr/local mkdir redis-cluster cd redis-cluster mkdir redis01  .... 2）复制redis/src和redis.conf到redis01~redis06目录中 cd redis cp -r src/* /usr/local/redis-cluster/redis01 cp reids.conf /usr/local/redis-cluster/redis01 .... 3）修改redis.conf daemonize yes cluster-enabled yes port 7001~~~~7006  4）在redis-cluster中创建启动脚本vi start.sh cd redis01 ./redis-server redis.conf cd .. cd redis02 ./redis-server redis.conf cd .. cd redis03 ./redis-server redis.conf cd .. cd redis04 ./redis-server redis.conf cd .. cd redis05 ./redis-server redis.conf cd .. cd redis06 ./redis-server redis.conf cd .. 5）启动redis实例 chmod +x start.sh ./start.sh 6）创建集群 /usr/local/redis/src/redis-cli --cluster create 192.168.52.3:7001 192.168.52.3:7002 192.168.52.3:7003 192.168.52.3:7004 192.168.52.3:7005 192.168.52.3:7006 --cluster-replicas 1 7）访问集群 /usr/local/redis/src/redis-cli -h 192.168.223.223 -c -p 7001</code></pre> </h1> <p>布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都比一般的算法要好的多，缺点是有一定的误识别率和删除困难。</p> <p>特点：判断存在的数据不一定存在，判断不存在的数据一定不存在。</p> <p>&nbsp;</p> <p><img loading="lazy" decoding="async" alt="" height="618" src="http://img.555519.xyz/uploads/20221230/5481133c5d06dedddbfc10f4c7e0bc31.jpg"></p> <p>&nbsp;</p> <p>Redis本身就支持布隆过滤器的实现</p> <p>Redission工具库，提供了基于Redis实现分布式工具，如：分布式锁、布隆过滤器、分布式原子类等。</p> <p>添加依赖：</p> <pre><code class="language-java">        &lt;dependency&gt;             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;             &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;         &lt;/dependency&gt;          &lt;!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter --&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.redisson&lt;/groupId&gt;             &lt;artifactId&gt;redisson-spring-boot-starter&lt;/artifactId&gt;             &lt;version&gt;3.17.0&lt;/version&gt;         &lt;/dependency&gt;</code></pre> <p>配置类</p> <pre><code class="language-java">@Configuration public class RedissonConfig {      @Bean     public RedissonClient redissonClient(){         Config config = new Config();         config.setTransportMode(TransportMode.NIO);         SingleServerConfig singleServerConfig = config.useSingleServer();         //可以用"rediss://"来启用SSL连接         singleServerConfig.setAddress("redis://127.0.0.1:6379"); //        singleServerConfig.setPassword("123456");         RedissonClient redisson = Redisson.create(config);          return redisson;     } }</code></pre> <p>测试类</p> <pre><code class="language-java">@SpringBootTest class RedisdemoApplicationTests {      @Autowired     private RedissonClient client;      @Test     void contextLoads() {         //创建布隆过滤器         RBloomFilter&lt;String&gt; bloom = client.getBloomFilter("bloom-filter");         //初始化，参数1 序列长度  识别误差率         bloom.tryInit(10000000L,0.03);         //添加数据到过滤器         bloom.add("hello");         bloom.add("world");         bloom.add("app");         //判断过滤器中是否存在该值         System.out.println(bloom.contains("hello"));         System.out.println(bloom.contains("world"));         System.out.println(bloom.contains("java"));     }  }</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69464.htm">有没有24小时营业的宠物店（这附近哪里有24小时宠物店）</a></p>
+                                        <p>下一个：<a href="/news/article-70115.htm">宠物粮食的品牌形象 宠物粮食的品牌形象是什么</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-56798.htm" title="Spring Boot的依赖配置文件的解析">Spring Boot的依赖配置文件的解析</a></li>
+                        <li class="py-2"><a href="/news/article-45846.htm" title="JavaWeb项目基于SpringBoot框架实现统一的数据返回格式 + 统一异常处理 + 统一日志处理">JavaWeb项目基于SpringBoot框架实现统一的数据返回格式 + 统一异常处理 + 统一日志处理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-26-free-v2ray.htm" title="2月26日|V2ray/Clash/Shadowrocket/SSR每天更新22.8M/S免费节点订阅链接地址分享">2月26日|V2ray/Clash/Shadowrocket/SSR每天更新22.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-v2ray.htm" title="1月21日|Shadowrocket/Clash/V2ray/SSR每天更新22.2M/S免费节点订阅链接地址分享">1月21日|Shadowrocket/Clash/V2ray/SSR每天更新22.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-61405.htm" title="利用Python实现RSA加密解密方法实例_python">利用Python实现RSA加密解密方法实例_python</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-v2ray-subscribe.htm" title="1月26日|SSR/Shadowrocket/Clash/V2ray每天更新23M/S免费节点订阅链接地址分享">1月26日|SSR/Shadowrocket/Clash/V2ray每天更新23M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-39885.htm" title="springboot 定义统一返回结果">springboot 定义统一返回结果</a></li>
+                        <li class="py-2"><a href="/news/article-36923.htm" title="新疆和田宠物店地址 新疆和田宠物店地址查询">新疆和田宠物店地址 新疆和田宠物店地址查询</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-free-node-subscribe.htm" title="3月4日|V2ray/Shadowrocket/SSR/Clash每天更新19.2M/S免费节点订阅链接地址分享">3月4日|V2ray/Shadowrocket/SSR/Clash每天更新19.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-62000.htm" title="Clickhouse 用户自定义外部函数">Clickhouse 用户自定义外部函数</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
