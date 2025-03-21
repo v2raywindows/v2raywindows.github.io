@@ -105,6 +105,7 @@
                   				  				  				<h2 id="1mysql中的索引">1、MySQL中的索引</h2> <p>在MySQL，索引是由B+树实现的，B+是一种与B树十分类似的数据结构。</p> <p>形如下面这种：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/9949762136bbe02852281493bc0939fa.jpg" alt="数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库"></p> <p><strong>其结构特点</strong>：</p> <p>（1）有n课子树的结点中含有n个关键码。</p> <p>（2）非根节点子节点数：<strong>ceil(m/2)&lt;= k &lt;= m</strong>（ceil是天花板函数的意思，也就是向上取整，比如<strong>ceil(1.2)=2</strong> ），m为该B+树的阶数。根节点最少有两个子节点，最多同样为m个。</p> <p>（2）叶子节点包含了全部关键码的信息，及指向含有这些关键码记录的指针。并且叶子节点根据关键码的大小自小至大的顺序链接，叶子节点有相邻结点的指针。</p> <p>（3）所有的非叶子节点（B+树中也称内部结点，索引节点）可以看成索引部分，都不存储数据，只存储索引，结点中仅含有其子树根节点中最大（或者最小）的关键码，数据都存储在叶子节点中。</p> <blockquote> <p><strong>问题：为什么索引不适用B树而是B+树实现？</strong></p> </blockquote> <p>B+树比B树的优点：</p> <ul> <li> <p><strong>IO次数少</strong>：B+树的中间节点只存放索引，数据都存在叶子节点中，所以结点中存取的数据更多，使得B+树更加矮胖，因此可以减少I/O次数。（这里IO指的是磁盘I/O，每一次查询，需要把某结点读到内存，然后把目标数和结点中的比较，不一样则继续I/O）</p> </li> <li> <p><strong>范围查询效率更高</strong>：B树需要中序遍历整个树，B+树只需要遍历叶子结点中的链表。</p> </li> <li> <p><strong>查询效率更加稳定</strong>：B树查询某个数据最好情况只需到根节点，而最坏情况需要遍历整个二叉树。</p> <p>B+树每次查询都需要从根节点到叶子结点，路径长度相同，每次查询效率接近。</p> </li> </ul> <blockquote> <p><strong>问题：为什么不采用效率更高的哈希查找？</strong></p> </blockquote> <p>采用B+树索引与哈希索引的比较：</p> <p>哈希索引能以 O(1) 时间进行查找，但是只支持精确查找，无法用于部分查找和范围查找，无法用于排序与分组。B+树索引支持大于小于等于查找，范围查找。哈希索引遇到大量哈希值相等的情况后查找效率会降低。哈希索引不支持数据的排序。</p> <h2 id="2mysql的两种数据库引擎">2、MySQL的两种数据库引擎</h2> <p>（1）<strong>InnoDB（in-no-db）</strong></p> <ul> <li>支持事务，可以进行Commit和Rollback。</li> <li>支持表级锁和行级锁，增强了并发性。</li> <li>支持外键。</li> <li>支持在线热备份。</li> </ul> <p>（2）<strong>MyISAM（mai-ai-zem）</strong></p> <ul> <li>不支持事务</li> <li>只支持表级锁，不支持行级锁</li> <li>不支持外键</li> <li>MyISAM 崩溃后发生损坏的概率比 InnoDB 高很多，而且恢复的速度也更慢MyISAM 支持压缩表和空间数据索引，比InnoDB需要的内存和存储更少MyISAM 管理非事务表。</li> </ul> <p>它提供高速存储和检索（MyISAM强调的是性能，每次查询具有原子性，其执行速度比InnoDB更快），以及全文搜索能力。如果表比较小，或者是只读数据（有大量的SELECT），还是可以使用MyISAM。InnoDB 支持事务，并发情况下有很好的性能，基本可以替代MyISAM。</p> <blockquote> <p><strong>热备份和冷备份</strong></p> </blockquote> <p><strong>热备份</strong>：在数据库运行的情况下备份的方法。</p> <p>优点：可按表或用户备份，备份时数据库仍可使用，可恢复至任一时间点。但是不能出错。</p> <p><strong>冷备份</strong>：数据库正常关闭后，将关键性文件复制到另一位置的备份方式。</p> <p>优点：操作简单快速，恢复简单。</p> <h2 id="3主从复制">3、主从复制</h2> <p>主从复制（Replication）是指数据可以从一个MySQL数据库主服务器复制到一个或多个从服务器，从服务器可以复制主服务器中的所有数据库或者特定的数据库，或者特定的表。默认采用异步模式。</p> <p>实现原理：</p> <ul> <li>主服务器 binary log dump 线程：将主服务器中的数据更改（增删改）日志写入 Binary log 中。</li> <li>从服务器 I/O 线程：负责从主服务器读取binary log，并写入本地的 Relay log。</li> <li>从服务器 SQL 线程：负责读取 Relay log，解析出主服务器已经执行的数据更改，并在从服务器中重新执行（Replay），保证主从数据的一致性。</li> </ul> <h2 id="4关系型数据库和非关系型数据库">4、关系型数据库和非关系型数据库</h2> <p><strong>关系型数据库（如Oracle，MySQL）</strong>：<br /> 表和表、表和字段、数据和数据存在着关系，它通过数据、关系和对数据的约束三者组成的数据模型来存放和管理数据。<br /><strong>优点</strong>:</p> <ul> <li>数据之间存在关系，进行数据的增删改查的时候较为方便。</li> <li>关系型数据库是有事务操作的，便于保证数据的完整性和一致性。</li> <li>可以通用SQL语言，便于操作者学习使用。</li> </ul> <p><strong>缺点</strong>：</p> <ul> <li>因为数据和数据是有关系的，底层会运行相关的算法，大量算法会降低系统的效率，会降低性能。</li> <li>面对海量数据的增删改查和维护的时候会显的无能为力。</li> <li>因为是固定的表结构类型，所以灵活度较低。</li> </ul> <p><strong>非关系数据库（如redis和MangDB）</strong><br /> 非关系型数据库严格上不是一种数据库，而是一种数据结构化存储方法的集合，可以是文档或者键值对等。<br /> 为了处理大量数据，非关系数据库设计之初就是为了去替代关系型数据库。<br /><strong>优点</strong>：</p> <ul> <li>存储格式较为灵活，存储数据的格式可以是key-value，文档，图片形式等等，应用成精更加的广泛。</li> <li>速度更快，不仅支持硬盘这样的载体，还支持另外的存储器来存储数据，如Redis就支持内存来存储数据。</li> <li>能支持对大量数据的查找和读写。</li> </ul> <p><strong>缺点</strong>：</p> <ul> <li>不支持SQL语言的通用，需要单独去学习其操作使用。</li> <li>非关系数据库一般没有事务处理，较难保证数据的完整性和安全性。</li> <li>数据结构较复杂，如果要进行复杂的查询会加大难度。</li> </ul> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-76110.htm">如何加快循环操作和Numpy数组运算速度！</a></p>
+                                        <p>下一个：<a href="/news/article-76773.htm">k8s client-go源码分析 informer源码概要分析</a></p>
                                     </div>
                                     </div>
                     <div class="col-md-3">
@@ -114,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-3-7-free-v2ray-subscribe.htm" title="3月7日|V2ray/Clash/Shadowrocket/SSR每天更新21.5M/S免费节点订阅链接地址分享">3月7日|V2ray/Clash/Shadowrocket/SSR每天更新21.5M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-47303.htm" title="动物疫苗新规定有哪些种类的 动物疫苗新规定有哪些种类的疫苗">动物疫苗新规定有哪些种类的 动物疫苗新规定有哪些种类的疫苗</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-v2ray-subscribe.htm" title="1月27日|Clash/V2ray/SSR/Shadowrocket每天更新22.7M/S免费节点订阅链接地址分享">1月27日|Clash/V2ray/SSR/Shadowrocket每天更新22.7M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-46829.htm" title="三国杀所有技能详解（三国杀里面的技能是什么）">三国杀所有技能详解（三国杀里面的技能是什么）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-23-free-node-subscribe.htm" title="1月23日|Shadowrocket/V2ray/Clash/SSR每天更新19.9M/S免费节点订阅链接地址分享">1月23日|Shadowrocket/V2ray/Clash/SSR每天更新19.9M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-44346.htm" title="synchronized有几种用法？">synchronized有几种用法？</a></li>
-                        <li class="py-2"><a href="/news/article-44842.htm" title="右值引用，移动语义，完美转发">右值引用，移动语义，完美转发</a></li>
-                        <li class="py-2"><a href="/news/article-76111.htm" title="数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库">数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-13-free-v2ray-subscribe.htm" title="2月13日|Shadowrocket/V2ray/Clash/SSR每天更新19.1M/S免费节点订阅链接地址分享">2月13日|Shadowrocket/V2ray/Clash/SSR每天更新19.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-53485.htm" title="Java中equals和==的区别，equals和hashcode的区别">Java中equals和==的区别，equals和hashcode的区别</a></li>
+                        <li class="py-2"><a href="/news/article-68815.htm" title="三国杀换武将的武将（三国杀武将转换技）">三国杀换武将的武将（三国杀武将转换技）</a></li>
+                        <li class="py-2"><a href="/news/article-45847.htm" title="三国杀武将展示图高清（三国杀全部武将高清图片群）">三国杀武将展示图高清（三国杀全部武将高清图片群）</a></li>
+                        <li class="py-2"><a href="/news/article-60820.htm" title="宠物粮食加工厂加盟条件要求高吗 宠物粮食加工厂加盟条件要求高吗知乎">宠物粮食加工厂加盟条件要求高吗 宠物粮食加工厂加盟条件要求高吗知乎</a></li>
+                        <li class="py-2"><a href="/news/article-46330.htm" title="动物医院资质级别有哪些类型的（动物医院资质级别有哪些类型的证书）">动物医院资质级别有哪些类型的（动物医院资质级别有哪些类型的证书）</a></li>
+                        <li class="py-2"><a href="/news/article-59659.htm" title="深圳宠物领养中心有哪些（深圳市领养宠物中心）">深圳宠物领养中心有哪些（深圳市领养宠物中心）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-free-node-subscribe.htm" title="2月28日|V2ray/SSR/Clash/Shadowrocket每天更新19.2M/S免费节点订阅链接地址分享">2月28日|V2ray/SSR/Clash/Shadowrocket每天更新19.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-75414.htm" title="Tensorflow中张量（Tensor）打印信息中shape字段的理解方式">Tensorflow中张量（Tensor）打印信息中shape字段的理解方式</a></li>
                         <li class="py-2"><a href="/news/article-65033.htm" title="领养宠物的软件有哪些 领养宠物的软件有哪些免费">领养宠物的软件有哪些 领养宠物的软件有哪些免费</a></li>
+                        <li class="py-2"><a href="/news/article-63810.htm" title="vue实现简单评论功能">vue实现简单评论功能</a></li>
                     </ul>
     </div>
 </div>
@@ -135,7 +136,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
