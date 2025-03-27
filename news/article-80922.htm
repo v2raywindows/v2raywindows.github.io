@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-80922.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>如何保证数据库与redis缓存数据一致性</title>
+        <meta name="description" content="既然要解决这个问题，那么首先要大概了解为啥会出现数据不一致呢？根本原因是我们无法将数据库更新操作与缓存更新操作放在同一个事务内同步成功，同步失败！ 一、常见操作及问题 1.1、先更新数据库，后更新缓存" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-80922.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="如何保证数据库与redis缓存数据一致性" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/959f54813c097f8283a731cf131590e0.webp" />
+        <meta property="og:release_date" content="2025-03-25T08:17:21" />
+    <meta property="og:updated_time" content="2025-03-25T08:17:21" />
+        <meta property="og:description" content="既然要解决这个问题，那么首先要大概了解为啥会出现数据不一致呢？根本原因是我们无法将数据库更新操作与缓存更新操作放在同一个事务内同步成功，同步失败！ 一、常见操作及问题 1.1、先更新数据库，后更新缓存" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="如何保证数据库与redis缓存数据一致性">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>如何保证数据库与redis缓存数据一致性</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>既然要解决这个问题，那么首先要大概了解为啥会出现数据不一致呢？根本原因是我们无法将数据库更新操作与缓存更新操作放在同一个事务内同步成功，同步失败！</p> <h2>一、常见操作及问题</h2> <h3><strong>1.1、先更新数据库，后更新缓存</strong></h3> <p><img fetchpriority="high" decoding="async" alt="" height="401" src="http://img.555519.xyz/uploads3/20220829/a014dd01c687ac6d6cc635c45c59cae1.jpg"></p> <p>问题：假如有两个请求，请求1先更新数据库，将库存更新为1，这时CPU切换给了请求2，请求2将库存更新为2并且将库存更新为了2，这时CPU又切换到了请求1，这时将库存更新为1，这样最终数据库中库存数量是2，而缓存中库存数量却为1，导致了两者不一致，因此这种操作是无法保证两者一致的。</p> <h3><strong>1.2、先更新缓存后更新数据库</strong></h3> <p><img decoding="async" alt="" height="449" src="http://img.555519.xyz/uploads3/20220829/87826fb8d6bf3be077789ded163fc149.jpg"></p> <p>问题：假如有两个请求，请求1先更新缓存为1，然后这时CPU切换到请求2上了，更新缓存为2，更新数据库库存也为2，然后CPU又切换到了请求1上，这时请求1更新数据库库存为1，最终缓存中库存为2，数据库中库存为1。两者数据不一致。</p> <h3><strong>1.3、先删除缓存，后更新数据库</strong></h3> <p><img decoding="async" alt="" height="537" src="http://img.555519.xyz/uploads3/20220829/2abb66e0c2f466ea2d13e7659120176a.jpg"></p> <p>问题：假如请求1先删除缓存，这时CPU切换到请求2，请求2从缓存中读取查询库存，发现缓存中不存在，那么就会去读取数据库中的库存，数据库中当前库存是1，那么就会把1加载到缓存中。然后CPU切换到了请求1上，它去更新数据库将库存更新为2，这样最后缓存中值是1，数据库中值是2，两者不一致。</p> <h3><strong>1.4、先更新数据库，后删除缓存</strong></h3> <p><img loading="lazy" decoding="async" alt="" height="467" src="http://img.555519.xyz/uploads3/20220829/f7f835d444811592f87f4303a1811427.jpg"></p> <p>&nbsp;问题：假如有3个请求，请求1先更新数据库库存为1，随后就删掉了缓存。CPU切换到请求3，请求3查询数据库，发现数据库中数据不存在，因此就读取数据库中的库存，值为1。这时CPU又切给了请求2，请求2先更新数据库库存为2，随后就再次尝试删除缓存（这时缓存中没值）。这时CPU又切给了请求3，请求3把刚才从数据库中查询出来的库存1加载到缓存中。这就又导致了最终缓存与数据库中的数据不一致。虽然先更新数据库然后删除缓存依然有问题，但相比于上面3个出现的概率会比较小（一般数据库更新操作要比查询数据库并填充到缓存的时间要长，不过当查询数据库即将要向缓存中填充的时候出现ygc的话就可能发生不一致的情况）</p> <h2>二、方案进阶</h2> <h3>2.1、延迟双删</h3> <p><img loading="lazy" decoding="async" alt="" height="428" src="http://img.555519.xyz/uploads3/20220829/b14378155e52c42ddd1b74a3a1e9463e.jpg"></p> <p>&nbsp;问题：线程1先删除缓存，然后更新数据库中库存为2（原来是1），然后再次删除缓存，接着CPU切到线程2，线程2从从库中查询库存还是老数据1，然后将库存1加载到缓存。接着CPU切换到线程3，线程3将主库库存2同步到从库上，这样最终数据库中库存是2，而缓存中库存为1，两者不一致。<span style="color:#fe2c24;">延迟双删之所以难以解决数据一致性问题，主要在于我们无法确定延迟多久来第二次删除缓存，当我们遇到数据库主从延迟的时候，很难估计一个合理的时间出来。</span></p> <h3>2.2、redis读写锁</h3> <p><strong>2.2.1&nbsp; 读多写少</strong></p> <pre><code class="language-java">public void testUpdate(String lockKey) {     //先获取读写锁     RReadWriteLock readWriteLock = redissonClient.getReadWriteLock(lockKey);     //加一把写锁     RLock lock = readWriteLock.writeLock();     try {     	//考虑到可能瞬时有非常多的读请求并有部分写请求，这里加上写锁会与读操作互斥，这样会导致读操作都排队等候，     	//为防止积压太多请求，这里尝试获取锁只等待1秒钟，如果1秒钟之内能获取到锁，那么返回true，     	//如果1秒钟之内无法获取锁，那么返回false，这样我们就可以把积压的读写请求限制在了可控的范围内，那么拿不到     	//锁的请求都直接响应给请求端网络繁忙请稍后重试的提示了。 		if (lock.tryLock(1, TimeUnit.SECONDS)) { 			try{ 			   //更新数据库 			} catch(Exception ex){ 			          			} finally{ 			   //当获取锁成功时最后一定要记住finally去关闭锁 			   lock.unlock();   //释放锁 			}  		} else { 			//没有加到锁，直接给请求端响应即可，不需要释放锁 			throw new RuntimeException("网络繁忙，请稍后重试！"); 		} 	} catch (InterruptedException e) { 		e.printStackTrace(); 		throw new RuntimeException("加锁出现异常"); 	}    }        public void testQuery(String lockKey) {     //先获取读写锁     RReadWriteLock readWriteLock = redissonClient.getReadWriteLock(lockKey);     //加一把读锁     RLock lock = readWriteLock.readLock();     try {     	//考虑到可能瞬时有非常多的读请求，如果这时没有对当前商品加写锁的操作，那么读操作是不互斥的，可以并发查询，这样可以保证     	//绝大多数场景下可以支持比较高的并发。如果当前商品有写锁，那么读请求需要排队等候获取锁，如果1秒钟之内无法获取锁，那么     	//返回false，这样我们就可以把积压的读写请求限制在了可控的范围内，那么拿不到锁的请求都直接响应给请求端网络繁忙请稍后重试的提示了。 		if (lock.tryLock(1, TimeUnit.SECONDS)) { 			try{ 			   //先从缓存中查询库存，如果缓存中没有则从数据库中查询库存并把查到的结果放到缓存当中 			} catch(Exception ex){ 			          			} finally{ 			   //当获取锁成功时最后一定要记住finally去关闭锁 			   lock.unlock();   //释放锁 			}  		} else { 			//没有加到锁，直接给请求端响应即可，不需要释放锁 			throw new RuntimeException("网络繁忙，请稍后重试！"); 		} 	} catch (InterruptedException e) { 		e.printStackTrace(); 		throw new RuntimeException("加锁出现异常"); 	}    }</code></pre> <p>&nbsp;说明：对于一般中小企业，量级不算太大的话，可以采用上面说的方法来解决缓存与数据库一致性问题。因为绝大多数情况下都是读，因此效率还是很高的。</p> <p><strong>2.2.2 读多写也多</strong></p> <p>假如我们应对像秒杀这样的场景的话，显然库存的变更是非常多的而且并发非常高，每秒可能有几十万甚至上百万请求，这种情况下，更新数据库接着操作缓存的这种方式显然就非常不合适了，因为数据库压根没有办法支撑瞬间几十万的并发，因此秒杀场景下（写多读也多）我们扣减库存其实操作的是缓存，然后异步通过RocktMq的方式发给我们的服务器，消费者以可接受的速度消费订单扣减库存。秒杀是一个非常大的课题，牵扯的内容很多，感兴趣的可以学习相关内容。</p> <h3>2.3、<strong>异步监听binlog删除 + 重试</strong></h3> <p><img loading="lazy" decoding="async" alt="" height="464" src="http://img.555519.xyz/uploads3/20220829/a90367f750281649573444b336316068.jpg"></p> <p>存在的问题：<br /> 1）脏数据时间窗口“较大”</p> <p>这个脏数据时间窗口较大，是相对同步删除来说。在你收到binlog之前，他中间要经过：binlog从主库同步到从库、binlog从库到binlog监听组件、binlog从监听组件发送到MQ、消费MQ消息，这些操作每个都是有一定的耗时的，可能是几十毫秒甚至几百毫秒，所以说它其实整体是有一个脏数据的时间窗口。</p> <p>而同步删除是在更新完数据库后马上删除，时间窗口大概也就是1毫秒左右，所以说binlog的方式相对于同步删除，可能存在的脏数据窗口会稍微大一点。</p> <p>2）极端场景下存在长期脏数据问题</p> <p>binlog抓取组件宕机导致脏数据。该方案强依赖于监听binlog的组件，如果监听binlog组件出现宕机，则会导致大量脏数据。</p> <p>拆库拆表流程中可能存在并发脏数据</p> <p>拆库拆表流程中并发脏数据问题</p> <p>我们来看下面这个例子：</p> <p>表A正在进行数据库拆分，当前进行到灰度切读流量阶段：部分读新库，部分读老库</p> <p>数据库拆分大致流程：增量数据同步（双写）、全量数据迁移、数据一致性校验、灰度切读、切读完毕后停写老库。</p> <p>此时表A存在数据 a=1，并发情况下可能有以下流程</p> <p><img loading="lazy" decoding="async" alt="" height="303" src="http://img.555519.xyz/uploads3/20220829/960177083707482a9ebc8aba57279def.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-80189.htm">中国宠物用品生产基地有哪些（中国宠物用品出口基地）</a></p>
+                                        <p>下一个：<a href="/news/article-80923.htm">益康动物医院怎么样（益康宠物医院电话号码）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-47800.htm" title="关于Windows系列密码抓取">关于Windows系列密码抓取</a></li>
+                        <li class="py-2"><a href="/news/article-48255.htm" title="宠物粮食生产厂家有哪些品牌 宠物粮食生产厂家有哪些品牌的">宠物粮食生产厂家有哪些品牌 宠物粮食生产厂家有哪些品牌的</a></li>
+                        <li class="py-2"><a href="/news/article-45338.htm" title="mysql创建表分区详细介绍及示例">mysql创建表分区详细介绍及示例</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-10-free-node-subscribe.htm" title="2月10日|Shadowrocket/Clash/V2ray/SSR每天更新19.7M/S免费节点订阅链接地址分享">2月10日|Shadowrocket/Clash/V2ray/SSR每天更新19.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-49292.htm" title="动物医院牌匾设计图片（动物医院名片设计）">动物医院牌匾设计图片（动物医院名片设计）</a></li>
+                        <li class="py-2"><a href="/news/article-68170.htm" title="海拉鲁原型城市（海拉鲁人）">海拉鲁原型城市（海拉鲁人）</a></li>
+                        <li class="py-2"><a href="/news/article-36452.htm" title="狗狗打疫苗需要多少钱（狗狗打疫苗多少钱一针 有手续吗）">狗狗打疫苗需要多少钱（狗狗打疫苗多少钱一针 有手续吗）</a></li>
+                        <li class="py-2"><a href="/news/article-41863.htm" title="猫咪三针疫苗多少钱一只啊（猫咪三针疫苗大概多少钱）">猫咪三针疫苗多少钱一只啊（猫咪三针疫苗大概多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-free-high-speed-nodes.htm" title="3月3日|Shadowrocket/SSR/V2ray/Clash每天更新21.3M/S免费节点订阅链接地址分享">3月3日|Shadowrocket/SSR/V2ray/Clash每天更新21.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-high-speed-nodes.htm" title="3月15日|Clash/SSR/V2ray/Shadowrocket每天更新18.7M/S免费节点订阅链接地址分享">3月15日|Clash/SSR/V2ray/Shadowrocket每天更新18.7M/S免费节点订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">80</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
