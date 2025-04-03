@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-85869.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>在Centos7上安装Redis6_在线工具</title>
+        <meta name="description" content="Redis是一个非常流行的NOSQL数据库，拥有的数据类型非常丰富，此处我们简单记录一下在Centos7上是如何安装Redis6的。Redis的安装是推荐使用源码进行安装的。  1、安装gcc依赖  " />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-85869.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="在Centos7上安装Redis6_在线工具" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/0f31148a3caa2b44ee462103a9e32d70.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:46:47" />
+    <meta property="og:updated_time" content="2025-04-01T09:46:47" />
+        <meta property="og:description" content="Redis是一个非常流行的NOSQL数据库，拥有的数据类型非常丰富，此处我们简单记录一下在Centos7上是如何安装Redis6的。Redis的安装是推荐使用源码进行安装的。  1、安装gcc依赖  " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="在Centos7上安装Redis6_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>在Centos7上安装Redis6_在线工具</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <p><code>Redis</code>是一个非常流行的NOSQL数据库，拥有的数据类型非常丰富，此处我们简单记录一下在<code>Centos7</code>上是如何安装<code>Redis6</code>的。Redis的安装是推荐使用源码进行安装的。</p> </h1> <h2 id="1安装gcc依赖">1、安装gcc依赖</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/d43fa77edbc5ee762502994063d5f1e9.jpg" alt="在Centos7上安装Redis6_在线工具"></p> <h2 id="2下载redis6">2、下载redis6</h2> <pre><code class="language-bash">wget https://download.redis.io/releases/redis-6.2.6.tar.gz </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/b14ba5e99db7cd1bb57c7b08b7f48911.jpg" alt="在Centos7上安装Redis6_在线工具"></p> <h2 id="3解压编译">3、解压编译</h2> <pre><code class="language-bash"># 解压 tar -zxvf redis-6.2.6.tar.gz # 进入解压后的目录 cd redis-6.2.6 # 执行编译，如果make出错，可以看下方 可能出现的错误 的这个标题 make </code></pre> <h2 id="4安装">4、安装</h2> <h3 id="1安装到默认的位置">1、安装到默认的位置</h3> <pre><code class="language-bash">make install </code></pre> <h3 id="2安装redis到指定的位置">2、安装redis到指定的位置</h3> <pre><code class="language-bash">make PREFIX=具体的路径 install </code></pre> <p><strong>此处我们安装到默认的路径下。</strong></p> <h2 id="5启动redis">5、启动redis</h2> <h2 id="1前台启动">1、前台启动</h2> <pre><code class="language-bash">redis-server </code></pre> <h2 id="2后台启动">2、后台启动</h2> <p><code>vim redis.conf</code>，这个文件默认在<code>redis-6.2.6/redis.conf</code><br /> 修改</p> <pre><code class="language-bash">daemonize yes </code></pre> <p>启动</p> <pre><code class="language-bash">redis-server redis.conf </code></pre> <h2 id="6防火墙放行6379端口">6、防火墙放行6379端口</h2> <pre><code class="language-bash">[root@centos01 redis-6.2.6]# firewall-cmd --zone=public --add-port=6379/tcp --permanent success [root@centos01 redis-6.2.6]# firewall-cmd --reload success </code></pre> <h2 id="7连接到redis">7、连接到redis</h2> <pre><code class="language-bash">[appuser@centos01 ~]$ redis-cli -h 127.0.0.1 -p 6379 127.0.0.1:6379&gt; </code></pre> </h1> <table> <thead> <tr> <th>配置项</th> <th>值</th> <th>解释</th> </tr> </thead> <tbody> <tr> <td>port</td> <td>6379</td> <td>客户端通讯端口,redis服务器启动的端口</td> </tr> <tr> <td>daemonize</td> <td>yes</td> <td>以后台的方式运行</td> </tr> <tr> <td>bind</td> <td>192.168.56.101</td> <td>redis服务启动时绑定的ip地址,是本地网卡的地址</td> </tr> <tr> <td>pidfile</td> <td>/var/run/redis_6379.pid</td> <td>当是以后台方式运行时，会产生一个pid文件</td> </tr> <tr> <td>logfile</td> <td>/var/log/redis_6379.log</td> <td>指定日志文件的路径</td> </tr> <tr> <td>dir</td> <td>./</td> <td>数据库的持久化文件保存的路径，必须是目录</td> </tr> <tr> <td>appendonly</td> <td>yes</td> <td>打开aof持久化</td> </tr> <tr> <td>appendfsync</td> <td>everysec</td> <td>aof每秒写入一次</td> </tr> <tr> <td>appendfilename</td> <td>appendonly.aof</td> <td>aof文件名</td> </tr> <tr> <td>requirepass</td> <td>123456</td> <td>设置一个redis的密码，可以设置的复杂一些</td> </tr> <tr> <td>maxclients</td> <td>10000</td> <td>设置最大可以有多少个连接连接到redis server</td> </tr> <tr> <td>maxmemory</td> <td>2GB</td> <td>设置redis最多可用的内存</td> </tr> </tbody> </table> </h1> <h2 id="1zmalloch5031-致命错误jemallocjemalloch没有那个文件或目录">1、zmalloc.h:50:31: 致命错误：jemalloc/jemalloc.h：没有那个文件或目录</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/8fd4f9fb1d18e7863a35e6800cf21962.jpg" alt="在Centos7上安装Redis6_在线工具"><br /> 经过百度，可知通过<code>make MALLOC=libc</code>命令解决。</p> <h2 id="2如果出现了connection-refused">2、如果出现了Connection refused</h2> <p>1、检查redis端口是否放行<br /> 2、检查redis.conf 中bind的值，默认只能通过127.0.0.1来访问。<br /> 学习测试可以配置成 <code>bind 0.0.0.0</code>，生产环境不可以。</p> <h2 id="3如果rdb保存失败时">3、如果rdb保存失败时</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/f730df0ff3921752da6748f1b5af3618.jpg" alt="在Centos7上安装Redis6_在线工具"><br /> 如果出现了如上日志，那么我们可以修改<code>vm.overcommit_memory=1</code>来解决。</p> </h1> <p>1、<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://redis.io/topics/quickstart"  target="_blank"  rel="nofollow">Redis Quick Start</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85868.htm">Spring @Scheduled 任务 参数动态配置</a></p>
+                                        <p>下一个：<a href="/news/article-86575.htm">宠物之家翻译（宠物之家翻译成中文）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-75415.htm" title="由浅入深，带你用JavaScript实现响应式原理（Vue2、Vue3响应式原理）">由浅入深，带你用JavaScript实现响应式原理（Vue2、Vue3响应式原理）</a></li>
+                        <li class="py-2"><a href="/news/article-85143.htm" title="最大生成树Bad Cowtractors_在线工具">最大生成树Bad Cowtractors_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-65656.htm" title="成都宠物领养站地址（成都领养宠物中心）">成都宠物领养站地址（成都领养宠物中心）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-free-node-subscribe-links.htm" title="3月23日|Clash/V2ray/Shadowrocket/SSR每天更新21.9M/S免费节点订阅链接地址分享">3月23日|Clash/V2ray/Shadowrocket/SSR每天更新21.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-69463.htm" title="养鱼专家在线咨询网（养鱼专家是什么意思）">养鱼专家在线咨询网（养鱼专家是什么意思）</a></li>
+                        <li class="py-2"><a href="/news/article-70773.htm" title="动物医院应聘（动物医院应聘要求）">动物医院应聘（动物医院应聘要求）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-30-free-v2ray.htm" title="3月30日|SSR/Clash/Shadowrocket/V2ray每天更新21.9M/S免费节点订阅链接地址分享">3月30日|SSR/Clash/Shadowrocket/V2ray每天更新21.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-free-high-speed-nodes.htm" title="3月3日|Shadowrocket/SSR/V2ray/Clash每天更新21.3M/S免费节点订阅链接地址分享">3月3日|Shadowrocket/SSR/V2ray/Clash每天更新21.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-70774.htm" title="领养狐狸领养证（huxly领养）">领养狐狸领养证（huxly领养）</a></li>
+                        <li class="py-2"><a href="/news/article-70114.htm" title="解决Redis并发带来的雪崩，击穿和穿透问题，以及搭建一个Redis伪集群">解决Redis并发带来的雪崩，击穿和穿透问题，以及搭建一个Redis伪集群</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

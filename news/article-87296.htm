@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-87296.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SpringCloud集成Sleuth和Zipkin</title>
+        <meta name="description" content="微服务架构是一个分布式架构，它按业务划分服务单元，一个分布式系统往往有很多个服务单元。由于服务单元数量众多，业务的复杂性，如果出现了错误和异常，很难去定位。主要体现在，一个请求可能需要调用很多个服务，" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-87296.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="SpringCloud集成Sleuth和Zipkin" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/c781ede9da511bd0f5b9db26e5907553.webp" />
+        <meta property="og:release_date" content="2025-04-03T08:29:27" />
+    <meta property="og:updated_time" content="2025-04-03T08:29:27" />
+        <meta property="og:description" content="微服务架构是一个分布式架构，它按业务划分服务单元，一个分布式系统往往有很多个服务单元。由于服务单元数量众多，业务的复杂性，如果出现了错误和异常，很难去定位。主要体现在，一个请求可能需要调用很多个服务，" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpringCloud集成Sleuth和Zipkin">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>SpringCloud集成Sleuth和Zipkin</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div><span style="color:#000000;">微服务架构是一个分布式架构，它按业务划分服务单元，一个分布式系统往往有很多个服务单元。由于服务单元数量众多，业务的复杂性，如果<strong>出现了错误和异常，很难去定位</strong></span><span style="color:#000000;">。主要体现在，<strong>一个请求可能需要调用很多个服务</strong></span><span style="color:#000000;">，而内部服务的调用复杂性，决定了问题难以定位。所以微服务架构中，必须实现分布式链路追踪，去跟进一个请求到底有哪些服务参与，参与的顺序又是怎样的，从而<strong>达到每个请求的步骤清晰可见，出了问题，很快定位</strong></span><span style="color:#000000;">。</span></div> <div></div> <div></div> <div> <div><span style="color:#000000;"><strong>基本术语</strong></span></div> <div><span style="color:#000000;">Span</span><span style="color:#000000;">（跨度）：基本工作单元，发送一个远程调度任务 就会产生一个</span><span style="color:#000000;">Span</span><span style="color:#000000;">，</span><span style="color:#000000;">Span</span><span style="color:#000000;">是一个 64</span><span style="color:#000000;">位</span><span style="color:#000000;">ID</span><span style="color:#000000;">唯一标识的，</span><span style="color:#000000;">Trace</span><span style="color:#000000;">是用另一个</span><span style="color:#000000;">64</span><span style="color:#000000;">位</span><span style="color:#000000;">ID</span><span style="color:#000000;">唯一标识的，</span><span style="color:#000000;">Span</span><span style="color:#000000;">还有其他数据信息，比如摘要、时间戳事件、Span</span><span style="color:#000000;">的</span><span style="color:#000000;">ID</span><span style="color:#000000;">、以及进度</span><span style="color:#000000;">ID</span><span style="color:#000000;">。</span></div> <div><span style="color:#000000;">Trace</span><span style="color:#000000;">（跟踪）：一系列</span><span style="color:#000000;">Span</span><span style="color:#000000;">组成的一个树状结构。请求一个微服务系统的</span><span style="color:#000000;">API</span><span style="color:#000000;">接口，这个 API</span><span style="color:#000000;">接口，需要调用多个微服务，调用每个微服务都会产生一个新的</span><span style="color:#000000;">Span</span><span style="color:#000000;">，所有由这个请求产生的 Span</span><span style="color:#000000;">组成了这个</span><span style="color:#000000;">Trace</span><span style="color:#000000;">。</span></div> <div><span style="color:#000000;">Annotation</span><span style="color:#000000;">（标注）：用来及时记录一个事件的，一些核心注解用来定义一个请求的开始和结束 。这些注解包括以下：</span></div> <div><span style="color:#000000;">cs - Client Sent -</span><span style="color:#000000;">客户端发送一个请求，这个注解描述了这个</span><span style="color:#000000;">Span</span><span style="color:#000000;">的开始</span></div> <div><span style="color:#000000;">sr - Server Received -</span><span style="color:#000000;">服务端获得请求并准备开始处理它，如果将其</span><span style="color:#000000;">sr</span><span style="color:#000000;">减去</span><span style="color:#000000;">cs</span><span style="color:#000000;">时间戳便可得到网络传输的时间。</span></div> <div><span style="color:#000000;">ss - Server Sent</span><span style="color:#000000;">（服务端发送响应）</span><span style="color:#000000;">–</span><span style="color:#000000;">该注解表明请求处理的完成</span><span style="color:#000000;">(</span><span style="color:#000000;">当请求返回客户端)</span><span style="color:#000000;">，如果</span><span style="color:#000000;">ss</span><span style="color:#000000;">的时间戳减去</span><span style="color:#000000;">sr</span><span style="color:#000000;">时间戳，就可以得到服务器请求的时间。</span></div> <div><span style="color:#000000;">cr - Client Received</span><span style="color:#000000;">（客户端接收响应）</span><span style="color:#000000;">-</span><span style="color:#000000;">此时</span><span style="color:#000000;">Span</span><span style="color:#000000;">的结束，如果</span><span style="color:#000000;">cr</span><span style="color:#000000;">的时间戳减去cs 时间戳便可以得到整个请求所消耗的时间</span></div> <div></div> <div><strong>Sleuth配合ZIPKIN的使用</strong></div> <div>   所有服务都加入以下依赖：</div> <div> <pre><code>        &lt;dependency&gt;             &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;             &lt;artifactId&gt;spring-cloud-starter-sleuth&lt;/artifactId&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;             &lt;artifactId&gt;spring-cloud-starter-zipkin&lt;/artifactId&gt;         &lt;/dependency&gt;</code></pre> <p>使用docker安装zipkin：<span style="color:#000000;">docker run -d -p 9411:9411 openzipkin/zipkin</span></p> <p>所有微服务加入以下配置：</p> <pre><code class="hljs">#服务追踪，url填自己的服务器地址 spring.zipkin.base-url=http://192.168.56.10:9411/ #关闭服务发现 spring.zipkin.discovery-client-enabled=false spring.zipkin.sender.type=web #配置采样器 spring.sleuth.sampler.probability=1</code></pre> <p>启动服务，进行一系列业务操作，再进入配置中输入的url：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://192.168.56.10:9411/"  title="http://192.168.56.10:9411/" rel="nofollow">http://192.168.56.10:9411/</a></p> <p><img fetchpriority="high" decoding="async" alt="" height="1200" src="http://img.555519.xyz/uploads/20221130/2a9c3d453f3fbd42e62d188ffd4eab65.jpg"></p> <div><span style="color:#3d464d;"><strong>Zipkin</strong></span><span style="color:#3d464d;"><strong>数据持久化</strong></span></div> <div><span style="color:#000000;">Zipkin</span><span style="color:#000000;">默认是将监控数据存储在内存的，如果</span><span style="color:#000000;">Zipkin</span><span style="color:#000000;">挂掉或重启的话，那么监控数据就会丢</span></div> <div><span style="color:#000000;">失。所以如果想要搭建生产可用的</span><span style="color:#000000;">Zipkin，就需要实现监控数据的持久化。数据可以存到内存，mysql，elasticsearch和Cassandra中。</span></div> <div> <div><span style="color:#000000;">Zipkin</span><span style="color:#000000;">支持的这几种存储方式中，内存显然是不适用于生产的。而使用 MySQL 的话，当数据量大时，查询较为缓慢，也不建议使用。</span><span style="color:#000000;">Twitter</span><span style="color:#000000;">官方使用的是</span><span style="color:#000000;">Cassandra作为 Zipkin</span><span style="color:#000000;">的存储数据库，但国内用</span><span style="color:#000000;">Cassandra</span><span style="color:#000000;">的公司较少，而且</span><span style="color:#000000;">Cassandra</span><span style="color:#000000;">相关文档也不多。</span></div> <div><span style="color:#000000;">综上，故采用</span><span style="color:#000000;">Elasticsearch</span><span style="color:#000000;">是个比较好的选择。</span></div> <div><span style="color:#000000;">使用docker进行配置（前提已经安装了Elasticsearch）：</span></div> <div> <div><span style="color:#000000;">docker run --env STORAGE_TYPE=elasticsearch --env ES_HOSTS=192.168.56.10:9200 openzipkin/zipkin-dependencies</span></div> <div><span style="color:#000000;">附：使用 es 时 Zipkin Dependencies 支持的环境变量</span><br /><img decoding="async" alt="" height="562" src="http://img.555519.xyz/uploads/20221130/1903c8909b84fca52ed3fbef4947c730.jpg"></div> <div></div> </div> <div></div> <div></div> </div> </div> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-86576.htm">重庆哪里能领养猫咪（重庆哪里能领养猫咪的）</a></p>
+                                        <p>下一个：<a href="/news/article-87297.htm">宠物狗粮加工设备（加工狗粮机器设备）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-72083.htm" title="JavaScript中querySelector和getElementByld(getXXXBy XX)的区别">JavaScript中querySelector和getElementByld(getXXXBy XX)的区别</a></li>
+                        <li class="py-2"><a href="/news/article-66902.htm" title="人用疫苗和兽用疫苗一样吗 人用疫苗和兽用疫苗一样吗">人用疫苗和兽用疫苗一样吗 人用疫苗和兽用疫苗一样吗</a></li>
+                        <li class="py-2"><a href="/news/article-69464.htm" title="有没有24小时营业的宠物店（这附近哪里有24小时宠物店）">有没有24小时营业的宠物店（这附近哪里有24小时宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-78842.htm" title="如果我们将包含NULL值的列名作为CONCAT()函数的参数之一传递，MySQL将返回什么？">如果我们将包含NULL值的列名作为CONCAT()函数的参数之一传递，MySQL将返回什么？</a></li>
+                        <li class="py-2"><a href="/news/article-83013.htm" title="动物免疫接种应注意什么问题 动物免疫接种应注意什么问题呢">动物免疫接种应注意什么问题 动物免疫接种应注意什么问题呢</a></li>
+                        <li class="py-2"><a href="/news/article-78843.htm" title="附近领养宠物小猫的地方（附近领养宠物小狗）">附近领养宠物小猫的地方（附近领养宠物小狗）</a></li>
+                        <li class="py-2"><a href="/news/article-72752.htm" title="动物医院社会实践总结怎么写 动物医院社会实践总结怎么写啊">动物医院社会实践总结怎么写 动物医院社会实践总结怎么写啊</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-free-v2ray-subscribe.htm" title="3月19日|SSR/Clash/V2ray/Shadowrocket每天更新19.5M/S免费节点订阅链接地址分享">3月19日|SSR/Clash/V2ray/Shadowrocket每天更新19.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-68169.htm" title="基于51单片机的秒表，单独按键控制启动，暂停，复位。">基于51单片机的秒表，单独按键控制启动，暂停，复位。</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-node-share.htm" title="3月6日|SSR/Clash/V2ray/Shadowrocket每天更新20.9M/S免费节点订阅链接地址分享">3月6日|SSR/Clash/V2ray/Shadowrocket每天更新20.9M/S免费节点订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
