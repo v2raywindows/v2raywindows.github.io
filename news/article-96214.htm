@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-96214.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>解决swagger文档接口404的问题</title>
+        <meta name="description" content="问题描述：swagger文件测试接口404排查和解决,遇到这样的问题如何解决和排查我们来看。  接口测试：  这个时候怎么解决呢？看日志 1，分析问题的根源，如果是加了权限控制要放行swagger 地" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-96214.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="解决swagger文档接口404的问题" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/98bc3af0e574b6d1f6616f216f935cbb.webp" />
+        <meta property="og:release_date" content="2025-04-15T06:00:11" />
+    <meta property="og:updated_time" content="2025-04-15T06:00:11" />
+        <meta property="og:description" content="问题描述：swagger文件测试接口404排查和解决,遇到这样的问题如何解决和排查我们来看。  接口测试：  这个时候怎么解决呢？看日志 1，分析问题的根源，如果是加了权限控制要放行swagger 地" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="解决swagger文档接口404的问题">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>解决swagger文档接口404的问题</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>问题描述：swagger文件测试接口404排查和解决,遇到这样的问题如何解决和排查我们来看。</p> <p><img fetchpriority="high" decoding="async" alt="" height="706" src="http://img.555519.xyz/uploads3/20220901/90cefc9a074746e64c05cbc649bf451d.jpg"></p> <p>接口测试：</p> <p><img decoding="async" alt="" height="650" src="http://img.555519.xyz/uploads3/20220901/07ffe41697bee6012157e42df556ebb3.jpg"></p> <p>这个时候怎么解决呢？看日志</p> <p>1，分析问题的根源，如果是加了权限控制要放行swagger 地址，显示我们这个不是swagger没有放行，那就是鉴权出了问题。</p> <p><img decoding="async" alt="" height="501" src="http://img.555519.xyz/uploads3/20220901/5ea79989be5d108dee3f172fe57c6ba9.jpg"></p> <p>日志鉴权貌似也没有问题？那是什么原因导致的呢？</p> <p><img loading="lazy" decoding="async" alt="" height="300" src="http://img.555519.xyz/uploads3/20220901/611679ae925f2e9c4b091abf6f93ecda.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="339" src="http://img.555519.xyz/uploads3/20220901/9479b18e258fdcc0c6e241ffaefcad7a.jpg"></p> <pre>GET http://localhost:11031/{GET%20/ydpw/collection/list}</pre> <p>这个地址其实很多会说是多了一个空格其实不是的，正常会转码。</p> <p>那么到底是什么问题？<img loading="lazy" decoding="async" alt="" height="321" src="http://img.555519.xyz/uploads3/20220901/487561f208f838725310c67d00ca07a5.jpg"></p> <p>原因是我们的服务名称和路由的名字都是一样这样不规范，导致地址找不到我们去掉控制器的名称就好了。</p> <p><img loading="lazy" decoding="async" alt="" height="736" src="http://img.555519.xyz/uploads3/20220901/6ee23e272f61cb4183829c87fc737e29.jpg"></p> <p>&nbsp;代码不规范，不摆烂了，所以代码要规范。。。</p> <pre><code class="language-java">/*  *      Copyright (c) 2018-2028, Chill Zhuang All rights reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions are met:  *  *  Redistributions of source code must retain the above copyright notice,  *  this list of conditions and the following disclaimer.  *  Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in the  *  documentation and/or other materials provided with the distribution.  *  Neither the name of the dreamlu.net developer nor the names of its  *  contributors may be used to endorse or promote products derived from  *  this software without specific prior written permission.  *  Author: Chill 庄骞 (smallchill@163.com)  */ package cn.citms.portal.cms.controller;  import cn.citms.example.entity.cms.TblDirectoryCollection; import cn.citms.example.vo.cms.DirectoryCollectionVo; import cn.citms.portal.cms.service.DirectoryService; import com.baomidou.mybatisplus.core.metadata.IPage; import io.swagger.annotations.Api; import io.swagger.annotations.ApiOperation; import io.swagger.annotations.ApiOperationSupport; import lombok.AllArgsConstructor; import org.apache.commons.lang.StringUtils; import org.springblade.core.boot.ctrl.BladeController; import org.springblade.core.mp.support.Condition; import org.springblade.core.mp.support.Query; import org.springblade.core.tool.api.R; import org.springframework.web.bind.annotation.*;  import java.util.List; import java.util.UUID;  /**  * 答案选项 控制器  *  * @author Blade  * @since 2022-02-16  */ @RestController @AllArgsConstructor @RequestMapping("/collection") @Api(value = "目录收藏", tags = "目录收藏") public class DirectoryCollectionController extends BladeController {  	private DirectoryService directoryService;  	/** 	 * 详情 	 */ 	@GetMapping("/list") 	@ApiOperationSupport(order = 1) 	@ApiOperation(value = "当前用户所有收藏", notes = "当前用户所有收藏") 	public R  detail(DirectoryCollectionVo directoryCollection) { 		List&lt;DirectoryCollectionVo&gt; result = directoryService.list(directoryCollection); 		return R.data(result);  	}    	 }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-95482.htm">扬州宠物医院营业时间表（扬州宠物医院营业时间表电话）</a></p>
+                                        <p>下一个：<a href="/news/article-96215.htm">宠物疫苗批号查询网（宠物疫苗编号）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-node-share.htm" title="4月6日|Shadowrocket/SSR/V2ray/Clash每天更新20.9M/S免费节点订阅链接地址分享">4月6日|Shadowrocket/SSR/V2ray/Clash每天更新20.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-68814.htm" title="南京在哪领养猫狗的地方（南京哪里能领养猫）">南京在哪领养猫狗的地方（南京哪里能领养猫）</a></li>
+                        <li class="py-2"><a href="/news/article-69464.htm" title="有没有24小时营业的宠物店（这附近哪里有24小时宠物店）">有没有24小时营业的宠物店（这附近哪里有24小时宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-85144.htm" title="被猫抓的伤痕图片（被猫抓的伤痕图片）">被猫抓的伤痕图片（被猫抓的伤痕图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-free-v2ray-subscribe.htm" title="4月14日|Shadowrocket/V2ray/Clash/SSR每天更新20.7M/S免费节点订阅链接地址分享">4月14日|Shadowrocket/V2ray/Clash/SSR每天更新20.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-83013.htm" title="动物免疫接种应注意什么问题 动物免疫接种应注意什么问题呢">动物免疫接种应注意什么问题 动物免疫接种应注意什么问题呢</a></li>
+                        <li class="py-2"><a href="/news/article-91468.htm" title="nginx+tomcat负载均衡集群">nginx+tomcat负载均衡集群</a></li>
+                        <li class="py-2"><a href="/news/article-74744.htm" title="青浦二中分数线2021高考多少分（青浦二中分数线2021高考多少分录取）">青浦二中分数线2021高考多少分（青浦二中分数线2021高考多少分录取）</a></li>
+                        <li class="py-2"><a href="/news/article-72083.htm" title="JavaScript中querySelector和getElementByld(getXXXBy XX)的区别">JavaScript中querySelector和getElementByld(getXXXBy XX)的区别</a></li>
+                        <li class="py-2"><a href="/news/article-78139.htm" title="宠物粮食品牌前十名有哪些名字好听点的（宠物粮品牌名称）">宠物粮食品牌前十名有哪些名字好听点的（宠物粮品牌名称）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">47</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
