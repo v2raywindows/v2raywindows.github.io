@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-102849.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>匿名类（Anonymous Classes）</title>
+        <meta name="description" content="匿名类 匿名类可以让代码更加简洁，因为它允许声明的同时实例化一个类。类似于局部类，只不过他们没有名字，当只需要一次局部类时，用匿名类更简洁。  匿名类的声明 局部类的声明是类的声明，但匿名类的声明是一" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-102849.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="匿名类（Anonymous Classes）" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/1c2365e451d942120ba6051ac73d8467.webp" />
+        <meta property="og:release_date" content="2025-04-24T09:16:18" />
+    <meta property="og:updated_time" content="2025-04-24T09:16:18" />
+        <meta property="og:description" content="匿名类 匿名类可以让代码更加简洁，因为它允许声明的同时实例化一个类。类似于局部类，只不过他们没有名字，当只需要一次局部类时，用匿名类更简洁。  匿名类的声明 局部类的声明是类的声明，但匿名类的声明是一" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="匿名类（Anonymous Classes）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>匿名类（Anonymous Classes）</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h4> 匿名类</h4> <p>匿名类可以让代码更加简洁，因为它允许声明的同时实例化一个类。类似于局部类，只不过他们没有名字，当只需要一次局部类时，用匿名类更简洁。</p> <h4> 匿名类的声明</h4> <p>局部类的声明是类的声明，但匿名类的声明是一个表达式。下面的例子中，<code>frenchGreeting</code>和<code>spanishGreeting</code>的初始化使用了匿名类，而<code>englishGreeting</code>的初始化使用了局部类。</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorldAnonymousClasses</span> <span class="token punctuation">{<!-- --></span>        <span class="token keyword">interface</span> <span class="token class-name">HelloWorld</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greetSomeone</span><span class="token punctuation">(</span>String someone<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                  <span class="token keyword">class</span> <span class="token class-name">EnglishGreeting</span> <span class="token keyword">implements</span> <span class="token class-name">HelloWorld</span> <span class="token punctuation">{<!-- --></span>             String name <span class="token operator">=</span> <span class="token string">"world"</span><span class="token punctuation">;</span>             <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                 <span class="token function">greetSomeone</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>             <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greetSomeone</span><span class="token punctuation">(</span>String someone<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                 name <span class="token operator">=</span> someone<span class="token punctuation">;</span>                 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello "</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span>                HelloWorld englishGreeting <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EnglishGreeting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  HelloWorld frenchGreeting <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             String name <span class="token operator">=</span> <span class="token string">"tout le monde"</span><span class="token punctuation">;</span>             <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                 <span class="token function">greetSomeone</span><span class="token punctuation">(</span><span class="token string">"tout le monde"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>             <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greetSomeone</span><span class="token punctuation">(</span>String someone<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                 name <span class="token operator">=</span> someone<span class="token punctuation">;</span>                 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Salut "</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span><span class="token punctuation">;</span>                  HelloWorld spanishGreeting <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             String name <span class="token operator">=</span> <span class="token string">"mundo"</span><span class="token punctuation">;</span>             <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                 <span class="token function">greetSomeone</span><span class="token punctuation">(</span><span class="token string">"mundo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>             <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greetSomeone</span><span class="token punctuation">(</span>String someone<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                 name <span class="token operator">=</span> someone<span class="token punctuation">;</span>                 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hola, "</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span><span class="token punctuation">;</span>         englishGreeting<span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         frenchGreeting<span class="token punctuation">.</span><span class="token function">greetSomeone</span><span class="token punctuation">(</span><span class="token string">"Fred"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         spanishGreeting<span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         HelloWorldAnonymousClasses myApp <span class="token operator">=</span>             <span class="token keyword">new</span> <span class="token class-name">HelloWorldAnonymousClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         myApp<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>             <span class="token punctuation">}</span> </code></pre> <p>Syntax of Anonymous Classes</p> <h4> 语法</h4> <p>As mentioned previously, an anonymous class is an expression. The syntax of an anonymous class expression is like the invocation of a constructor, except that there is a class definition contained in a block of code.<br /> 匿名类是一个表达式，它的语法类似于构造方法的调用，加上代码块中类的定义。</p> <pre><code class="prism language-java">HelloWorld frenchGreeting <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	  String name <span class="token operator">=</span> <span class="token string">"tout le monde"</span><span class="token punctuation">;</span> 	  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	      <span class="token function">greetSomeone</span><span class="token punctuation">(</span><span class="token string">"tout le monde"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	  <span class="token punctuation">}</span> 	  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">greetSomeone</span><span class="token punctuation">(</span>String someone<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	      name <span class="token operator">=</span> someone<span class="token punctuation">;</span> 	      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Salut "</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span> 	  <span class="token punctuation">}</span> 	<span class="token punctuation">}</span><span class="token punctuation">;</span> </code></pre> <p>匿名类的定义包括：</p> <ul> <li>new 关键字</li> <li>匿名类要实现的接口名或是要继承的类名</li> <li>跟普通类的实例化一样，要传给构造方法的参数，用圆括号包起来。如果是接口，就没有构造方法，那么就跟一对空的圆括号。</li> <li>类的声明体，可以有方法声明，但不能有statement，但是上面<code>String name = "tout le monde";</code>好像又是，此处有疑问</li> </ul> <h4> 访问所在作用域的局部变量，声明和访问匿名类的成员</h4> <p>匿名类访问外部变量的规则（和局部类相同）：</p> <ul> <li>匿名类可以访问外部类的成员（成员变量和方法）</li> <li>对于局部变量，只有声明成<code>final</code>或effectively final时匿名类才能访问它</li> <li>和其他嵌套类一样，匿名类中定义的变量投影所在作用域的同名变量</li> </ul> <p>匿名类定义成员的规则（和局部类相同）：</p> <ul> <li>不能定义静态初始化块和成员接口</li> <li>可以有静态成员变量，只要它们是常量 </li> </ul> <p>能在匿名类中定义的有：</p> <ul> <li>字段（Fields）</li> <li>其他方法（即使不是父类中的）</li> <li>初始化代码块</li> <li>局部类</li> </ul> <p>不能在匿名类中定义构造方法。</p> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-102050.htm">小动物为什么要打疫苗（动物为什么要打抗生素）</a></p>
+                                        <p>下一个：<a href="/news/article-102852.htm">有关动态规划的相关优化思想_在线工具</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-85143.htm" title="最大生成树Bad Cowtractors_在线工具">最大生成树Bad Cowtractors_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-93197.htm" title="被家猫咬了一个小孔就一丁点血,然后早上伤口已经愈合（被猫咬出一个小伤口流血了）">被家猫咬了一个小孔就一丁点血,然后早上伤口已经愈合（被猫咬出一个小伤口流血了）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-10-free-node-subscribe.htm" title="4月10日|Clash/SSR/V2ray/Shadowrocket每天更新21.8M/S免费节点订阅链接地址分享">4月10日|Clash/SSR/V2ray/Shadowrocket每天更新21.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-74075.htm" title="青岛动物学院（青岛动物学院招生简章）">青岛动物学院（青岛动物学院招生简章）</a></li>
+                        <li class="py-2"><a href="/news/article-93199.htm" title="开宠物店最怕被什么部门投诉（开宠物店会亏本吗）">开宠物店最怕被什么部门投诉（开宠物店会亏本吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-node-share.htm" title="3月6日|SSR/Clash/V2ray/Shadowrocket每天更新20.9M/S免费节点订阅链接地址分享">3月6日|SSR/Clash/V2ray/Shadowrocket每天更新20.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-free-subscribe-node.htm" title="4月1日|Shadowrocket/SSR/V2ray/Clash每天更新20.7M/S免费节点订阅链接地址分享">4月1日|Shadowrocket/SSR/V2ray/Clash每天更新20.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-30-free-v2ray.htm" title="3月30日|SSR/Clash/Shadowrocket/V2ray每天更新21.9M/S免费节点订阅链接地址分享">3月30日|SSR/Clash/Shadowrocket/V2ray每天更新21.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-v2ray.htm" title="3月10日|Clash/Shadowrocket/V2ray/SSR每天更新22M/S免费节点订阅链接地址分享">3月10日|Clash/Shadowrocket/V2ray/SSR每天更新22M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-66272.htm" title="狗粮加盟店 狗粮加盟厂">狗粮加盟店 狗粮加盟厂</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
