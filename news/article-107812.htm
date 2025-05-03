@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raywindows.github.io/news/article-107812.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>python中os.path模块</title>
+        <meta name="description" content="os.path模块是os模块根据系统类型从另一个模块导入的，并非由os模块实现 1、os.path.abspath（相对路径）-----返回对应路径的绝对路径 os.path.abspath(".")" />
+        <link rel="icon" href="/assets/website/img/v2raywindows/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Windows免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raywindows.github.io/news/article-107812.htm" />
+    <meta property="og:site_name" content="V2ray Windows免费节点订阅站" />
+    <meta property="og:title" content="python中os.path模块" />
+    <meta property="og:image" content="https://v2raywindows.github.io/uploads/20240730-1/1586bb8b31fced13c638ab6a249711e8.webp" />
+        <meta property="og:release_date" content="2025-04-30T09:33:15" />
+    <meta property="og:updated_time" content="2025-04-30T09:33:15" />
+        <meta property="og:description" content="os.path模块是os模块根据系统类型从另一个模块导入的，并非由os模块实现 1、os.path.abspath（相对路径）-----返回对应路径的绝对路径 os.path.abspath(".")" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="python中os.path模块">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2raywindows/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2raywindows/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3WH4YV370"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q3WH4YV370');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+            <a href="/">
+                        <span>V2ray Windows</span>
+                        </a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                                <li><a class="nav-link" href="/">首页</a></li>
+                                <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>python中os.path模块</h1>
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li>正文</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <!-- ======= Details Section ======= -->
+        <section id="details" class="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p>os.path模块是os模块根据系统类型从另一个模块导入的，并非由os模块实现</p> <p>1、os.path.abspath（相对路径）-----返回对应路径的绝对路径 os.path.abspath(".")</p> <pre><code>import os.path print(os.path.abspath("."))</code></pre> <blockquote> <p>E:\python练习</p> </blockquote> <p>上一层路径“..”</p> <pre><code>import os.path print(os.path.abspath(".."))</code></pre> <blockquote> <p>E:\</p> </blockquote> <p>2、os.path.altsep 查看python中的各个符号（了解）</p> <p>3、os.path.dirname（）-----目录提取函数</p> <p>使用后可以得知文件所在目录，同时它可以从下往上一层一层提取目录，使用后路径会少一层目录</p> <pre><code>import os.path path = "E:/python/test/os.path" print(os.path.dirname(path)) print(os.path.dirname(os.path.dirname(path)))</code></pre> <blockquote> <p>E:/python/test<br /> E:/python</p> </blockquote> <p>注意：如果提供一个空字符串则返回当前文件所在目录的绝对路径，如果提供不带路径分割符的字符串则会返回绝对路径加上该字符串，但当字符串中有路径分割符则会把该字符串当做绝对路径返回</p> <p>4、os.path.basename（）--文件名称</p> <p>可以提取出文件名称</p> <p>5、os.path.exists ----判断文件或者目录是否存在（特别有用，使用爬虫的时候)</p> <p>存在返回True，否则返回False；Windows下如果目标路径为链接文件则会返回False</p> <pre><code>import os.path print(os.path.exists("E:\python练习"))</code></pre> <blockquote> <p>True</p> </blockquote> <p>6、os.path.getatime（path） -----返回最后一次访问指定路径的时间</p> <p>7、os.path.getctime （path）-----获取系统指定路径的ctime（ctime指的是UNIX中指定路径的最后一次元数据更改）</p> <p>8、os.path.getmtime （path）-----获取指定路径的最后修改时间</p> <p>9、os.path.getsize -----获取文件的大小，单位是字节</p> <p>10、os.path.isdir -----判断Path是不是目录(文件夹)</p> <pre><code>import os.path print(os.path.isdir("E:\python练习"))</code></pre> <blockquote> <p>True</p> </blockquote> <p>11、os.path.isfile -----判断Path是不是文件</p> <pre><code>import os.path print(os.path.exists("demo1.py"))</code></pre> <blockquote> <p>True</p> </blockquote> <p>如果只给定文件名，则会默认搜索路径为当前路径</p> <p>12、os.path.isabs ---判断是不是绝对路径</p> <pre><code>import os.path print(os.path.isabs("E:\python练习")) print(os.path.isabs("python练习"))</code></pre> <blockquote> <p>True<br /> False</p> </blockquote> <p>13、os.path.islink（path） ----判断给定的文件路径是不是链接</p> <p>在Windows下是直接返回False，只可在Linux下使用</p> <p>14、os.path.ismount ----判断是不是挂载文件（Linux下使用)</p> <p>15、os.path.join （path1,path2）------路径拼接函数</p> <pre><code>import os.path print(os.path.join("python","test","os.path"))</code></pre> <blockquote> <p>python\test\os.path</p> </blockquote> <p>16、os.path.pathjion(url,name)</p> <p>17、os.path.sep -----路径的分隔符</p> <p>18、os.path.split（path）-----分割路径</p> <p>此函数会找到path中的最后一个斜杠并对斜杠两边进行分割，返回值为元组（斜杠前部分和斜杠后部分）</p> <pre><code>import os.path print(os.path.split("E:\python练习\test\os.path")) print(os.path.split("E:\python练习\test\\"))</code></pre> <blockquote> <p>('E:\\python练习\test', 'os.path')<br /> ('E:\\python练习\test', '')</p> </blockquote> <p>注意：当斜杠后没内容时，则斜杠后部分为空</p> <p>19、os.path.realpath ----返回真实的路径和abspath是一样的</p> <p>返回所对应的真实文件的路径</p> <pre><code>import os.path print(os.path.realpath("."))</code></pre> <blockquote> <p>E:\python练习</p> </blockquote></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-107808.htm">PHP类属性</a></p>
+                                        <p>下一个：<a href="/news/article-108635.htm">PCIe Tandem PROM 方法</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-97677.htm" title="宠物粮食哪里批发好卖呢（宠物粮食批发厂家价格）">宠物粮食哪里批发好卖呢（宠物粮食批发厂家价格）</a></li>
+                        <li class="py-2"><a href="/news/article-100662.htm" title="computed怎么使用_Vue中mixin怎么理解？">computed怎么使用_Vue中mixin怎么理解？</a></li>
+                        <li class="py-2"><a href="/news/article-88760.htm" title="宠物粮市场销售渠道有哪些呢（宠物粮进货渠道）">宠物粮市场销售渠道有哪些呢（宠物粮进货渠道）</a></li>
+                        <li class="py-2"><a href="/news/article-99130.htm" title="动物医院英语单词 动物医院英语单词怎么写">动物医院英语单词 动物医院英语单词怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-90223.htm" title="狗粮制作工厂加盟 狗粮制作工厂加盟费多少">狗粮制作工厂加盟 狗粮制作工厂加盟费多少</a></li>
+                        <li class="py-2"><a href="/news/article-99129.htm" title="宠物粮行业协会会长是谁啊（宠物粮市场前景怎么样）">宠物粮行业协会会长是谁啊（宠物粮市场前景怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-96930.htm" title="聊城宠物店电话号码（聊城宠物集市）">聊城宠物店电话号码（聊城宠物集市）</a></li>
+                        <li class="py-2"><a href="/news/article-101281.htm" title="武汉哪家宠物医院收费合理（武汉不坑人的宠物医院）">武汉哪家宠物医院收费合理（武汉不坑人的宠物医院）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-5-3-clash-v2ray-ss-ssr.htm" title="5月3日|V2ray/SSR/Shadowrocket/Clash每天更新21.4M/S免费节点订阅链接地址分享">5月3日|V2ray/SSR/Shadowrocket/Clash每天更新21.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-19-free-v2ray-subscribe.htm" title="4月19日|Shadowrocket/SSR/Clash/V2ray每天更新22.5M/S免费节点订阅链接地址分享">4月19日|Shadowrocket/SSR/Clash/V2ray每天更新22.5M/S免费节点订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Details Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2raywindows/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/v2raywindows/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2raywindows/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
