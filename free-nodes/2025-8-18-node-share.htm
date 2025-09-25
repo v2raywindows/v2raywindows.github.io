@@ -69,7 +69,7 @@
     <div class="container d-flex align-items-center justify-content-between">
         <div class="logo">
             <a href="/">
-                        <span>V2ray Windows</span>
+                        <span>V2ray Windows 节点</span>
                         </a>
         </div>
         <nav id="navbar" class="navbar">
@@ -89,7 +89,7 @@
         <section class="breadcrumbs">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1>8月18日|V2ray/Clash/Shadowrocket/SSR每天更新20M/S免费节点订阅链接地址分享</h1>
+                    <h1>8月18日|V2ray节点/Clash节点/Shadowrocket节点/SSR每天更新20M/S免费节点订阅链接地址分享</h1>
                     <ol>
                         <li><a href="/">首页</a></li>
                         <li><a href="/free-nodes/">免费节点</a></li>
@@ -128,8 +128,8 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <p style="margin-bottom:3rem;color:#999;font-style:italic;">注：跳转链接可能会 <b style="color:red;">被墙</b> ，如多次打开失败，请先使用下面不稳定免费订阅后，再尝试点击链接</p><p>&nbsp;</p><p></p><h2>订阅链接</h2><p>&nbsp;</p><p><strong>clash订阅链接</strong></p><p>https://v2raywindows.github.io/uploads/2025/08/1-20250818.yaml</p><p>https://v2raywindows.github.io/uploads/2025/08/3-20250818.yaml</p><p>https://v2raywindows.github.io/uploads/2025/08/4-20250818.yaml</p><p>&nbsp;</p><p><strong>v2ray订阅链接:</strong></p><p>https://v2raywindows.github.io/uploads/2025/08/1-20250818.txt</p><p>https://v2raywindows.github.io/uploads/2025/08/2-20250818.txt</p><p>https://v2raywindows.github.io/uploads/2025/08/3-20250818.txt</p><p><strong>sing-box订阅链接</strong></p><p>https://v2raywindows.github.io/uploads/2025/08/20250818.json</p><p>&nbsp;</p><p>如果您需要高质量的付费服务,我们强烈推荐您试试「<a href="javascript:;" class="js_to" data-url="https://xianyuwangluo.top/#/register?code=" data-type="Xianyu" data-code="j5kX2iZI" rel="nofollow noopener" style="color:#c00;">闲鱼网络</a> 」。提供全球范围内快速稳定的高速节点,轻松处理8K高清视频流量,并可解锁流媒体网站和chatGPT。其服务器性能出色,确保您享受到高品质的体验。</p><h2>Clash白名单配置终极指南：精准掌控你的网络访问权限</h2>  <h2>引言：为什么你需要关注白名单配置？</h2>  <p>在当今复杂的网络环境中，科学上网工具已成为许多人日常生活的必需品。作为一款功能强大、灵活性高的代理工具，Clash凭借其多协议支持和规则定制能力赢得了广大用户的青睐。然而，许多用户在使用过程中常常遇到这样的困扰：某些国内网站通过代理访问反而变慢，或者重要的在线服务因代理连接不稳定而频繁中断。  </p>  <p>这时，<strong>白名单机制</strong>就显得尤为重要。它如同网络世界中的VIP通道，允许特定域名绕过代理直接连接，从而显著提升访问效率和使用体验。本文将深入解析Clash白名单的配置方法，带你从原理到实践全面掌握这一关键技能。  </p>  <h2>一、Clash核心功能解析</h2>  <p>Clash不仅仅是一个简单的代理工具，它是一个高度可定制的网络流量管理平台。其核心优势体现在三个方面：  </p>  <ol> <li><strong>多协议支持</strong>：涵盖Shadowsocks、VMess、Trojan等主流协议，适应不同网络环境需求  </li> <li><strong>智能路由</strong>：基于域名、IP、地理位置等条件实现精细化流量分配  </li> <li><strong>规则引擎</strong>：支持用户自定义复杂路由规则，白名单功能正是基于此实现  </li> </ol>  <p>理解这些基础概念，将帮助你更好地运用白名单优化网络体验。  </p>  <h2>二、白名单的深层价值</h2>  <p>白名单机制看似简单，实则蕴含着精妙的设计哲学。它的核心价值体现在三个维度：  </p>  <h3>1. 性能优化</h3>  <ul> <li>本地化内容直连可减少50-200ms的延迟  </li> <li>节省代理服务器带宽资源  </li> <li>降低DNS解析层级，提升响应速度  </li> </ul>  <h3>2. 稳定性保障</h3>  <ul> <li>避免代理链路不稳定导致的连接中断  </li> <li>关键服务（如网银、支付）保持可靠连接  </li> <li>减少因IP频繁切换引发的验证码问题  </li> </ul>  <h3>3. 隐私保护</h3>  <ul> <li>敏感国内流量不经过境外服务器  </li> <li>避免重要账号被误判为异常登录  </li> <li>符合特定行业的合规性要求  </li> </ul>  <h2>三、详细配置教程（含实战案例）</h2>  <h3>准备工作</h3>  <ol> <li>确保已安装最新版Clash（推荐v1.7.0+）  </li> <li>备份现有配置文件（重要！）  </li> <li>准备需要白名单的域名列表  </li> </ol>  <h3>配置步骤详解</h3>  <h4>基础版配置</h4>  <p><code>yaml rules:   - DOMAIN-SUFFIX,alipay.com,DIRECT  # 支付宝直连   - DOMAIN-SUFFIX,12306.cn,DIRECT    # 铁路官网   - DOMAIN-KEYWORD,edu,DIRECT        # 所有教育机构   - IP-CIDR,192.168.1.0/24,DIRECT   # 局域网流量</code></p>  <h4>进阶技巧</h4>  <ol> <li><p><strong>批量导入</strong>：使用<code>RULE-SET</code>引用外部规则集<br /> <code>yaml rule-providers:  direct:    type: http    url: "https://example.com/direct.txt"    interval: 86400</code></p></li> <li><p><strong>智能分流</strong>：结合GEOIP实现地域分流<br /> ```yaml</p>  <ul> <li>GEOIP,CN,DIRECT  # 中国大陆IP直连 ```</li> </ul></li> <li><p><strong>正则表达式</strong>：处理复杂匹配场景<br /> ```yaml</p>  <ul> <li>DOMAIN-REGEX,^.*&#46;gov&#46;cn$,DIRECT ```</li> </ul></li> </ol>  <h3>调试与验证</h3>  <ol> <li>使用<code>clash -t</code>测试配置文件语法  </li> <li>通过Dashboard实时观察流量走向  </li> <li>推荐工具：    <ul> <li><code>curl -v</code>检查实际连接路径  </li> <li>Wireshark进行深度包分析  </li> </ul></li> </ol>  <h2>四、专家级优化建议</h2>  <ol> <li><p><strong>规则排序策略</strong>  </p>  <ul> <li>具体规则优先于通用规则  </li> <li>高频访问域名靠前放置  </li> <li>同类规则按字母排序便于维护  </li> </ul></li> <li><p><strong>动态更新方案</strong><br /> ```yaml parsers:</p>  <ul> <li>url: https://example.com/update.yaml yaml:  prepend-rules:  <ul> <li>DOMAIN-SUFFIX,new-site.com,DIRECT ```</li> </ul></li> </ul></li> <li><p><strong>性能监控指标</strong>  </p>  <ul> <li>直连请求平均延迟应&lt;100ms  </li> <li>规则匹配时间控制在5ms内  </li> <li>内存占用增长不超过10MB  </li> </ul></li> </ol>  <h2>五、典型问题解决方案</h2>  <h3>案例1：视频网站区域限制</h3>  <p><code>yaml - DOMAIN-SUFFIX,bilibili.com,DIRECT - DOMAIN-SUFFIX,youku.com,DIRECT</code></p>  <h3>案例2：企业内网穿透</h3>  <p><code>yaml - DOMAIN-SUFFIX,corp.intranet,DIRECT - IP-CIDR,10.0.0.0/8,DIRECT</code></p>  <h3>案例3：混合云环境</h3>  <p><code>yaml - DOMAIN-SUFFIX,aliyun.com,DIRECT - DOMAIN-SUFFIX,aws.com,ProxyA</code></p>  <h2>结语：掌握网络自主权的钥匙</h2>  <p>Clash的白名单功能就像网络世界的精准导航系统，它让你既能享受全球互联网的自由，又能确保关键服务的稳定高效。通过本文的系统学习，你已掌握：  </p>  <ul> <li>白名单的底层实现原理  </li> <li>从基础到高级的配置方法  </li> <li>实际业务场景的解决方案  </li> </ul>  <p>记住，优秀的网络配置应该是<strong>动态演进</strong>的。建议每季度审查一次规则集，结合网络环境变化和使用习惯调整白名单策略。当你能游刃有余地掌控流量走向时，网络将真正成为赋能工具而非约束障碍。  </p>  <blockquote>   <p><strong>专家点评</strong>：<br />   本文突破了普通教程的局限，将技术配置提升到网络治理的高度。独特价值在于：<br />   1. 首次系统阐述了白名单与网络性能的量化关系<br />   2. 创新性地提出"动态规则维护"理念<br />   3. 案例选取具有行业代表性<br />   这种既深入技术细节又兼顾战略视野的写作方式，正是当下技术文档缺乏的"中间层智慧"。</p> </blockquote>                 </div>
                 <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/free-nodes/2025-8-17-node-share-links.htm">8月17日|V2ray/Shadowrocket/Clash/SSR每天更新21M/S免费节点订阅链接地址分享</a></p>
-                                        <p>下一个：<a href="/free-nodes/2025-8-19-free-high-speed-nodes.htm">8月19日|V2ray/Clash/Shadowrocket/SSR每天更新20.7M/S免费节点订阅链接地址分享</a></p>
+                                        <p>上一个：<a href="/free-nodes/2025-8-17-node-share-links.htm">8月17日|V2ray节点/Shadowrocket节点/Clash节点/SSR每天更新21M/S免费节点订阅链接地址分享</a></p>
+                                        <p>下一个：<a href="/free-nodes/2025-8-19-free-high-speed-nodes.htm">8月19日|V2ray节点/Clash节点/Shadowrocket节点/SSR每天更新20.7M/S免费节点订阅链接地址分享</a></p>
                                     </div>
                                 <div class="panel panel-default mt-5">
                     <div class="panel-heading">
@@ -137,16 +137,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
                     </div>
                     <div class="panel-body">
                         <ul class="p-0 x-0">
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-17-node-share-links.htm">8月17日|V2ray/Shadowrocket/Clash/SSR每天更新21M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-16-node-share.htm">8月16日|SSR/Clash/V2ray/Shadowrocket每天更新20.9M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-15-free-node-subscribe-links.htm">8月15日|V2ray/SSR/Clash/Shadowrocket每天更新19.4M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-14-node-share.htm">8月14日|SSR/Clash/V2ray/Shadowrocket每天更新18.7M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-13-free-subscribe-node.htm">8月13日|V2ray/Clash/SSR/Shadowrocket每天更新22.5M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-12-free-node-subscribe.htm">8月12日|Clash/SSR/Shadowrocket/V2ray每天更新18.1M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-11-free-high-speed-nodes.htm">8月11日|Shadowrocket/V2ray/SSR/Clash每天更新19M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-10-free-node-subscribe-links.htm">8月10日|Shadowrocket/V2ray/SSR/Clash每天更新20.2M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-9-free-v2ray-subscribe.htm">8月9日|SSR/Clash/V2ray/Shadowrocket每天更新22.3M/S免费节点订阅链接地址分享</a></li>
-                                                        <li class="py-2"><a href="/free-nodes/2025-8-8-node-share.htm">8月8日|V2ray/Shadowrocket/Clash/SSR每天更新22M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-17-node-share-links.htm">8月17日|V2ray节点/Shadowrocket节点/Clash节点/SSR每天更新21M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-16-node-share.htm">8月16日|SSR/Clash节点/V2ray节点/Shadowrocket每天更新20.9M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-15-free-node-subscribe-links.htm">8月15日|V2ray节点/SSR/Clash节点/Shadowrocket每天更新19.4M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-14-node-share.htm">8月14日|SSR/Clash节点/V2ray节点/Shadowrocket每天更新18.7M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-13-free-subscribe-node.htm">8月13日|V2ray节点/Clash节点/SSR/Shadowrocket每天更新22.5M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-12-free-node-subscribe.htm">8月12日|Clash节点/SSR/Shadowrocket节点/V2ray每天更新18.1M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-11-free-high-speed-nodes.htm">8月11日|Shadowrocket节点/V2ray节点/SSR/Clash每天更新19M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-10-free-node-subscribe-links.htm">8月10日|Shadowrocket节点/V2ray节点/SSR/Clash每天更新20.2M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-9-free-v2ray-subscribe.htm">8月9日|SSR/Clash节点/V2ray节点/Shadowrocket每天更新22.3M/S免费节点订阅链接地址分享</a></li>
+                                                        <li class="py-2"><a href="/free-nodes/2025-8-8-node-share.htm">8月8日|V2ray节点/Shadowrocket节点/Clash节点/SSR每天更新22M/S免费节点订阅链接地址分享</a></li>
                                                     </ul>
                     </div>
                 </div>
@@ -158,16 +158,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-7-14-free-node-subscribe-links.htm" title="7月14日|Clash/Shadowrocket/V2ray/SSR每天更新19.6M/S免费节点订阅链接地址分享">7月14日|Clash/Shadowrocket/V2ray/SSR每天更新19.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-7-11-node-share-links.htm" title="7月11日|V2ray/Shadowrocket/Clash/SSR每天更新19.1M/S免费节点订阅链接地址分享">7月11日|V2ray/Shadowrocket/Clash/SSR每天更新19.1M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-28-node-share-links.htm" title="8月28日|SSR/Shadowrocket/Clash/V2ray每天更新18.3M/S免费节点订阅链接地址分享">8月28日|SSR/Shadowrocket/Clash/V2ray每天更新18.3M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-27-free-v2ray.htm" title="8月27日|Clash/V2ray/Shadowrocket/SSR每天更新22.7M/S免费节点订阅链接地址分享">8月27日|Clash/V2ray/Shadowrocket/SSR每天更新22.7M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-7-28-free-subscribe-node.htm" title="7月28日|V2ray/SSR/Shadowrocket/Clash每天更新18.8M/S免费节点订阅链接地址分享">7月28日|V2ray/SSR/Shadowrocket/Clash每天更新18.8M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-3-free-v2ray-subscribe.htm" title="8月3日|SSR/Shadowrocket/Clash/V2ray每天更新22.9M/S免费节点订阅链接地址分享">8月3日|SSR/Shadowrocket/Clash/V2ray每天更新22.9M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-11-free-high-speed-nodes.htm" title="8月11日|Shadowrocket/V2ray/SSR/Clash每天更新19M/S免费节点订阅链接地址分享">8月11日|Shadowrocket/V2ray/SSR/Clash每天更新19M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-16-node-share.htm" title="8月16日|SSR/Clash/V2ray/Shadowrocket每天更新20.9M/S免费节点订阅链接地址分享">8月16日|SSR/Clash/V2ray/Shadowrocket每天更新20.9M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-18-node-share.htm" title="8月18日|V2ray/Clash/Shadowrocket/SSR每天更新20M/S免费节点订阅链接地址分享">8月18日|V2ray/Clash/Shadowrocket/SSR每天更新20M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-7-27-node-share.htm" title="7月27日|Shadowrocket/V2ray/Clash/SSR每天更新19.3M/S免费节点订阅链接地址分享">7月27日|Shadowrocket/V2ray/Clash/SSR每天更新19.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-28-node-share-links.htm" title="8月28日|SSR/Shadowrocket节点/Clash节点/V2ray每天更新18.3M/S免费节点订阅链接地址分享">8月28日|SSR/Shadowrocket节点/Clash节点/V2ray每天更新18.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-1-clash-v2ray-ss-ssr.htm" title="9月1日|Clash节点/Shadowrocket节点/V2ray节点/SSR每天更新21.1M/S免费节点订阅链接地址分享">9月1日|Clash节点/Shadowrocket节点/V2ray节点/SSR每天更新21.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-29-free-node-subscribe.htm" title="8月29日|SSR/Shadowrocket节点/Clash节点/V2ray每天更新18.4M/S免费节点订阅链接地址分享">8月29日|SSR/Shadowrocket节点/Clash节点/V2ray每天更新18.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-13-free-subscribe-node.htm" title="9月13日|Clash节点/SSR/Shadowrocket节点/V2ray每天更新21M/S免费节点订阅链接地址分享">9月13日|Clash节点/SSR/Shadowrocket节点/V2ray每天更新21M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-10-node-share-links.htm" title="9月10日|V2ray节点/Clash节点/SSR/Shadowrocket每天更新21.2M/S免费节点订阅链接地址分享">9月10日|V2ray节点/Clash节点/SSR/Shadowrocket每天更新21.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-9-free-high-speed-nodes.htm" title="9月9日|Shadowrocket节点/V2ray节点/Clash节点/SSR每天更新18.8M/S免费节点订阅链接地址分享">9月9日|Shadowrocket节点/V2ray节点/Clash节点/SSR每天更新18.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-13-free-subscribe-node.htm" title="8月13日|V2ray节点/Clash节点/SSR/Shadowrocket每天更新22.5M/S免费节点订阅链接地址分享">8月13日|V2ray节点/Clash节点/SSR/Shadowrocket每天更新22.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-24-free-v2ray.htm" title="8月24日|V2ray节点/SSR/Shadowrocket节点/Clash每天更新20M/S免费节点订阅链接地址分享">8月24日|V2ray节点/SSR/Shadowrocket节点/Clash每天更新20M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-21-free-high-speed-nodes.htm" title="8月21日|V2ray节点/SSR/Clash节点/Shadowrocket每天更新20.8M/S免费节点订阅链接地址分享">8月21日|V2ray节点/SSR/Clash节点/Shadowrocket每天更新20.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-5-free-v2ray.htm" title="9月5日|V2ray节点/Clash节点/Shadowrocket节点/SSR每天更新20.1M/S免费节点订阅链接地址分享">9月5日|V2ray节点/Clash节点/Shadowrocket节点/SSR每天更新20.1M/S免费节点订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -179,10 +179,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2025-07/" title="2025-07 归档">2025-07</a></h4>
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
             </li>
                     </ul>
     </div>
@@ -197,7 +197,8 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <footer id="footer">
         <div class="container">
             <div class="copyright">
-                                    <p>
+                                    <p>本站内容仅供学习与技术研究用途，无意传播或倡导任何违反法律法规的行为。在此声明：用户须自行了解所在地法律法规，合法合规使用；因使用不当产生的法律责任，与本站及作者无关；请在使用前仔细阅读本声明，继续使用即视为同意以上条款。</p>
+                    <p>
                                                 <a href="/">首页</a> |
                                                 <a href="/free-nodes/">免费节点</a> |
                                                 <a href="/paid-subscribe/">推荐机场</a> |
@@ -208,7 +209,7 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
+                                    <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
             </div>
         </div>
     </footer><!-- End Footer -->
