@@ -356,9 +356,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>为什么使用 CDN 后仍然能被封？如何规避？</h5></div>
+    <div class="panel-heading"><h5>Sing-box 如何按端口匹配流量分配节点？</h5></div>
     <div class="panel-body">
-        若 CDN 回源 IP 或配置不当可能泄露真实服务器信息，或者 CDN 本身被目标防火墙识别。应启用完整的反向代理配置、隐藏源站 IP 与禁用不必要的服务，必要时使用多级中转或更换 CDN 供应商。<hr />    </div>
+        Sing-box 支持按端口匹配流量，将不同应用的流量分配到指定节点。结合策略组使用，可实现精准分流，优化访问速度和网络稳定性，提高整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Shadowrocket 可以在哪些平台使用？</h5></div>
@@ -366,24 +366,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         Shadowrocket 是一款 iOS 平台专用代理客户端，支持多种协议如 Vmess、Shadowsocks、Trojan 等。用户可通过导入订阅链接快速配置节点，配合规则分流功能实现精准网络代理。由于其强大功能，它是 iPhone 用户常用的科学上网工具。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何按端口匹配流量分配节点？</h5></div>
+    <div class="panel-heading"><h5>V2Ray 的 Reality 功能是什么？</h5></div>
     <div class="panel-body">
-        Sing-box 支持按端口匹配流量，将不同应用的流量分配到指定节点。结合策略组使用，可实现精准分流，优化访问速度和网络稳定性，提高整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 的 TAP 模式与 TUN 模式区别是什么？</h5></div>
-    <div class="panel-body">
-        TAP 模式模拟以太网接口，适合游戏流量代理；TUN 模式则模拟 IP 层接口，更适合全局代理。根据用途不同可自由选择，但需管理员权限运行。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 如何选择全局代理与规则代理模式？</h5></div>
-    <div class="panel-body">
-        全局代理适合所有流量走节点，如游戏和全局科学上网；规则代理仅针对指定应用、IP 或端口走节点，可优化带宽使用和访问效率，根据使用场景选择模式。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的混淆参数如何选择才能兼顾速度与隐蔽性？</h5></div>
-    <div class="panel-body">
-        混淆参数建议根据网络环境选择，一般 http_simple 兼容性最好，tls1.2_ticket_auth 隐蔽性更强。若节点在国内访问，选择简单混淆可提升速度，若跨境访问频繁则推荐 TLS 混淆提高安全性。<hr />    </div>
+        Reality 是 V2Ray 新增的伪装技术，可替代传统 TLS。它无需真实证书，通过公钥验证机制实现端到端加密。相比 Trojan 的 HTTPS 伪装方式，Reality 更轻量、安全且配置更简洁。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + Reality 与 Trojan 在性能上差异大吗？</h5></div>
@@ -391,9 +376,24 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 Reality 功能是什么？</h5></div>
+    <div class="panel-heading"><h5>SSR 的混淆参数如何选择才能兼顾速度与隐蔽性？</h5></div>
     <div class="panel-body">
-        Reality 是 V2Ray 新增的伪装技术，可替代传统 TLS。它无需真实证书，通过公钥验证机制实现端到端加密。相比 Trojan 的 HTTPS 伪装方式，Reality 更轻量、安全且配置更简洁。<hr />    </div>
+        混淆参数建议根据网络环境选择，一般 http_simple 兼容性最好，tls1.2_ticket_auth 隐蔽性更强。若节点在国内访问，选择简单混淆可提升速度，若跨境访问频繁则推荐 TLS 混淆提高安全性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 的 TAP 模式与 TUN 模式区别是什么？</h5></div>
+    <div class="panel-body">
+        TAP 模式模拟以太网接口，适合游戏流量代理；TUN 模式则模拟 IP 层接口，更适合全局代理。根据用途不同可自由选择，但需管理员权限运行。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的协议插件与加密方式如何搭配使用？</h5></div>
+    <div class="panel-body">
+        协议插件可增强抗封锁能力，加密方式确保数据安全。合理搭配可模拟正常流量特征，同时保障传输安全，有助于在封锁严格环境下维持节点可用性和稳定连接。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 如何选择全局代理与规则代理模式？</h5></div>
+    <div class="panel-body">
+        全局代理适合所有流量走节点，如游戏和全局科学上网；规则代理仅针对指定应用、IP 或端口走节点，可优化带宽使用和访问效率，根据使用场景选择模式。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Surfboard 策略组如何提升游戏和视频体验？</h5></div>
@@ -401,9 +401,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         通过策略组将游戏、视频和浏览器流量分配到低延迟、高带宽节点，Surfboard 可自动切换最优节点，减少延迟和卡顿，提高整体网络体验和访问速度。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的协议插件与加密方式如何搭配使用？</h5></div>
+    <div class="panel-heading"><h5>为什么使用 CDN 后仍然能被封？如何规避？</h5></div>
     <div class="panel-body">
-        协议插件可增强抗封锁能力，加密方式确保数据安全。合理搭配可模拟正常流量特征，同时保障传输安全，有助于在封锁严格环境下维持节点可用性和稳定连接。    </div>
+        若 CDN 回源 IP 或配置不当可能泄露真实服务器信息，或者 CDN 本身被目标防火墙识别。应启用完整的反向代理配置、隐藏源站 IP 与禁用不必要的服务，必要时使用多级中转或更换 CDN 供应商。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -432,16 +432,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-10-27-free-node-subscribe.htm" title="10月27日|SSR节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点每天更新22.1M/S免费节点订阅链接地址分享">10月27日|SSR节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点每天更新22.1M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-8-free-high-speed-nodes.htm" title="11月8日|Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点每天更新21.4M/S免费节点订阅链接地址分享">11月8日|Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点每天更新21.4M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-6-node-share-links.htm" title="10月6日|V2ray节点/Clash节点/Singbox节点/SSR节点/Shadowrocket节点每天更新20.6M/S免费节点订阅链接地址分享">10月6日|V2ray节点/Clash节点/Singbox节点/SSR节点/Shadowrocket节点每天更新20.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-14-free-node-subscribe.htm" title="10月14日|Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点每天更新18M/S免费节点订阅链接地址分享">10月14日|Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点每天更新18M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-10-free-node-subscribe.htm" title="11月10日|SSR节点/Shadowrocket节点/V2ray节点/Singbox节点/Clash节点每天更新21.6M/S免费节点订阅链接地址分享">11月10日|SSR节点/Shadowrocket节点/V2ray节点/Singbox节点/Clash节点每天更新21.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-13-clash-v2ray-ss-ssr.htm" title="11月13日|V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点每天更新22.9M/S免费节点订阅链接地址分享">11月13日|V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点每天更新22.9M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-19-free-node-subscribe.htm" title="10月19日|Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点每天更新19.5M/S免费节点订阅链接地址分享">10月19日|Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点每天更新19.5M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-22-free-node-subscribe.htm" title="10月22日|V2ray节点/Clash节点/SSR节点/Shadowrocket节点/Singbox节点每天更新20.2M/S免费节点订阅链接地址分享">10月22日|V2ray节点/Clash节点/SSR节点/Shadowrocket节点/Singbox节点每天更新20.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-15-node-share-links.htm" title="10月15日|SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点每天更新19.8M/S免费节点订阅链接地址分享">10月15日|SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点每天更新19.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-23-shadowrocket-node.htm" title="10月23日|Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Singbox节点每天更新22.8M/S免费节点订阅链接地址分享">10月23日|Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Singbox节点每天更新22.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-3-node-share.htm" title="11月3日|Singbox节点/SSR节点/V2ray节点/Clash节点/Shadowrocket节点每天更新21.4M/S免费节点订阅链接地址分享">11月3日|Singbox节点/SSR节点/V2ray节点/Clash节点/Shadowrocket节点每天更新21.4M/S免费节点订阅链接地址分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-4-node-share-links.htm" title="10月4日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新21.3M/S免费节点订阅链接地址分享">10月4日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新21.3M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-14-node-share-links.htm" title="11月14日|Clash节点/Singbox节点/Shadowrocket节点/SSR节点/V2ray节点每天更新18.6M/S免费节点订阅链接地址分享">11月14日|Clash节点/Singbox节点/Shadowrocket节点/SSR节点/V2ray节点每天更新18.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-17-clash-node.htm" title="11月17日|SSR节点/V2ray节点/Clash节点/Shadowrocket节点/Singbox节点每天更新20.5M/S免费节点订阅链接地址分享">11月17日|SSR节点/V2ray节点/Clash节点/Shadowrocket节点/Singbox节点每天更新20.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-21-clash-node-daily-updates.htm" title="11月21日|Singbox节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点每天更新21.3M/S免费节点订阅链接地址分享">11月21日|Singbox节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点每天更新21.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-8-free-high-speed-nodes.htm" title="11月8日|Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点每天更新21.4M/S免费节点订阅链接地址分享">11月8日|Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点每天更新21.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-9-free-node-subscribe.htm" title="11月9日|SSR节点/Singbox节点/Shadowrocket节点/V2ray节点/Clash节点每天更新18.3M/S免费节点订阅链接地址分享">11月9日|SSR节点/Singbox节点/Shadowrocket节点/V2ray节点/Clash节点每天更新18.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-23-clash-node.htm" title="11月23日|Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点每天更新19.5M/S免费节点订阅链接地址分享">11月23日|Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点每天更新19.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-v2ray.htm" title="11月7日|SSR节点/V2ray节点/Singbox节点/Shadowrocket节点/Clash节点每天更新18.8M/S免费节点订阅链接地址分享">11月7日|SSR节点/V2ray节点/Singbox节点/Shadowrocket节点/Clash节点每天更新18.8M/S免费节点订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -453,7 +453,7 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">16</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
