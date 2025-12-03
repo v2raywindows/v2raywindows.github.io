@@ -278,11 +278,6 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 如何实现节点自动切换？</h5></div>
-    <div class="panel-body">
-        Shadowrocket 可结合延迟测速和策略组自动选择低延迟、稳定节点处理不同流量。提高网页、视频和游戏访问速度，减少掉线和卡顿，优化整体上网体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>如何优化 Clash 的 DNS 设置？</h5></div>
     <div class="panel-body">
         在 Clash 中使用自定义 DNS 可以加快域名解析速度。建议使用 doh（DNS over HTTPS）或 dot（DNS over TLS）配置方式，既能提升速度，也能保护隐私防止 DNS 泄露。<hr />    </div>
@@ -291,6 +286,11 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
     <div class="panel-heading"><h5>Quantumult X 的自动策略组如何工作？</h5></div>
     <div class="panel-body">
         Quantumult X 的自动策略组可根据延迟、可用性或测速结果自动选择最优节点，用户无需手动切换。可在策略组设置中开启“延迟优先”或“可用性优先”模式以优化体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 是否支持系统代理？</h5></div>
+    <div class="panel-body">
+        Netch 不直接修改系统代理，而是通过虚拟网卡（TAP 驱动）实现透明代理。这种方式不会影响浏览器设置，适合游戏和应用程序需要 UDP 支持的场景。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>使用 Reality 协议后，客户端与服务端的密钥如何管理？</h5></div>
@@ -303,19 +303,19 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
         Matsuri 会定期测速节点延迟，结合策略组，可自动选择延迟最低的节点处理流量。这样用户无需手动切换节点，就能保持访问速度和稳定性，优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 是否支持系统代理？</h5></div>
-    <div class="panel-body">
-        Netch 不直接修改系统代理，而是通过虚拟网卡（TAP 驱动）实现透明代理。这种方式不会影响浏览器设置，适合游戏和应用程序需要 UDP 支持的场景。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的 gRPC 模式适合哪些场景？</h5></div>
     <div class="panel-body">
         gRPC 支持多路复用和长连接，适合高并发访问和移动网络场景。相比 TCP 或 WebSocket，它可以减少握手次数，降低延迟，同时提高连接稳定性和吞吐量，特别适合游戏或即时通讯。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 的测速功能如何优化节点选择？</h5></div>
+    <div class="panel-heading"><h5>Sing-box 的自定义 outbound 功能有什么用？</h5></div>
     <div class="panel-body">
-        Shadowrocket 可测量节点延迟和丢包率，并根据结果排序策略组节点。延迟低的节点会优先使用，保证网页浏览、视频和游戏的速度和稳定性，提高整体网络体验。<hr />    </div>
+        Sing-box 允许用户自定义多个 outbound 出口，并通过路由规则选择性输出。例如可让流媒体走特定节点，而其他网站使用备用节点，从而实现精准分流。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Shadowrocket 如何实现节点自动切换？</h5></div>
+    <div class="panel-body">
+        Shadowrocket 可结合延迟测速和策略组自动选择低延迟、稳定节点处理不同流量。提高网页、视频和游戏访问速度，减少掉线和卡顿，优化整体上网体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的多出口节点如何优化访问速度？</h5></div>
@@ -323,9 +323,9 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
         通过为不同流量类型设置不同出口节点，WinXray 可以自动选择延迟最低的节点处理请求。结合策略组，可提高网页访问、视频播放和游戏等应用的速度与稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 的自定义 outbound 功能有什么用？</h5></div>
+    <div class="panel-heading"><h5>Shadowrocket 的测速功能如何优化节点选择？</h5></div>
     <div class="panel-body">
-        Sing-box 允许用户自定义多个 outbound 出口，并通过路由规则选择性输出。例如可让流媒体走特定节点，而其他网站使用备用节点，从而实现精准分流。    </div>
+        Shadowrocket 可测量节点延迟和丢包率，并根据结果排序策略组节点。延迟低的节点会优先使用，保证网页浏览、视频和游戏的速度和稳定性，提高整体网络体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -354,16 +354,16 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-11-21-clash-node-daily-updates.htm" title="11月21日|Singbox节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点每天更新21.3M/S免费节点订阅链接地址分享">11月21日|Singbox节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点每天更新21.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-15-node-share-links.htm" title="10月15日|SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点每天更新19.8M/S免费节点订阅链接地址分享">10月15日|SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点每天更新19.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-5-free-node-subscribe.htm" title="11月5日|V2ray节点/SSR节点/Shadowrocket节点/Clash节点/Singbox节点每天更新19.9M/S免费节点订阅链接地址分享">11月5日|V2ray节点/SSR节点/Shadowrocket节点/Clash节点/Singbox节点每天更新19.9M/S免费节点订阅链接地址分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-11-free-v2ray.htm" title="10月11日|Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点每天更新19.8M/S免费节点订阅链接地址分享">10月11日|Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点每天更新19.8M/S免费节点订阅链接地址分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-2-free-node-subscribe.htm" title="11月2日|V2ray节点/Singbox节点/Clash节点/SSR节点/Shadowrocket节点每天更新19.2M/S免费节点订阅链接地址分享">11月2日|V2ray节点/Singbox节点/Clash节点/SSR节点/Shadowrocket节点每天更新19.2M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-5-free-shadowrocket-node.htm" title="10月5日|Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点每天更新20.5M/S免费节点订阅链接地址分享">10月5日|Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点每天更新20.5M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-3-free-ssr-node.htm" title="10月3日|SSR节点/Shadowrocket节点/Clash节点/Singbox节点/V2ray节点每天更新18.1M/S免费节点订阅链接地址分享">10月3日|SSR节点/Shadowrocket节点/Clash节点/Singbox节点/V2ray节点每天更新18.1M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-18-free-clash-subscribe.htm" title="11月18日|Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点每天更新20M/S免费节点订阅链接地址分享">11月18日|Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点每天更新20M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-1-free-node-subscribe-links.htm" title="12月1日|Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点每天更新20.6M/S免费节点订阅链接地址分享">12月1日|Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点每天更新20.6M/S免费节点订阅链接地址分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-6-free-ssr-node.htm" title="11月6日|SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点每天更新22.8M/S免费节点订阅链接地址分享">11月6日|SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点每天更新22.8M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-11-free-ssr-subscribe.htm" title="11月11日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新18M/S免费节点订阅链接地址分享">11月11日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新18M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-17-clash-node-daily-updates.htm" title="10月17日|V2ray节点/Clash节点/Shadowrocket节点/Singbox节点/SSR节点每天更新22.8M/S免费节点订阅链接地址分享">10月17日|V2ray节点/Clash节点/Shadowrocket节点/Singbox节点/SSR节点每天更新22.8M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-1-shadowrocket-node.htm" title="11月1日|Clash节点/V2ray节点/Shadowrocket节点/Singbox节点/SSR节点每天更新19.4M/S免费节点订阅链接地址分享">11月1日|Clash节点/V2ray节点/Shadowrocket节点/Singbox节点/SSR节点每天更新19.4M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-27-free-node-subscribe.htm" title="10月27日|SSR节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点每天更新22.1M/S免费节点订阅链接地址分享">10月27日|SSR节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点每天更新22.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-20-free-high-speed-nodes.htm" title="11月20日|SSR节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点每天更新18.4M/S免费节点订阅链接地址分享">11月20日|SSR节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点每天更新18.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-30-free-high-speed-nodes.htm" title="11月30日|Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点每天更新20M/S免费节点订阅链接地址分享">11月30日|Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点每天更新20M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-18-free-clash-subscribe.htm" title="11月18日|Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点每天更新20M/S免费节点订阅链接地址分享">11月18日|Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点每天更新20M/S免费节点订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -375,7 +375,10 @@ Clash智能选择最佳节点，节省资源同时保证访问速度。</p>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
