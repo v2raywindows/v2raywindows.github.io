@@ -129,17 +129,38 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/2026-1-6-free-clash.htm">1月6日|V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Clash节点每天更新19.9M/S免费节点订阅链接地址分享</a></p>
+        <p>下一个：<a href="/free-nodes/2026-1-8-clash-node-daily-updates.htm">1月8日|Singbox节点/V2ray节点/SSR节点/Clash节点/Shadowrocket节点每天更新20.4M/S免费节点订阅链接地址分享</a></p>
     </div>
 <h4>FAQ</h4>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 是否支持 DNS 分流？</h5></div>
+    <div class="panel-body">
+        支持。Clash 可以自定义 DNS 服务器，并通过 rules 区分国内外域名解析方式。比如国内网站可使用本地 DNS，国外网站可走代理 DNS，从而提升访问速度与稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何把 Clash 规则与本地 hosts 文件结合使用？</h5></div>
+    <div class="panel-body">
+        可在 Clash 的 rules 中优先设置域名直连规则，并在系统 hosts 中添加常用站点的固定解析以加速 DNS 解析。注意 hosts 优先级高于 DNS，因此修改 hosts 需谨慎以避免与真实解析冲突。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess AEAD 加密在高封锁网络的作用？</h5></div>
+    <div class="panel-body">
+        AEAD 加密可防止数据篡改和流量特征泄露，降低被封锁和 DPI 检测风险。保证节点长期可用，提高数据传输安全性和访问可靠性，优化用户科学上网体验。<hr />    </div>
+</div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray QUIC 模式适合哪些网络环境？</h5></div>
     <div class="panel-body">
         QUIC 基于 UDP 协议，支持多路复用和零握手，适合高丢包和不稳定网络环境。可提升视频、游戏和即时通讯流量的稳定性和访问速度，提高网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>使用 Reality 协议后，客户端与服务端的密钥如何管理？</h5></div>
+    <div class="panel-heading"><h5>如何在 V2Ray 中自定义路由规则？</h5></div>
     <div class="panel-body">
-        Reality 使用公私钥对进行认证，应生成唯一的公私钥对并妥善保存私钥，公钥可部署在服务端配置中。避免在多个服务共享同一密钥，定期轮换密钥并通过安全通道传输公钥以防泄露。<hr />    </div>
+        在 V2Ray 中可以通过修改 config.json 文件中的 routing 部分来自定义路由规则。用户可以根据 IP 段、域名或地理位置来决定流量的去向，从而实现自动分流或访问加速的效果。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>QuantumultX 如何实现按协议类型分流？</h5></div>
+    <div class="panel-body">
+        QuantumultX 可根据 TCP、UDP 或特定应用协议分流流量，结合策略组选择节点。这样可以为游戏、视频或广告屏蔽等应用提供最佳网络体验，提高访问速度和稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Nekobox 如何管理多协议节点和分流？</h5></div>
@@ -152,34 +173,14 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         将节点按延迟、地区或用途分组，并启用策略组，系统会根据节点健康和延迟自动选择最佳节点。保证网页浏览、视频播放和游戏流量的低延迟稳定连接。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess AEAD 加密在高封锁网络的作用？</h5></div>
-    <div class="panel-body">
-        AEAD 加密可防止数据篡改和流量特征泄露，降低被封锁和 DPI 检测风险。保证节点长期可用，提高数据传输安全性和访问可靠性，优化用户科学上网体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何把 Clash 规则与本地 hosts 文件结合使用？</h5></div>
-    <div class="panel-body">
-        可在 Clash 的 rules 中优先设置域名直连规则，并在系统 hosts 中添加常用站点的固定解析以加速 DNS 解析。注意 hosts 优先级高于 DNS，因此修改 hosts 需谨慎以避免与真实解析冲突。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 是否支持 DNS 分流？</h5></div>
-    <div class="panel-body">
-        支持。Clash 可以自定义 DNS 服务器，并通过 rules 区分国内外域名解析方式。比如国内网站可使用本地 DNS，国外网站可走代理 DNS，从而提升访问速度与稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 如何实现按协议类型分流？</h5></div>
-    <div class="panel-body">
-        QuantumultX 可根据 TCP、UDP 或特定应用协议分流流量，结合策略组选择节点。这样可以为游戏、视频或广告屏蔽等应用提供最佳网络体验，提高访问速度和稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何在 V2Ray 中自定义路由规则？</h5></div>
-    <div class="panel-body">
-        在 V2Ray 中可以通过修改 config.json 文件中的 routing 部分来自定义路由规则。用户可以根据 IP 段、域名或地理位置来决定流量的去向，从而实现自动分流或访问加速的效果。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Surfboard 如何实现按应用分流？</h5></div>
     <div class="panel-body">
-        Surfboard 支持通过策略组和规则文件按应用分流，将不同应用的流量分配到不同节点。这样可保证游戏或视频走低延迟节点，提高访问速度并优化网络体验。    </div>
+        Surfboard 支持通过策略组和规则文件按应用分流，将不同应用的流量分配到不同节点。这样可保证游戏或视频走低延迟节点，提高访问速度并优化网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>使用 Reality 协议后，客户端与服务端的密钥如何管理？</h5></div>
+    <div class="panel-body">
+        Reality 使用公私钥对进行认证，应生成唯一的公私钥对并妥善保存私钥，公钥可部署在服务端配置中。避免在多个服务共享同一密钥，定期轮换密钥并通过安全通道传输公钥以防泄露。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -208,16 +209,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-11-17-clash-node.htm" title="11月17日|SSR节点/V2ray节点/Clash节点/Shadowrocket节点/Singbox节点每天更新20.5M/S免费节点订阅链接地址分享">11月17日|SSR节点/V2ray节点/Clash节点/Shadowrocket节点/Singbox节点每天更新20.5M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-5-free-node-subscribe.htm" title="11月5日|V2ray节点/SSR节点/Shadowrocket节点/Clash节点/Singbox节点每天更新19.9M/S免费节点订阅链接地址分享">11月5日|V2ray节点/SSR节点/Shadowrocket节点/Clash节点/Singbox节点每天更新19.9M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-5-clash-node-daily-updates.htm" title="12月5日|V2ray节点/Singbox节点/SSR节点/Clash节点/Shadowrocket节点每天更新18.4M/S免费节点订阅链接地址分享">12月5日|V2ray节点/Singbox节点/SSR节点/Clash节点/Shadowrocket节点每天更新18.4M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-17-free-ssr-node.htm" title="12月17日|V2ray节点/Shadowrocket节点/Singbox节点/SSR节点/Clash节点每天更新18.2M/S免费节点订阅链接地址分享">12月17日|V2ray节点/Shadowrocket节点/Singbox节点/SSR节点/Clash节点每天更新18.2M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-11-free-ssr-subscribe.htm" title="11月11日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新18M/S免费节点订阅链接地址分享">11月11日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新18M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-13-clash-v2ray-ss-ssr.htm" title="11月13日|V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点每天更新22.9M/S免费节点订阅链接地址分享">11月13日|V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点每天更新22.9M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-24-node-share-links.htm" title="12月24日|Shadowrocket节点/SSR节点/Singbox节点/Clash节点/V2ray节点每天更新18M/S免费节点订阅链接地址分享">12月24日|Shadowrocket节点/SSR节点/Singbox节点/Clash节点/V2ray节点每天更新18M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-7-free-ssr-node.htm" title="12月7日|SSR节点/Clash节点/V2ray节点/Singbox节点/Shadowrocket节点每天更新18.7M/S免费节点订阅链接地址分享">12月7日|SSR节点/Clash节点/V2ray节点/Singbox节点/Shadowrocket节点每天更新18.7M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-29-clash-node-daily-updates.htm" title="11月29日|V2ray节点/Clash节点/Singbox节点/SSR节点/Shadowrocket节点每天更新22.9M/S免费节点订阅链接地址分享">11月29日|V2ray节点/Clash节点/Singbox节点/SSR节点/Shadowrocket节点每天更新22.9M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-2-clash-windows.htm" title="12月2日|V2ray节点/SSR节点/Singbox节点/Clash节点/Shadowrocket节点每天更新19.1M/S免费节点订阅链接地址分享">12月2日|V2ray节点/SSR节点/Singbox节点/Clash节点/Shadowrocket节点每天更新19.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-12-free-shadowrocket-node.htm" title="1月12日|Shadowrocket节点/Singbox节点/SSR节点/V2ray节点/Clash节点每天更新19.5M/S免费节点订阅链接地址分享">1月12日|Shadowrocket节点/Singbox节点/SSR节点/V2ray节点/Clash节点每天更新19.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-20-clash-windows.htm" title="12月20日|V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点每天更新18.1M/S免费节点订阅链接地址分享">12月20日|V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点每天更新18.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-31-free-node-subscribe.htm" title="12月31日|V2ray节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点每天更新19.3M/S免费节点订阅链接地址分享">12月31日|V2ray节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点每天更新19.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-26-free-subscribe-node.htm" title="12月26日|Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Singbox节点每天更新22.6M/S免费节点订阅链接地址分享">12月26日|Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Singbox节点每天更新22.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-6-free-clash.htm" title="1月6日|V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Clash节点每天更新19.9M/S免费节点订阅链接地址分享">1月6日|V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Clash节点每天更新19.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-21-free-node-subscribe-links.htm" title="12月21日|V2ray节点/Singbox节点/SSR节点/Shadowrocket节点/Clash节点每天更新21M/S免费节点订阅链接地址分享">12月21日|V2ray节点/Singbox节点/SSR节点/Shadowrocket节点/Clash节点每天更新21M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-14-free-node-subscribe.htm" title="12月14日|Shadowrocket节点/Clash节点/SSR节点/Singbox节点/V2ray节点每天更新22.5M/S免费节点订阅链接地址分享">12月14日|Shadowrocket节点/Clash节点/SSR节点/Singbox节点/V2ray节点每天更新22.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-18-free-high-speed-nodes.htm" title="12月18日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新20.5M/S免费节点订阅链接地址分享">12月18日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新20.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-9-free-node-subscribe.htm" title="12月9日|Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点每天更新20.8M/S免费节点订阅链接地址分享">12月9日|Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点每天更新20.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-10-free-clash.htm" title="1月10日|SSR节点/Clash节点/V2ray节点/Shadowrocket节点/Singbox节点每天更新19.1M/S免费节点订阅链接地址分享">1月10日|SSR节点/Clash节点/V2ray节点/Shadowrocket节点/Singbox节点每天更新19.1M/S免费节点订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -229,13 +230,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">7</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
+                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
             </li>
                     </ul>
     </div>
