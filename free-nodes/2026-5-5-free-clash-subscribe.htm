@@ -342,39 +342,9 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 可以自定义规则吗？</h5></div>
+    <div class="panel-heading"><h5>V2RayN 订阅更新后节点重复如何清理？</h5></div>
     <div class="panel-body">
-        可以。WinXray 支持编辑路由规则文件，用户可设置域名白名单或黑名单，实现分流策略。例如国内流量直连、国外流量走代理，从而提高网络访问效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何配置 Clash 以支持局域网内设备共享代理？</h5></div>
-    <div class="panel-body">
-        启用 Clash 的 HTTP/SOCKS5 本地监听并在局域网设备上设置该代理地址为网关；若使用 TUN 模式需配合路由器或透明代理实现全局共享，注意开启访问控制避免未经授权的外部访问。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 策略组如何自动优化网络访问？</h5></div>
-    <div class="panel-body">
-        PassWall2 结合策略组和延迟检测功能，自动选择最佳节点处理网页、视频和游戏流量。无需手动切换，保证访问速度和稳定性，提升整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 支持哪些类型的分流规则？</h5></div>
-    <div class="panel-body">
-        Sing-box 支持域名、IP、端口、协议类型、用户标签等多种分流规则。结合策略组，可实现精细化流量管理，满足视频加速、广告屏蔽和游戏优化等多样化需求。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的多出口策略如何提高网络稳定性？</h5></div>
-    <div class="panel-body">
-        WinXray 支持为不同流量类型指定不同出口，通过策略组和路由规则自动选择最佳节点。这样可以分散流量压力，提高连接稳定性，并确保高优先级应用获得最佳速度。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLess 为什么被认为是未来趋势？</h5></div>
-    <div class="panel-body">
-        VLess 去掉了内置加密层，改为依赖外部 TLS 进行安全通信，这使其更轻量化且更灵活。它能与 Hysteria、Reality 等现代传输方式结合使用，适应性更强，是取代 Vmess 的新标准。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 的重写脚本可以实现哪些功能？</h5></div>
-    <div class="panel-body">
-        QuantumultX 支持 JavaScript 重写脚本，可修改请求头、响应内容、跳转 URL、广告屏蔽和定制化流量处理。结合策略组可实现个性化网络访问和优化，提高用户体验。<hr />    </div>
+        V2RayN 在导入订阅时有时会产生重复节点，可以点击右键菜单选择“删除重复项”。若仍存在旧节点缓存，可清空配置文件夹内的 history.json 并重新导入订阅，保证节点列表整洁。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Nekobox 是否支持多配置文件切换？</h5></div>
@@ -382,14 +352,44 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
         支持。Nekobox 允许用户创建多个配置文件并快速切换，适合在不同网络环境下使用不同规则。例如家用网络与移动数据可使用独立的配置方案。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2RayN 订阅更新后节点重复如何清理？</h5></div>
+    <div class="panel-heading"><h5>QuantumultX 的重写脚本可以实现哪些功能？</h5></div>
     <div class="panel-body">
-        V2RayN 在导入订阅时有时会产生重复节点，可以点击右键菜单选择“删除重复项”。若仍存在旧节点缓存，可清空配置文件夹内的 history.json 并重新导入订阅，保证节点列表整洁。<hr />    </div>
+        QuantumultX 支持 JavaScript 重写脚本，可修改请求头、响应内容、跳转 URL、广告屏蔽和定制化流量处理。结合策略组可实现个性化网络访问和优化，提高用户体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VLess 为什么被认为是未来趋势？</h5></div>
+    <div class="panel-body">
+        VLess 去掉了内置加密层，改为依赖外部 TLS 进行安全通信，这使其更轻量化且更灵活。它能与 Hysteria、Reality 等现代传输方式结合使用，适应性更强，是取代 Vmess 的新标准。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的多出口策略如何提高网络稳定性？</h5></div>
+    <div class="panel-body">
+        WinXray 支持为不同流量类型指定不同出口，通过策略组和路由规则自动选择最佳节点。这样可以分散流量压力，提高连接稳定性，并确保高优先级应用获得最佳速度。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>PassWall2 策略组如何自动优化网络访问？</h5></div>
+    <div class="panel-body">
+        PassWall2 结合策略组和延迟检测功能，自动选择最佳节点处理网页、视频和游戏流量。无需手动切换，保证访问速度和稳定性，提升整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的主要特点是什么？</h5></div>
     <div class="panel-body">
-        WinXray 是一款基于 V2Ray 核心的 Windows 客户端，界面直观，支持 VMess、VLess、Trojan、Shadowsocks 等多协议。它提供一键导入订阅、节点测速、自动分流等功能，是适合初学者和进阶用户的图形化代理工具。    </div>
+        WinXray 是一款基于 V2Ray 核心的 Windows 客户端，界面直观，支持 VMess、VLess、Trojan、Shadowsocks 等多协议。它提供一键导入订阅、节点测速、自动分流等功能，是适合初学者和进阶用户的图形化代理工具。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何配置 Clash 以支持局域网内设备共享代理？</h5></div>
+    <div class="panel-body">
+        启用 Clash 的 HTTP/SOCKS5 本地监听并在局域网设备上设置该代理地址为网关；若使用 TUN 模式需配合路由器或透明代理实现全局共享，注意开启访问控制避免未经授权的外部访问。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 支持哪些类型的分流规则？</h5></div>
+    <div class="panel-body">
+        Sing-box 支持域名、IP、端口、协议类型、用户标签等多种分流规则。结合策略组，可实现精细化流量管理，满足视频加速、广告屏蔽和游戏优化等多样化需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 可以自定义规则吗？</h5></div>
+    <div class="panel-body">
+        可以。WinXray 支持编辑路由规则文件，用户可设置域名白名单或黑名单，实现分流策略。例如国内流量直连、国外流量走代理，从而提高网络访问效率。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -418,16 +418,16 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-5-11-free-clash-subscribe.htm" title="5月11日|Clash节点/Singbox节点/Shadowrocket节点/SSR节点/V2ray节点/Trojan节点每天更新19.2M/S免费节点订阅链接地址分享">5月11日|Clash节点/Singbox节点/Shadowrocket节点/SSR节点/V2ray节点/Trojan节点每天更新19.2M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-30-free-clash-subscribe.htm" title="4月30日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点每天更新22.7M/S免费节点订阅链接地址分享">4月30日|Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点每天更新22.7M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-24-clash-node-daily-updates.htm" title="4月24日|Clash节点/SSR节点/Shadowrocket节点/V2ray节点/Trojan节点/Singbox节点每天更新19M/S免费节点订阅链接地址分享">4月24日|Clash节点/SSR节点/Shadowrocket节点/V2ray节点/Trojan节点/Singbox节点每天更新19M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-8-shadowrocket-node.htm" title="5月8日|Clash节点/V2ray节点/Trojan节点/SSR节点/Singbox节点/Shadowrocket节点每天更新19.6M/S免费节点订阅链接地址分享">5月8日|Clash节点/V2ray节点/Trojan节点/SSR节点/Singbox节点/Shadowrocket节点每天更新19.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-19-free-subscribe-node.htm" title="4月19日|Trojan节点/Shadowrocket节点/Clash节点/V2ray节点/Singbox节点/SSR节点每天更新18.1M/S免费节点订阅链接地址分享">4月19日|Trojan节点/Shadowrocket节点/Clash节点/V2ray节点/Singbox节点/SSR节点每天更新18.1M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-23-free-ssr-subscribe.htm" title="4月23日|V2ray节点/Clash节点/Shadowrocket节点/SSR节点/Singbox节点/Trojan节点每天更新18.1M/S免费节点订阅链接地址分享">4月23日|V2ray节点/Clash节点/Shadowrocket节点/SSR节点/Singbox节点/Trojan节点每天更新18.1M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-11-free-clash.htm" title="4月11日|Trojan节点/SSR节点/Shadowrocket节点/Clash节点/V2ray节点/Singbox节点每天更新21.4M/S免费节点订阅链接地址分享">4月11日|Trojan节点/SSR节点/Shadowrocket节点/Clash节点/V2ray节点/Singbox节点每天更新21.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-15-free-high-speed-nodes.htm" title="4月15日|SSR节点/Clash节点/Singbox节点/Shadowrocket节点/Trojan节点/V2ray节点每天更新19.6M/S免费节点订阅链接地址分享">4月15日|SSR节点/Clash节点/Singbox节点/Shadowrocket节点/Trojan节点/V2ray节点每天更新19.6M/S免费节点订阅链接地址分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-5-4-free-subscribe-node.htm" title="5月4日|Shadowrocket节点/Singbox节点/Clash节点/SSR节点/Trojan节点/V2ray节点每天更新19.6M/S免费节点订阅链接地址分享">5月4日|Shadowrocket节点/Singbox节点/Clash节点/SSR节点/Trojan节点/V2ray节点每天更新19.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-7-node-share.htm" title="5月7日|Singbox节点/SSR节点/Clash节点/Shadowrocket节点/Trojan节点/V2ray节点每天更新21.6M/S免费节点订阅链接地址分享">5月7日|Singbox节点/SSR节点/Clash节点/Shadowrocket节点/Trojan节点/V2ray节点每天更新21.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-10-clash-node-daily-updates.htm" title="4月10日|SSR节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点/Clash节点每天更新20.7M/S免费节点订阅链接地址分享">4月10日|SSR节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点/Clash节点每天更新20.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-1-free-v2ray-subscribe.htm" title="5月1日|Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点/Trojan节点每天更新21.4M/S免费节点订阅链接地址分享">5月1日|Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点/Trojan节点每天更新21.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-20-free-clash.htm" title="4月20日|Trojan节点/V2ray节点/SSR节点/Singbox节点/Clash节点/Shadowrocket节点每天更新22.4M/S免费节点订阅链接地址分享">4月20日|Trojan节点/V2ray节点/SSR节点/Singbox节点/Clash节点/Shadowrocket节点每天更新22.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-28-free-ssr-subscribe.htm" title="4月28日|V2ray节点/Clash节点/Shadowrocket节点/Singbox节点/SSR节点/Trojan节点每天更新20.7M/S免费节点订阅链接地址分享">4月28日|V2ray节点/Clash节点/Shadowrocket节点/Singbox节点/SSR节点/Trojan节点每天更新20.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-21-free-ssr-node.htm" title="4月21日|Shadowrocket节点/SSR节点/Clash节点/Trojan节点/Singbox节点/V2ray节点每天更新18.6M/S免费节点订阅链接地址分享">4月21日|Shadowrocket节点/SSR节点/Clash节点/Trojan节点/Singbox节点/V2ray节点每天更新18.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-25-shadowrocket-node.htm" title="4月25日|Shadowrocket节点/Singbox节点/SSR节点/Trojan节点/Clash节点/V2ray节点每天更新18M/S免费节点订阅链接地址分享">4月25日|Shadowrocket节点/Singbox节点/SSR节点/Trojan节点/Clash节点/V2ray节点每天更新18M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-5-free-clash-subscribe.htm" title="5月5日|V2ray节点/Singbox节点/Clash节点/Trojan节点/SSR节点/Shadowrocket节点每天更新21.3M/S免费节点订阅链接地址分享">5月5日|V2ray节点/Singbox节点/Clash节点/Trojan节点/SSR节点/Shadowrocket节点每天更新21.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-17-free-shadowrocket-node.htm" title="4月17日|V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Trojan节点/Clash节点每天更新20.7M/S免费节点订阅链接地址分享">4月17日|V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Trojan节点/Clash节点每天更新20.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-13-free-ssr-node.htm" title="4月13日|SSR节点/Clash节点/Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点每天更新18.4M/S免费节点订阅链接地址分享">4月13日|SSR节点/Clash节点/Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点每天更新18.4M/S免费节点订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -442,7 +442,7 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
                 <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
