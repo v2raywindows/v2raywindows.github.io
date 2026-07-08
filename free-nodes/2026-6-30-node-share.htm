@@ -171,9 +171,14 @@ ss <span class="token parameter variable">-tulnp</span> <span class="token opera
         Sing-box 原生支持 Clash YAML 格式的导入，会自动解析成自身 JSON 结构。虽然部分脚本功能不兼容，但节点和规则可以正常使用，迁移过程非常平滑。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 如何通过策略组提升科学上网体验？</h5></div>
+    <div class="panel-heading"><h5>Netch 的全局代理与规则代理有何不同？</h5></div>
     <div class="panel-body">
-        PassWall2 结合策略组和延迟检测功能，可自动选择最优节点处理网页、视频和游戏流量。无需手动切换，保证访问速度、稳定性和整体网络体验。<hr />    </div>
+        全局代理将所有流量都通过节点转发，而规则代理只针对指定 IP、端口或应用。全局代理适合游戏和全局科学上网，规则代理适合优化带宽和分流特定流量。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Potatso Lite 是否支持节点手动排序？</h5></div>
+    <div class="panel-body">
+        支持。用户可以根据延迟或使用需求手动排序节点顺序，结合策略组和规则文件实现基本分流管理。虽然不支持自动订阅更新，但满足轻量用户的节点管理需求。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mihomo 节点分组如何自动切换最佳节点？</h5></div>
@@ -186,14 +191,9 @@ ss <span class="token parameter variable">-tulnp</span> <span class="token opera
         Mellow 的透明代理功能可通过 TUN 模式或 WinDivert 实现。启用后系统流量会自动通过代理转发，无需手动设置浏览器代理，适合全局科学上网场景。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 的分流规则可以按端口分配节点吗？</h5></div>
+    <div class="panel-heading"><h5>V2RayN 如何开启系统代理？</h5></div>
     <div class="panel-body">
-        支持。用户可通过端口号匹配流量，将不同应用的流量分配到指定节点，实现精准分流。结合策略组使用，可优化访问速度和网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何导入 Clash 订阅链接？</h5></div>
-    <div class="panel-body">
-        打开 Clash 客户端，进入 Profiles（配置文件）页面，粘贴提供的订阅链接并点击下载。Clash 会自动更新节点列表，用户可在 Profiles 中选择对应配置启用，从而快速切换不同代理线路。<hr />    </div>
+        打开 V2RayN 后，点击右下角托盘图标，选择“设置系统代理”或“开启全局模式”。这样系统所有网络请求都会通过代理转发。适用于浏览器、下载器等需要全局代理的场景。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 的全局代理如何启用？</h5></div>
@@ -201,19 +201,19 @@ ss <span class="token parameter variable">-tulnp</span> <span class="token opera
         在 Mellow 中可通过开启 TUN 模式来启用全局代理。启用后，系统的所有流量都会经过代理转发，可实现全面科学上网。需注意系统防火墙可能会提示权限请求。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2RayN 如何开启系统代理？</h5></div>
+    <div class="panel-heading"><h5>如何导入 Clash 订阅链接？</h5></div>
     <div class="panel-body">
-        打开 V2RayN 后，点击右下角托盘图标，选择“设置系统代理”或“开启全局模式”。这样系统所有网络请求都会通过代理转发。适用于浏览器、下载器等需要全局代理的场景。<hr />    </div>
+        打开 Clash 客户端，进入 Profiles（配置文件）页面，粘贴提供的订阅链接并点击下载。Clash 会自动更新节点列表，用户可在 Profiles 中选择对应配置启用，从而快速切换不同代理线路。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 是否支持节点手动排序？</h5></div>
+    <div class="panel-heading"><h5>PassWall2 如何通过策略组提升科学上网体验？</h5></div>
     <div class="panel-body">
-        支持。用户可以根据延迟或使用需求手动排序节点顺序，结合策略组和规则文件实现基本分流管理。虽然不支持自动订阅更新，但满足轻量用户的节点管理需求。<hr />    </div>
+        PassWall2 结合策略组和延迟检测功能，可自动选择最优节点处理网页、视频和游戏流量。无需手动切换，保证访问速度、稳定性和整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 的全局代理与规则代理有何不同？</h5></div>
+    <div class="panel-heading"><h5>Sing-box 的分流规则可以按端口分配节点吗？</h5></div>
     <div class="panel-body">
-        全局代理将所有流量都通过节点转发，而规则代理只针对指定 IP、端口或应用。全局代理适合游戏和全局科学上网，规则代理适合优化带宽和分流特定流量。    </div>
+        支持。用户可通过端口号匹配流量，将不同应用的流量分配到指定节点，实现精准分流。结合策略组使用，可优化访问速度和网络稳定性。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -243,15 +243,13 @@ ss <span class="token parameter variable">-tulnp</span> <span class="token opera
     <div class="panel-body">
         <div class="row">
             <div class="text-center">
-                <a href="javascript:;" class="js_to" data-url="https://www.futizi.net/?code=" data-type="Luniuyun" data-code="svvkQf3y" target="_blank">
-                    <img src="/assets/website/img/G/luniuyun.webp" class="avatar" alt="绿牛云">
+                <a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">
+                    <img src="/assets/website/img/G/xingchen.webp" class="avatar" alt="星辰机场">
                 </a>
                 <dl>
-                    <dt><a href="javascript:;" class="js_to" data-url="https://www.futizi.net/?code=" data-type="Luniuyun" data-code="svvkQf3y" target="_blank">绿牛云</a></dt>
+                    <dt><a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">星辰机场</a></dt>
                     <dd>
-                        <p>高速稳定的网络加速</p>
-                        <p>畅享全球内容，访问 ChatGPT、TikTok、Google 等热门网站。
-全平台支持 · 7×24 专业客服 · 采用军工级安全加密传输技术。</p>                    </dd>
+                        <p>【包年送2个月】</p><p>1、购买入门版年付套餐额外送2个月，共14个月，只要99元！！！</p><p>2、购买“至尊天皇”年付套餐，额外送2个月，只要299元！！！</p><p>3、购买其他包月类套餐中的年付，同样送2个月！！！</p><p>错过要再等一年！！</p>                    </dd>
                 </dl>
             </div>
         </div>
@@ -263,16 +261,16 @@ ss <span class="token parameter variable">-tulnp</span> <span class="token opera
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-6-9-free-high-speed-nodes.htm" title="6月9日|SSR节点/Singbox节点/Trojan节点/Shadowrocket节点/V2ray节点/Clash节点每天更新22.3M/S免费节点订阅链接地址分享">6月9日|SSR节点/Singbox节点/Trojan节点/Shadowrocket节点/V2ray节点/Clash节点每天更新22.3M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-31-free-ssr-subscribe.htm" title="5月31日|SSR节点/Trojan节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点每天更新22.5M/S免费节点订阅链接地址分享">5月31日|SSR节点/Trojan节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点每天更新22.5M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-27-node-share-links.htm" title="6月27日|V2ray节点/Shadowrocket节点/Clash节点/Trojan节点/SSR节点/Singbox节点每天更新22.9M/S免费节点订阅链接地址分享">6月27日|V2ray节点/Shadowrocket节点/Clash节点/Trojan节点/SSR节点/Singbox节点每天更新22.9M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-4-free-subscribe-node.htm" title="5月4日|Shadowrocket节点/Singbox节点/Clash节点/SSR节点/Trojan节点/V2ray节点每天更新19.6M/S免费节点订阅链接地址分享">5月4日|Shadowrocket节点/Singbox节点/Clash节点/SSR节点/Trojan节点/V2ray节点每天更新19.6M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-19-clash-node-daily-updates.htm" title="5月19日|Clash节点/Trojan节点/SSR节点/Singbox节点/V2ray节点/Shadowrocket节点每天更新21.4M/S免费节点订阅链接地址分享">5月19日|Clash节点/Trojan节点/SSR节点/Singbox节点/V2ray节点/Shadowrocket节点每天更新21.4M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-29-node-share.htm" title="5月29日|Singbox节点/SSR节点/V2ray节点/Clash节点/Shadowrocket节点/Trojan节点每天更新19M/S免费节点订阅链接地址分享">5月29日|Singbox节点/SSR节点/V2ray节点/Clash节点/Shadowrocket节点/Trojan节点每天更新19M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-23-shadowrocket-node.htm" title="6月23日|Singbox节点/Shadowrocket节点/Clash节点/SSR节点/V2ray节点/Trojan节点每天更新20.8M/S免费节点订阅链接地址分享">6月23日|Singbox节点/Shadowrocket节点/Clash节点/SSR节点/V2ray节点/Trojan节点每天更新20.8M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-24-free-v2ray.htm" title="5月24日|Trojan节点/Shadowrocket节点/Clash节点/V2ray节点/SSR节点/Singbox节点每天更新21.8M/S免费节点订阅链接地址分享">5月24日|Trojan节点/Shadowrocket节点/Clash节点/V2ray节点/SSR节点/Singbox节点每天更新21.8M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-6-clash-windows.htm" title="6月6日|Shadowrocket节点/Singbox节点/Clash节点/SSR节点/V2ray节点/Trojan节点每天更新20.5M/S免费节点订阅链接地址分享">6月6日|Shadowrocket节点/Singbox节点/Clash节点/SSR节点/V2ray节点/Trojan节点每天更新20.5M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-8-shadowrocket-node.htm" title="5月8日|Clash节点/V2ray节点/Trojan节点/SSR节点/Singbox节点/Shadowrocket节点每天更新19.6M/S免费节点订阅链接地址分享">5月8日|Clash节点/V2ray节点/Trojan节点/SSR节点/Singbox节点/Shadowrocket节点每天更新19.6M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-28-clash-node.htm" title="6月28日|V2ray节点/Shadowrocket节点/Clash节点/Trojan节点/Singbox节点/SSR节点每天更新18.7M/S免费节点订阅链接地址分享">6月28日|V2ray节点/Shadowrocket节点/Clash节点/Trojan节点/Singbox节点/SSR节点每天更新18.7M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-4-node-share.htm" title="7月4日|Singbox节点/SSR节点/Shadowrocket节点/Trojan节点/Clash节点/V2ray节点每天更新22.2M/S免费节点订阅链接地址分享">7月4日|Singbox节点/SSR节点/Shadowrocket节点/Trojan节点/Clash节点/V2ray节点每天更新22.2M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-15-free-subscribe-node.htm" title="6月15日|Shadowrocket节点/Singbox节点/Trojan节点/SSR节点/V2ray节点/Clash节点每天更新19.7M/S免费节点订阅链接地址分享">6月15日|Shadowrocket节点/Singbox节点/Trojan节点/SSR节点/V2ray节点/Clash节点每天更新19.7M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-5-free-node-subscribe-links.htm" title="7月5日|V2ray节点/Singbox节点/Trojan节点/Clash节点/Shadowrocket节点/SSR节点每天更新18.4M/S免费节点订阅链接地址分享">7月5日|V2ray节点/Singbox节点/Trojan节点/Clash节点/Shadowrocket节点/SSR节点每天更新18.4M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-22-free-clash.htm" title="6月22日|Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Singbox节点/Trojan节点每天更新18.4M/S免费节点订阅链接地址分享">6月22日|Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Singbox节点/Trojan节点每天更新18.4M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-13-free-clash-subscribe.htm" title="6月13日|V2ray节点/Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/SSR节点每天更新23M/S免费节点订阅链接地址分享">6月13日|V2ray节点/Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/SSR节点每天更新23M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-11-node-share-links.htm" title="6月11日|Shadowrocket节点/Clash节点/Trojan节点/Singbox节点/V2ray节点/SSR节点每天更新23M/S免费节点订阅链接地址分享">6月11日|Shadowrocket节点/Clash节点/Trojan节点/Singbox节点/V2ray节点/SSR节点每天更新23M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-8-free-v2ray.htm" title="6月8日|V2ray节点/Trojan节点/SSR节点/Shadowrocket节点/Clash节点/Singbox节点每天更新21.1M/S免费节点订阅链接地址分享">6月8日|V2ray节点/Trojan节点/SSR节点/Shadowrocket节点/Clash节点/Singbox节点每天更新21.1M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-29-free-subscribe-node.htm" title="6月29日|Trojan节点/Singbox节点/SSR节点/Clash节点/Shadowrocket节点/V2ray节点每天更新22.2M/S免费节点订阅链接地址分享">6月29日|Trojan节点/Singbox节点/SSR节点/Clash节点/Shadowrocket节点/V2ray节点每天更新22.2M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-26-free-node-subscribe.htm" title="6月26日|SSR节点/Singbox节点/V2ray节点/Shadowrocket节点/Clash节点/Trojan节点每天更新19.3M/S免费节点订阅链接地址分享">6月26日|SSR节点/Singbox节点/V2ray节点/Shadowrocket节点/Clash节点/Trojan节点每天更新19.3M/S免费节点订阅链接地址分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -284,13 +282,10 @@ ss <span class="token parameter variable">-tulnp</span> <span class="token opera
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">8</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2026-06/" title="2026-06 归档">2026-06</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2026-06/" title="2026-06 归档">2026-06</a></h4>
             </li>
                     </ul>
     </div>
@@ -317,9 +312,7 @@ ss <span class="token parameter variable">-tulnp</span> <span class="token opera
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                                        <div>特别推荐：<b><a href="javascript:;" class="js_to" data-url="https://www.futizi.net/?code=" data-type="Luniuyun" data-code="svvkQf3y" target="_blank">绿牛云</a></b> <p>高速稳定的网络加速</p>
-                        <p>畅享全球内容，访问 ChatGPT、TikTok、Google 等热门网站。
-全平台支持 · 7×24 专业客服 · 采用军工级安全加密传输技术。</p></div>
+                                        <div>特别推荐：<b><a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">星辰机场</a></b> <p>【包年送2个月】</p><p>1、购买入门版年付套餐额外送2个月，共14个月，只要99元！！！</p><p>2、购买“至尊天皇”年付套餐，额外送2个月，只要299元！！！</p><p>3、购买其他包月类套餐中的年付，同样送2个月！！！</p><p>错过要再等一年！！</p></div>
                                     <a href="/">V2ray Windows免费节点订阅站</a> 版权所有 Powered by WordPress
             </div>
         </div>
