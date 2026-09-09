@@ -144,14 +144,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 如何导入 URL 格式的订阅？</h5></div>
+    <div class="panel-heading"><h5>如何检查 Clash 连接失败的日志以定位问题？</h5></div>
     <div class="panel-body">
-        在 Potatso Lite 的配置页点击“导入”，粘贴订阅链接并确认导入。系统会自动解析节点列表，可在主界面查看并选择不同线路。部分机场支持一键导入格式，省去手动配置步骤。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 策略组如何实现节点优先级切换？</h5></div>
-    <div class="panel-body">
-        用户可以在 Clash 策略组中设置节点优先级，结合规则文件自动选择延迟低、稳定性高的节点处理流量。优化网页浏览、视频播放和游戏访问速度，提高整体网络效率。<hr />    </div>
+        打开 Clash 的日志面板或查看配置目录下的 log 文件，观察报错信息如 DNS 解析失败、节点拒绝连接或 TLS 握手错误。根据关键字（例如 timeout、refused、certificate）逐项排查并比对服务器配置。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>QuantumultX 的重写脚本可以实现哪些功能？</h5></div>
@@ -159,29 +154,14 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         QuantumultX 支持 JavaScript 重写脚本，可修改请求头、响应内容、跳转 URL、广告屏蔽和定制化流量处理。结合策略组可实现个性化网络访问和优化，提高用户体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的协议和混淆如何影响连接稳定性？</h5></div>
-    <div class="panel-body">
-        不同协议和混淆方式对抗 DPI 和封锁能力不同。合理选择可隐藏真实流量特征，减少被封锁风险，提高连接稳定性和访问速度，确保节点长期可用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何检查 Clash 连接失败的日志以定位问题？</h5></div>
-    <div class="panel-body">
-        打开 Clash 的日志面板或查看配置目录下的 log 文件，观察报错信息如 DNS 解析失败、节点拒绝连接或 TLS 握手错误。根据关键字（例如 timeout、refused、certificate）逐项排查并比对服务器配置。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 如何区分全局代理和规则代理？</h5></div>
-    <div class="panel-body">
-        全局代理会将所有流量通过节点转发，而规则代理仅对指定 IP、端口或应用生效。用户可根据需求选择代理模式，实现流量优化和不同应用的最佳网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 如何结合节点测速优化策略组？</h5></div>
-    <div class="panel-body">
-        PassWall2 会定期测速节点延迟和丢包率，并根据策略组自动选择最优节点。通过测速和自动切换，可保证网页、视频和游戏流量走低延迟节点，提升整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Surfboard 的规则文件如何支持广告屏蔽？</h5></div>
     <div class="panel-body">
         规则文件可添加广告域名或 URL 列表，将请求重定向或阻断。结合策略组和自动更新，Surfboard 可实现全局广告屏蔽，提高浏览体验并节省带宽。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的协议和混淆如何影响连接稳定性？</h5></div>
+    <div class="panel-body">
+        不同协议和混淆方式对抗 DPI 和封锁能力不同。合理选择可隐藏真实流量特征，减少被封锁风险，提高连接稳定性和访问速度，确保节点长期可用。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 协议如何提高节点隐蔽性？</h5></div>
@@ -189,9 +169,29 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         SSR 可通过选择协议和混淆方式伪装流量，降低被 DPI 检测和封锁风险。合理配置可增强节点隐蔽性和长期稳定性，保证科学上网体验顺畅可靠。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>PassWall2 如何结合节点测速优化策略组？</h5></div>
+    <div class="panel-body">
+        PassWall2 会定期测速节点延迟和丢包率，并根据策略组自动选择最优节点。通过测速和自动切换，可保证网页、视频和游戏流量走低延迟节点，提升整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 如何区分全局代理和规则代理？</h5></div>
+    <div class="panel-body">
+        全局代理会将所有流量通过节点转发，而规则代理仅对指定 IP、端口或应用生效。用户可根据需求选择代理模式，实现流量优化和不同应用的最佳网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Potatso Lite 如何导入 URL 格式的订阅？</h5></div>
+    <div class="panel-body">
+        在 Potatso Lite 的配置页点击“导入”，粘贴订阅链接并确认导入。系统会自动解析节点列表，可在主界面查看并选择不同线路。部分机场支持一键导入格式，省去手动配置步骤。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + Reality 与 Trojan 在性能上差异大吗？</h5></div>
     <div class="panel-body">
-        两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。    </div>
+        两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 策略组如何实现节点优先级切换？</h5></div>
+    <div class="panel-body">
+        用户可以在 Clash 策略组中设置节点优先级，结合规则文件自动选择延迟低、稳定性高的节点处理流量。优化网页浏览、视频播放和游戏访问速度，提高整体网络效率。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -239,16 +239,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-21.htm" title="8月21日|Clash节点/Trojan节点/V2ray节点/Singbox节点/SSR节点/Shadowrocket节点每天更新20.6M/S免费节点订阅链接地址分享">8月21日|Clash节点/Trojan节点/V2ray节点/Singbox节点/SSR节点/Shadowrocket节点每天更新20.6M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-25.htm" title="8月25日|V2ray节点/SSR节点/Singbox节点/Trojan节点/Clash节点/Shadowrocket节点每天更新19.6M/S免费节点订阅链接地址分享">8月25日|V2ray节点/SSR节点/Singbox节点/Trojan节点/Clash节点/Shadowrocket节点每天更新19.6M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-16-free-ssr-subscribe.htm" title="8月16日|Trojan节点/Singbox节点/SSR节点/Clash节点/Shadowrocket节点/V2ray节点每天更新20.1M/S免费节点订阅链接地址分享">8月16日|Trojan节点/Singbox节点/SSR节点/Clash节点/Shadowrocket节点/V2ray节点每天更新20.1M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-11.htm" title="8月11日|Singbox节点/V2ray节点/Trojan节点/SSR节点/Clash节点/Shadowrocket节点每天更新19.8M/S免费节点订阅链接地址分享">8月11日|Singbox节点/V2ray节点/Trojan节点/SSR节点/Clash节点/Shadowrocket节点每天更新19.8M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-8-31.htm" title="8月31日|SSR节点/Trojan节点/Shadowrocket节点/Clash节点/Singbox节点/V2ray节点每天更新18.2M/S免费节点订阅链接地址分享">8月31日|SSR节点/Trojan节点/Shadowrocket节点/Clash节点/Singbox节点/V2ray节点每天更新18.2M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-30-free-shadowrocket-node.htm" title="8月30日|Shadowrocket节点/Clash节点/Trojan节点/Singbox节点/SSR节点/V2ray节点每天更新21.6M/S免费节点订阅链接地址分享">8月30日|Shadowrocket节点/Clash节点/Trojan节点/Singbox节点/SSR节点/V2ray节点每天更新21.6M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-6-node-share.htm" title="8月6日|SSR节点/Singbox节点/Shadowrocket节点/Clash节点/Trojan节点/V2ray节点每天更新20M/S免费节点订阅链接地址分享">8月6日|SSR节点/Singbox节点/Shadowrocket节点/Clash节点/Trojan节点/V2ray节点每天更新20M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-19.htm" title="8月19日|Trojan节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点/SSR节点每天更新21.9M/S免费节点订阅链接地址分享">8月19日|Trojan节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点/SSR节点每天更新21.9M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-2-free-clash.htm" title="9月2日|Singbox节点/Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Trojan节点每天更新19.5M/S免费节点订阅链接地址分享">9月2日|Singbox节点/Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Trojan节点每天更新19.5M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-8-13.htm" title="8月13日|SSR节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点/Clash节点每天更新21.9M/S免费节点订阅链接地址分享">8月13日|SSR节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点/Clash节点每天更新21.9M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-8-29.htm" title="8月29日|SSR节点/Clash节点/Trojan节点/Singbox节点/Shadowrocket节点/V2ray节点每天更新18.3M/S免费节点订阅链接地址分享">8月29日|SSR节点/Clash节点/Trojan节点/Singbox节点/Shadowrocket节点/V2ray节点每天更新18.3M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-4-free-shadowrocket-node.htm" title="9月4日|Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Trojan节点/Singbox节点每天更新22.7M/S免费节点订阅链接地址分享">9月4日|Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Trojan节点/Singbox节点每天更新22.7M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-18-free-clash.htm" title="8月18日|V2ray节点/Trojan节点/Shadowrocket节点/Singbox节点/Clash节点/SSR节点每天更新19.3M/S免费节点订阅链接地址分享">8月18日|V2ray节点/Trojan节点/Shadowrocket节点/Singbox节点/Clash节点/SSR节点每天更新19.3M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-17.htm" title="8月17日|Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Singbox节点/Trojan节点每天更新19.3M/S免费节点订阅链接地址分享">8月17日|Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Singbox节点/Trojan节点每天更新19.3M/S免费节点订阅链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-26-free-clash.htm" title="8月26日|Clash节点/Singbox节点/SSR节点/Trojan节点/V2ray节点/Shadowrocket节点每天更新20.2M/S免费节点订阅链接地址分享">8月26日|Clash节点/Singbox节点/SSR节点/Trojan节点/V2ray节点/Shadowrocket节点每天更新20.2M/S免费节点订阅链接地址分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-28-free-shadowrocket-node.htm" title="8月28日|V2ray节点/Shadowrocket节点/SSR节点/Singbox节点/Trojan节点/Clash节点每天更新19.5M/S免费节点订阅链接地址分享">8月28日|V2ray节点/Shadowrocket节点/SSR节点/Singbox节点/Trojan节点/Clash节点每天更新19.5M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-8-15.htm" title="8月15日|V2ray节点/Trojan节点/Clash节点/Singbox节点/SSR节点/Shadowrocket节点每天更新21.6M/S免费节点订阅链接地址分享">8月15日|V2ray节点/Trojan节点/Clash节点/Singbox节点/SSR节点/Shadowrocket节点每天更新21.6M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-9-1.htm" title="9月1日|Singbox节点/Trojan节点/Clash节点/SSR节点/Shadowrocket节点/V2ray节点每天更新20.3M/S免费节点订阅链接地址分享">9月1日|Singbox节点/Trojan节点/Clash节点/SSR节点/Shadowrocket节点/V2ray节点每天更新20.3M/S免费节点订阅链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-23.htm" title="8月23日|Singbox节点/Clash节点/V2ray节点/Shadowrocket节点/Trojan节点/SSR节点每天更新20.1M/S免费节点订阅链接地址分享">8月23日|Singbox节点/Clash节点/V2ray节点/Shadowrocket节点/Trojan节点/SSR节点每天更新20.1M/S免费节点订阅链接地址分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -260,10 +260,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
